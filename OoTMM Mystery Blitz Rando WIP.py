@@ -52,10 +52,12 @@ while MysteryCount < MinMysterySettings:
             if (SKeyShuffle == ["anywhere", "anywhere"] and BKeyShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere") or (BKeyShuffle == "anywhere" and SilverRupeeShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere" and BKeyShuffle == "anywhere"):
                 HardCounter += 1
 
+        ProgressiveClockType = "seperate"
         ClockShuffle = random.choices([True, False], [10, 90])[0]
         if ClockShuffle == True:
             HardCounter += 1
             MysteryCount += 1
+            ProgressiveClockType = random.choices(["ascending", "descending", "seperate"], [20, 30, 50])[0]
 
         BossSoulsWeight = [10, 90]
         if BKeyShuffle == "anywhere":
@@ -193,7 +195,7 @@ settings_data = {
 "fastMasks":True,
 "shadowFastBoat":True,
 "progressiveGoronLullaby":"single",
-"progressiveClocks":random.choices(["seperate", "ascending", "descending"])[0],
+"progressiveClocks":ProgressiveClockType,
 "bottleContentShuffle":True,
 "blueFireArrows":True,
 "sunlightArrows":True,
@@ -499,7 +501,3 @@ print(seed_string)
 
 # Output the decoded data
 #print(decoded_data)
-
-
-
-
