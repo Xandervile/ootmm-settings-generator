@@ -79,17 +79,17 @@ while MysteryCount < MinMysterySettings:
     MysteryCount = 0
     HardCounter = 99
 
-    JunkList = DefaultJunkList[:]
+    JunkList = DefaultJunkList.copy()
     StartingItemList = DefaultStartingItemList.copy()
-    HintList = DefaultHintList[:]
+    HintList = DefaultHintList.copy()
 
     while HardCounter > HARDMODELIMIT:
         MysteryCount = 0
         HardCounter = 0
 
-        JunkList = DefaultJunkList[:]
+        JunkList = DefaultJunkList.copy()
         StartingItemList = DefaultStartingItemList.copy()
-        HintList = DefaultHintList[:]
+        HintList = DefaultHintList.copy()
 
         SongShuffle = random.choices(["songLocations", "anywhere"], [75, 25])[0]
         if SongShuffle == "anywhere":
@@ -515,7 +515,3 @@ decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
 
 # Output the decoded data
 print(decoded_data)
-
-
-
-
