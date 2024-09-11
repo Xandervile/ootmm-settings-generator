@@ -10,13 +10,86 @@ HardModeReached = False
 #HarderSettings get rolled first to allow limitations
 HARDMODELIMIT = 3
 
+DefaultJunkList = ["MM Beneath The Graveyard Dampe Chest",
+"MM Deku Playground Reward All Days",
+"MM Goron Race Reward",
+"MM Great Bay Great Fairy",
+"MM Honey & Darling Reward All Days",
+"MM Ikana Great Fairy",
+"MM Laboratory Zora Song",
+"MM Moon Fierce Deity Mask",
+"MM Mountain Village Frog Choir HP",
+"MM Ocean Spider House Wallet",
+"MM Pinnacle Rock HP",
+"MM Snowhead Great Fairy",
+"MM Stock Pot Inn Couple\'s Mask",
+"MM Swamp Spider House Mask of Truth",
+"MM Town Archery Reward 2",
+"MM Waterfall Rapids Beaver Race 2",
+"MM Woodfall Great Fairy",
+"OOT Skulltula House 40 Tokens",
+"OOT Skulltula House 50 Tokens"]
+
+DefaultStartingItemList= {"OOT_NUTS_10":2,
+"OOT_SHIELD_DEKU":1,
+"OOT_STICK":10,
+"MM_SONG_EPONA":1,
+"SHARED_SHIELD_HYLIAN":1,
+"MM_OCARINA":1,
+"OOT_OCARINA":1,
+"MM_SWORD":1,
+"MM_SONG_SOARING":1}
+
+DefaultHintList = [{"type":"foolish",
+"amount":8,
+"extra":1},
+{"type":"always",
+"amount":"max",
+"extra":1},
+{"type":"sometimes",
+"amount":4,
+"extra":1},
+{"type":"item",
+"amount":1,
+"extra":1,
+"item":"SHARED_SHIELD_MIRROR"},
+{"type":"item",
+"amount":1,
+"extra":1,
+"item":"MM_MASK_CAPTAIN"},
+{"type":"item",
+"amount":1,
+"extra":1,
+"item":"MM_POWDER_KEG"},
+{"type":"item",
+"amount":1,
+"extra":1,
+"item":"SHARED_ARROW_ICE"},
+{"type":"playthrough",
+"amount":1,
+"extra":1},
+{"type":"woth",
+"amount":9,
+"extra":1},
+{"type":"sometimes",
+"amount":"max",
+"extra":1}]
+
 while MysteryCount < MinMysterySettings:
     MysteryCount = 0
     HardCounter = 99
 
+    JunkList = DefaultJunkList[:]
+    StartingItemList = DefaultStartingItemList.copy()
+    HintList = DefaultHintList[:]
+
     while HardCounter > HARDMODELIMIT:
         MysteryCount = 0
         HardCounter = 0
+
+        JunkList = DefaultJunkList[:]
+        StartingItemList = DefaultStartingItemList.copy()
+        HintList = DefaultHintList[:]
 
         SongShuffle = random.choices(["songLocations", "anywhere"], [75, 25])[0]
         if SongShuffle == "anywhere":
@@ -85,6 +158,7 @@ while MysteryCount < MinMysterySettings:
         if PotShuffle == True:
             MysteryCount += 1
             HardCounter += 1
+            JunkList.append("MM Goron Race Reward")
         
         
 
@@ -259,34 +333,8 @@ settings_data = {
 "erBeneathWell":DungeonEntranceShuffle,
 "erIkanaCastle":DungeonEntranceShuffle,
 "erSecretShrine":DungeonEntranceShuffle,
-"startingItems":{"OOT_NUTS_10":2,
-"OOT_SHIELD_DEKU":1,
-"OOT_STICK":10,
-"MM_SONG_EPONA":1,
-"SHARED_SHIELD_HYLIAN":1,
-"MM_OCARINA":1,
-"OOT_OCARINA":1,
-"MM_SWORD":1,
-"MM_SONG_SOARING":1},
-"junkLocations":["MM Beneath The Graveyard Dampe Chest",
-"MM Deku Playground Reward All Days",
-"MM Goron Race Reward",
-"MM Great Bay Great Fairy",
-"MM Honey & Darling Reward All Days",
-"MM Ikana Great Fairy",
-"MM Laboratory Zora Song",
-"MM Moon Fierce Deity Mask",
-"MM Mountain Village Frog Choir HP",
-"MM Ocean Spider House Wallet",
-"MM Pinnacle Rock HP",
-"MM Snowhead Great Fairy",
-"MM Stock Pot Inn Couple\'s Mask",
-"MM Swamp Spider House Mask of Truth",
-"MM Town Archery Reward 2",
-"MM Waterfall Rapids Beaver Race 2",
-"MM Woodfall Great Fairy",
-"OOT Skulltula House 40 Tokens",
-"OOT Skulltula House 50 Tokens"],
+"startingItems":StartingItemList,
+"junkLocations": JunkList,
 "tricks":[
 "MM_EVAN_FARORE",
 "MM_LENS",
@@ -430,41 +478,7 @@ settings_data = {
 "OOT Zelda\'s Letter":"OOT_OCARINA",
 "OOT Zelda\'s Song":"OOT_SONG_TP_LIGHT",
 "MM Initial Song of Healing":"MM_SONG_TIME"}},
-"hints":[{"type":"foolish",
-"amount":8,
-"extra":1},
-{"type":"always",
-"amount":"max",
-"extra":1},
-{"type":"sometimes",
-"amount":4,
-"extra":1},
-{"type":"item",
-"amount":1,
-"extra":1,
-"item":"SHARED_SHIELD_MIRROR"},
-{"type":"item",
-"amount":1,
-"extra":1,
-"item":"MM_MASK_CAPTAIN"},
-{"type":"item",
-"amount":1,
-"extra":1,
-"item":"MM_POWDER_KEG"},
-{"type":"item",
-"amount":1,
-"extra":1,
-"item":"SHARED_ARROW_ICE"},
-{"type":"playthrough",
-"amount":1,
-"extra":1},
-{"type":"woth",
-"amount":9,
-"extra":1},
-{"type":"sometimes",
-"amount":"max",
-"extra":1}]
-
+"hints": HintList
 }
 
 # Convert the settings into a JSON string (or similar format if required)
@@ -488,16 +502,20 @@ print(seed_string)
 
 
 #Decoding Part
-#seed_string = seed_string
-#seed_data = seed_string.split(".")[1]
+seed_string = seed_string
+seed_data = seed_string.split(".")[1]
 
 # Add padding if necessary
-#padding_needed = len(seed_data) % 4
-#if padding_needed:
-#    seed_data += "=" * (4 - padding_needed)
+padding_needed = len(seed_data) % 4
+if padding_needed:
+    seed_data += "=" * (4 - padding_needed)
 
 # Decode and decompress the seed
-#decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
+decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
 
 # Output the decoded data
-#print(decoded_data)
+print(decoded_data)
+
+
+
+
