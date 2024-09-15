@@ -5,10 +5,10 @@ import random
 
 MinMysterySettings = 5
 MysteryCount = 0
-HardModeReached = False
+HardCounter = 99
 
 #HarderSettings get rolled first to allow limitations
-HARDMODELIMIT = 3
+HARDMODELIMIT = 2
 
 DefaultJunkList = ["MM Beneath The Graveyard Dampe Chest",
 "MM Deku Playground Reward All Days",
@@ -75,94 +75,121 @@ DefaultHintList = [{"type":"foolish",
 "amount":"max",
 "extra":1}]
 
-while MysteryCount < MinMysterySettings:
+HintToInsertBefore = {"type": "woth",
+                      "amount": 4,
+                      "extra": 1}
+
+while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     MysteryCount = 0
-    HardCounter = 99
+    HardCounter = 0
 
     JunkList = DefaultJunkList.copy()
     StartingItemList = DefaultStartingItemList.copy()
     HintList = DefaultHintList.copy()
+    HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
 
-    while HardCounter > HARDMODELIMIT:
-        MysteryCount = 0
-        HardCounter = 0
+    SongShuffle = random.choices(["songLocations", "anywhere"], [75, 25])[0]
+    if SongShuffle == "anywhere":
+        HardCounter += 1
+        MysteryCount += 1
 
-        JunkList = DefaultJunkList.copy()
-        StartingItemList = DefaultStartingItemList.copy()
-        HintList = DefaultHintList.copy()
+    GrassShuffleWeight = [10, 90]
+    GrassShuffle = random.choices([True, False], GrassShuffleWeight)[0]
+    if GrassShuffle == True:
+        HardCounter += 1
+        MysteryCount += 1
 
-        SongShuffle = random.choices(["songLocations", "anywhere"], [75, 25])[0]
-        if SongShuffle == "anywhere":
+    PotShuffleWeight = [20, 80]
+    PotShuffle = random.choices([True, False], PotShuffleWeight)[0]
+    if PotShuffle == True:
+        HardCounter += 1
+        MysteryCount += 1
+
+    SilverRupeeShuffle = random.choices(["vanilla", "own Dungeon", "anywhere"], [70, 25, 5])[0]
+
+    SKeyShuffleWeight = [50, 10, 30, 10]
+    SKeyShuffle = random.choices([["removed", "ownDungeon"], ["removed", "removed"], ["ownDungeon", "ownDungeon"], ["anywhere", "anywhere"]], SKeyShuffleWeight)[0]
+    smallKeyShuffleMm = SKeyShuffle[0]
+    smallKeyShuffleOot = SKeyShuffle[1]
+
+    BKeyShuffleWeight = [30, 60, 10]
+    BKeyShuffle = random.choices(["removed", "ownDungeon", "anywhere"], BKeyShuffleWeight)[0]
+    bossKeyShuffleMm = BKeyShuffle
+    bossKeyShuffleOot = BKeyShuffle
+
+    if SKeyShuffle != ["removed", "ownDungeon"] or BKeyShuffle != "removed" or SilverRupeeShuffle != "vanilla":
+        MysteryCount += 1
+        if (SKeyShuffle == ["anywhere", "anywhere"] and BKeyShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere") or (BKeyShuffle == "anywhere" and SilverRupeeShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere" and BKeyShuffle == "anywhere"):
             HardCounter += 1
-            MysteryCount += 1
- 
-        GrassShuffleWeight = [10, 90]
-        GrassShuffle = random.choices([True, False], GrassShuffleWeight)[0]
-        if GrassShuffle == True:
+
+    ProgressiveClockType = "seperate"
+    ClockShuffle = random.choices([True, False], [10, 90])[0]
+    if ClockShuffle == True:
+        HardCounter += 1
+        MysteryCount += 1
+        ProgressiveClockType = random.choices(["ascending", "descending", "seperate"], [20, 30, 50])[0]
+        if ProgressiveClockType == "separate":
+            StartingClock = \
+            random.choices(["MM_CLOCK1", "MM_CLOCK2", "MM_CLOCK3", "MM_CLOCK4", "MM_CLOCK5", "MM_CLOCK6"],
+                           [10, 10, 10, 10, 10, 10])[0]
+            StartingItems[StartingClock] = 1
+            if StartingClock != "MM_CLOCK6":
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 1,
+                                            "item": "MM_CLOCK6"})
+
+    BossSoulsWeight = [10, 90]
+    if BKeyShuffle == "anywhere":
+        BossSoulsWeight[1] += BossSoulsWeight[0]
+        BossSoulsWeight[0] = 0
+    SharedBossSoulShuffle = random.choices([True, False], BossSoulsWeight)[0]
+    if SharedBossSoulShuffle == True:
+        HardCounter += 1
+        MysteryCount += 1
+
+    FreestandingShuffle = random.choices([True, False], [20, 80])[0]
+    WonderSpotShuffle = random.choices([True, False], [20, 80])[0]
+
+    if FreestandingShuffle != False or WonderSpotShuffle != False:
+        MysteryCount += 1
+        if FreestandingShuffle != False and WonderSpotShuffle != False:
             HardCounter += 1
-            MysteryCount += 1
 
-        PotShuffleWeight = [20, 80]
-        PotShuffle = random.choices([True, False], PotShuffleWeight)[0]
-        if PotShuffle == True:
-            HardCounter += 1
-            MysteryCount += 1
+    PotShuffle = random.choices([True, False], [15, 85])[0]
+    if PotShuffle == True:
+        MysteryCount += 1
+        HardCounter += 1
+        JunkList.append("MM Goron Race Reward")
 
-        SilverRupeeShuffle = random.choices(["vanilla", "own Dungeon", "anywhere"], [70, 25, 5])[0]
-
-        SKeyShuffleWeight = [50, 10, 30, 10]
-        SKeyShuffle = random.choices([["removed", "ownDungeon"], ["removed", "removed"], ["ownDungeon", "ownDungeon"], ["anywhere", "anywhere"]], SKeyShuffleWeight)[0]
-        smallKeyShuffleMm = SKeyShuffle[0]
-        smallKeyShuffleOot = SKeyShuffle[1]
-
-        BKeyShuffleWeight = [30, 60, 10]
-        BKeyShuffle = random.choices(["removed", "ownDungeon", "anywhere"], BKeyShuffleWeight)[0]
-        bossKeyShuffleMm = BKeyShuffle
-        bossKeyShuffleOot = BKeyShuffle
-
-        if SKeyShuffle != ["removed", "ownDungeon"] or BKeyShuffle != "removed" or SilverRupeeShuffle != "vanilla":
-            MysteryCount += 1
-            if (SKeyShuffle == ["anywhere", "anywhere"] and BKeyShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere") or (BKeyShuffle == "anywhere" and SilverRupeeShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere" and BKeyShuffle == "anywhere"):
-                HardCounter += 1
-
-        ProgressiveClockType = "seperate"
-        ClockShuffle = random.choices([True, False], [10, 90])[0]
-        if ClockShuffle == True:
-            HardCounter += 1
-            MysteryCount += 1
-            ProgressiveClockType = random.choices(["ascending", "descending", "seperate"], [20, 30, 50])[0]
-
-        BossSoulsWeight = [10, 90]
-        if BKeyShuffle == "anywhere":
-            BossSoulsWeight[1] += BossSoulsWeight[0]
-            BossSoulsWeight[0] = 0
-        SharedBossSoulShuffle = random.choices([True, False], BossSoulsWeight)[0]
-        if SharedBossSoulShuffle == True:
-            HardCounter += 1
-            MysteryCount += 1
-
-        StrayFairyShuffle = random.choices(["removed","anywhere"], [85, 15])[0]
-        if StrayFairyShuffle != "removed":
-            HardCounter += 1
-            MysteryCount += 1
-
-        FreestandingShuffle = random.choices([True, False], [20, 80])[0]
-        WonderSpotShuffle = random.choices([True, False], [20, 80])[0]
-
-        if FreestandingShuffle != False or WonderSpotShuffle != False:
-            MysteryCount += 1
-            if FreestandingShuffle != False and WonderSpotShuffle != False:
-                HardCounter += 1
-
-        PotShuffle = random.choices([True, False], [15, 85])[0]
-        if PotShuffle == True:
-            MysteryCount += 1
-            HardCounter += 1
-            JunkList.append("MM Goron Race Reward")
-        
-        
+    RegionsShuffle = ["none", False]
+    OverworldShuffle = "none"
+    InteriorShuffle = ["none", False]
+    EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], [80, 10, 4, 4, 2])[0]
+    if EntranceRandomizer == "Regions Only":
+        RegionsShuffle = ["owngame", True]
+        MysteryCount += 1
+    elif EntranceRandomizer == "Overworld":
+        OverworldShuffle = "owngame"
+        MysteryCount += 1
+        HardCounter += 1
+    elif EntranceRandomizer == "Interiors":
+        InteriorShuffle = ["owngame", True]
+        MysteryCount += 1
+        HardCounter += 1
+    elif EntranceRandomizer == "Full":
+        OverworldShuffle = "owngame"
+        InteriorShuffle = ["owngame", True]
+        MysteryCount += 1
+        HardCounter += 1
 
     #Other Settings get Randomized here
+    TownFairy = "vanilla"
+    StrayFairyShuffle = random.choices(["removed","anywhere"], [80, 20])[0]
+    if StrayFairyShuffle != "removed":
+        MysteryCount += 1
+        TownFairy = "anywhere"
+        
     DungeonEntranceShuffleWeight = [20, 80]
     DungeonEntranceShuffle = random.choices([True, False], DungeonEntranceShuffleWeight)[0]
     erDungeons = "none"
@@ -218,6 +245,7 @@ settings_data = {
 "bossKeyShuffleOot":bossKeyShuffleOot,
 "bossKeyShuffleMm":bossKeyShuffleMm,
 "silverRupeeShuffle":SilverRupeeShuffle,
+"townFairyShuffle": TownFairy,
 "strayFairyChestShuffle":"starting",
 "strayFairyOtherShuffle":StrayFairyShuffle,
 "scrubsShuffleOot":ScrubShuffle,
@@ -333,6 +361,13 @@ settings_data = {
 "erBeneathWell":DungeonEntranceShuffle,
 "erIkanaCastle":DungeonEntranceShuffle,
 "erSecretShrine":DungeonEntranceShuffle,
+"erRegions": RegionsShuffle[0],
+"erRegionsExtra": RegionsShuffle[1],
+"erRegionsShortcuts": RegionsShuffle[1],
+"erOverworld": OverworldShuffle,
+"erIndoors": InteriorShuffle[0],
+"erIndoorsMajor": InteriorShuffle[1],
+"erIndoorsExtra": InteriorShuffle[1],
 "startingItems":StartingItemList,
 "junkLocations": JunkList,
 "tricks":[
@@ -502,7 +537,7 @@ print(seed_string)
 
 
 #Decoding Part
-seed_string = seed_string
+#seed_string = "v1.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"
 seed_data = seed_string.split(".")[1]
 
 # Add padding if necessary
@@ -515,3 +550,6 @@ decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
 
 # Output the decoded data
 print(decoded_data)
+
+
+
