@@ -76,7 +76,7 @@ DefaultHintList = [{"type":"foolish",
 "extra":1}]
 
 HintToInsertBefore = {"type": "woth",
-                      "amount": 4,
+                      "amount": 9,
                       "extra": 1}
 
 while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
