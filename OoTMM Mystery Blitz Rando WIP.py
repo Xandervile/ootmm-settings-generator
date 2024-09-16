@@ -183,6 +183,15 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
         MysteryCount += 1
         HardCounter += 1
 
+    OwlWeight = [10, 90]
+    if OverworldShuffle == "full":
+      OwlWeight[1] += OwlWeight[0]
+      OwlWeight[0] = 0
+    OwlShuffle = random.choices([True, False], OwlWeight)
+    if OwlShuffle == True:
+        MysteryCounter += 1
+        HardCounter += 1
+
     #Other Settings get Randomized here
     TownFairy = "vanilla"
     StrayFairyShuffle = random.choices(["removed","anywhere"], [80, 20])[0]
@@ -204,7 +213,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     ScrubShuffle = False
     SharedShopShuffle = random.choices(["none", "full"],[70, 30])[0]
     if SharedShopShuffle != "none":
-        ScrubShuffle = True
+        ScrubShuffle = random.choices([True, False], [50, 50])[0]
         MysteryCount += 1
         
     SharedCowShuffle = random.choices([True, False],[20, 80])[0]
@@ -256,6 +265,7 @@ settings_data = {
 "cowShuffleMm":SharedCowShuffle,
 "shopShuffleOot":SharedShopShuffle,
 "shopShuffleMm":SharedShopShuffle,
+"owlShuffle":OwlShuffle,
 "shufflePotsOot":PotShuffle,
 "shufflePotsMm":PotShuffle,
 "shuffleCratesOot":SharedCratesAndBarrels,
@@ -268,6 +278,8 @@ settings_data = {
 "shuffleWonderItemsOot":WonderSpotShuffle,
 "shuffleWonderItemsMm":WonderSpotShuffle,
 "shuffleSnowballsMm":SnowballShuffle,
+"shuffleMerchantsOot":ScrubShuffle,
+"shuffleMerchantsMm":ScrubShuffle,
 "shuffleMasterSword":False,
 "shuffleGerudoCard":False,
 "startingAge":"random",
