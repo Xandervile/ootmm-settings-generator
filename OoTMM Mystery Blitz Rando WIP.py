@@ -167,19 +167,19 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     InteriorShuffle = ["none", False]
     EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], [80, 10, 4, 4, 2])[0]
     if EntranceRandomizer == "Regions Only":
-        RegionsShuffle = ["owngame", True]
+        RegionsShuffle = ["full", True]
         MysteryCount += 1
     elif EntranceRandomizer == "Overworld":
-        OverworldShuffle = "owngame"
+        OverworldShuffle = "full"
         MysteryCount += 1
         HardCounter += 1
     elif EntranceRandomizer == "Interiors":
-        InteriorShuffle = ["owngame", True]
+        InteriorShuffle = ["full", True]
         MysteryCount += 1
         HardCounter += 1
     elif EntranceRandomizer == "Full":
-        OverworldShuffle = "owngame"
-        InteriorShuffle = ["owngame", True]
+        OverworldShuffle = "full"
+        InteriorShuffle = ["full", True]
         MysteryCount += 1
         HardCounter += 1
 
@@ -211,7 +211,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     if SharedCowShuffle == True:
         MysteryCount += 1
 
-    SharedMQDungeons = random.choices(["vanilla", "mq", "random"],[70, 10, 20])[0]
+    SharedMQDungeons = random.choices(["vanilla", "mq", "random"],[75, 5, 20])[0]
     if SharedMQDungeons != "vanilla":
         MysteryCount += 1
 
@@ -227,7 +227,9 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     if SkulltulaShuffle == "all":
         MysteryCount += 1
         
-        
+    GrottoShuffle = random.choices(["none", "full"], [80, 20])[0]
+    if GrottoShuffle == "full":
+        MysteryCount += 1
 
         
 
@@ -354,6 +356,7 @@ settings_data = {
 "agelessChildTrade":True,
 "erBoss":BossEntranceShuffle,
 "erDungeons":erDungeons,
+"erGrottos": GrottoShuffle,
 "erMajorDungeons":DungeonEntranceShuffle,
 "erMinorDungeons":DungeonEntranceShuffle,
 "erSpiderHouses":DungeonEntranceShuffle,
