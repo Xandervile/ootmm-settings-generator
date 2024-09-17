@@ -5,7 +5,7 @@ import random
 
 MinMysterySettings = 5
 MysteryCount = 0
-HardCounter = 99
+HardCounter = 0
 
 #HarderSettings get rolled first to allow limitations
 HARDMODELIMIT = 2
@@ -38,7 +38,8 @@ DefaultStartingItemList= {"OOT_NUTS_10":2,
 "MM_OCARINA":1,
 "OOT_OCARINA":1,
 "MM_SWORD":1,
-"MM_SONG_SOARING":1}
+"MM_SONG_SOARING":1,
+"MM_SONG_TIME":1}
 
 DefaultHintList = [{"type":"foolish",
 "amount":8,
@@ -75,9 +76,14 @@ DefaultHintList = [{"type":"foolish",
 "amount":"max",
 "extra":1}]
 
-HintToInsertBefore = {"type": "woth",
-                      "amount": 9,
+HintToInsertBefore = {"type": "playthrough",
+                      "amount": 1,
                       "extra": 1}
+
+DefaultPlando = {"OOT Zora River Bean Seller":"OOT_MAGIC_BEAN",
+"OOT Zelda\'s Letter":"OOT_OCARINA",
+"OOT Zelda\'s Song":"OOT_SONG_TP_LIGHT",
+"MM Initial Song of Healing":"SHARED_RECOVERY_HEART"}
 
 while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     MysteryCount = 0
@@ -85,13 +91,28 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
 
     JunkList = DefaultJunkList.copy()
     StartingItemList = DefaultStartingItemList.copy()
+    PlandoList = DefaultPlando.copy()
     HintList = DefaultHintList.copy()
-    HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
 
     SongShuffle = random.choices(["songLocations", "anywhere"], [75, 25])[0]
     if SongShuffle == "anywhere":
         HardCounter += 1
         MysteryCount += 1
+        StartingItemList.pop("MM_SONG_TIME")
+        HintList = [hint for hint in HintList if hint.get("item") not in ["MM_MASK_CAPTAIN", "MM_POWDER_KEG", "SHARED_SHIELD_MIRROR"]]
+        HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
+        HintList.insert(HintIndex, {"type": "item",
+                            "amount": 1,
+                            "extra": 1,
+                            "item": "OOT_SONG_ZELDA"})
+        HintList.insert(HintIndex, {"type": "item",
+                            "amount": 1,
+                            "extra": 1,
+                            "item": "SHARED_SONG_TIME"})
+        HintList.insert(HintIndex, {"type": "item",
+                            "amount": 1,
+                            "extra": 1,
+                            "item": "OOT_SONG_EPONA"})
 
     GrassShuffleWeight = [10, 90]
     GrassShuffle = random.choices([True, False], GrassShuffleWeight)[0]
@@ -122,18 +143,19 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
         if (SKeyShuffle == ["anywhere", "anywhere"] and BKeyShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere") or (BKeyShuffle == "anywhere" and SilverRupeeShuffle == "anywhere") or (SKeyShuffle == ["anywhere", "anywhere"] and SilverRupeeShuffle == "anywhere" and BKeyShuffle == "anywhere"):
             HardCounter += 1
 
-    ProgressiveClockType = "seperate"
+    ProgressiveClockType = "separate"
     ClockShuffle = random.choices([True, False], [10, 90])[0]
     if ClockShuffle == True:
         HardCounter += 1
         MysteryCount += 1
-        ProgressiveClockType = random.choices(["ascending", "descending", "seperate"], [20, 30, 50])[0]
+        ProgressiveClockType = random.choices(["ascending", "descending", "separate"], [20, 30, 50])[0]
         if ProgressiveClockType == "separate":
             StartingClock = \
             random.choices(["MM_CLOCK1", "MM_CLOCK2", "MM_CLOCK3", "MM_CLOCK4", "MM_CLOCK5", "MM_CLOCK6"],
                            [10, 10, 10, 10, 10, 10])[0]
-            StartingItems[StartingClock] = 1
+            StartingItemList[StartingClock] = 1
             if StartingClock != "MM_CLOCK6":
+                HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
                 HintList.insert(HintIndex, {"type": "item",
                                             "amount": 1,
                                             "extra": 1,
@@ -162,6 +184,18 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
         HardCounter += 1
         JunkList.append("MM Goron Race Reward")
 
+    SwordShuffle = random.choices([True, False], [15, 85])[0]
+    if SwordShuffle == True:
+        MysteryCount += 1
+        HardCounter += 1
+        HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
+        HintList.insert(HintIndex, {"type": "item",
+                                    "amount": 1,
+                                    "extra": 1,
+                                    "item": "OOT_SWORD_MASTER"})
+        StartingItemList.pop("MM_SWORD")
+        StartingItemList.pop("SHARED_SHIELD_HYLIAN")
+
     RegionsShuffle = ["none", False]
     OverworldShuffle = "none"
     InteriorShuffle = ["none", False]
@@ -181,15 +215,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
         OverworldShuffle = "full"
         InteriorShuffle = ["full", True]
         MysteryCount += 1
-        HardCounter += 1
-
-    OwlWeight = [10, 90]
-    if OverworldShuffle == "full":
-      OwlWeight[1] += OwlWeight[0]
-      OwlWeight[0] = 0
-    OwlShuffle = random.choices([True, False], OwlWeight)
-    if OwlShuffle == True:
-        MysteryCounter += 1
         HardCounter += 1
 
     #Other Settings get Randomized here
@@ -213,14 +238,14 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     ScrubShuffle = False
     SharedShopShuffle = random.choices(["none", "full"],[70, 30])[0]
     if SharedShopShuffle != "none":
-        ScrubShuffle = random.choices([True, False], [50, 50])[0]
+        ScrubShuffle = True
         MysteryCount += 1
         
     SharedCowShuffle = random.choices([True, False],[20, 80])[0]
     if SharedCowShuffle == True:
         MysteryCount += 1
 
-    SharedMQDungeons = random.choices(["vanilla", "mq", "random"],[75, 5, 20])[0]
+    SharedMQDungeons = random.choices(["vanilla", "mq", "random"],[70, 10, 20])[0]
     if SharedMQDungeons != "vanilla":
         MysteryCount += 1
 
@@ -235,11 +260,11 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     SkulltulaShuffle = random.choices(["none", "all"], [75, 25])[0]
     if SkulltulaShuffle == "all":
         MysteryCount += 1
-        
+
     GrottoShuffle = random.choices(["none", "full"], [80, 20])[0]
     if GrottoShuffle == "full":
         MysteryCount += 1
-
+        
         
 
 # Rest of the settings are not stored already so are randomised here. To add: 
@@ -265,7 +290,6 @@ settings_data = {
 "cowShuffleMm":SharedCowShuffle,
 "shopShuffleOot":SharedShopShuffle,
 "shopShuffleMm":SharedShopShuffle,
-"owlShuffle":OwlShuffle,
 "shufflePotsOot":PotShuffle,
 "shufflePotsMm":PotShuffle,
 "shuffleCratesOot":SharedCratesAndBarrels,
@@ -278,11 +302,12 @@ settings_data = {
 "shuffleWonderItemsOot":WonderSpotShuffle,
 "shuffleWonderItemsMm":WonderSpotShuffle,
 "shuffleSnowballsMm":SnowballShuffle,
-"shuffleMerchantsOot":ScrubShuffle,
-"shuffleMerchantsMm":ScrubShuffle,
-"shuffleMasterSword":False,
+"shuffleMasterSword":SwordShuffle,
 "shuffleGerudoCard":False,
+"moonCrash":"cycle",
 "startingAge":"random",
+"swordlessAdult":True,
+"timeTravelSword":True,
 "doorOfTime":"open",
 "ageChange":"always",
 "dekuTree":"closed",
@@ -327,6 +352,7 @@ settings_data = {
 "tunicZoraMm":True,
 "scalesMm":True,
 "strengthMm":True,
+"extraChildSwordsOot":SwordShuffle,
 "blastMaskOot":True,
 "stoneMaskOot":True,
 "elegyOot":True,
@@ -342,6 +368,7 @@ settings_data = {
 "sharedMagicArrowIce":True,
 "sharedMagicArrowLight":True,
 "sharedSongStorms":True,
+"sharedSongTime": SongShuffle == "anywhere",
 "sharedHookshot":True,
 "sharedLens":True,
 "sharedMaskGoron":True,
@@ -354,6 +381,7 @@ settings_data = {
 "sharedSongElegy":True,
 "sharedWallets":True,
 "sharedHealth":True,
+"sharedSwords":SwordShuffle,
 "sharedShields":True,
 "sharedBombchuBags":True,
 "sharedSpellFire":True,
@@ -524,10 +552,7 @@ settings_data = {
         "coinsGreen":False,
         "coinsBlue":False,
         "coinsYellow":False}},
-"plando":{"locations":{"OOT Zora River Bean Seller":"OOT_MAGIC_BEAN",
-"OOT Zelda\'s Letter":"OOT_OCARINA",
-"OOT Zelda\'s Song":"OOT_SONG_TP_LIGHT",
-"MM Initial Song of Healing":"MM_SONG_TIME"}},
+"plando":{"locations": PlandoList},
 "hints": HintList
 }
 
@@ -546,25 +571,30 @@ encoded_data = encoded_data.rstrip("=")
 # Format the final seed string (prepend 'v1.' to the encoded string)
 seed_string = f"v1.{encoded_data}"
 
-# Output the result
-print("Encoded Seed String:")
-print(seed_string)
+with open("seed_output.txt", "w") as file:
+    file.write("Seed String:\n")
+    file.write("\n")
+    file.write(seed_string)
+
+with open("settings_output.txt", "w") as file:
+    file.write("Settings Spoiler:\n")
+    file.write("\n")
+    for key, value in settings_data.items():
+        file.write(f"{key}: {value}\n")
 
 
 #Decoding Part
-#seed_string = "v1.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"
-seed_data = seed_string.split(".")[1]
+#seed_string = "v1.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"
+#seed_data = seed_string.split(".")[1]
 
 # Add padding if necessary
-padding_needed = len(seed_data) % 4
-if padding_needed:
-    seed_data += "=" * (4 - padding_needed)
+#padding_needed = len(seed_data) % 4
+#if padding_needed:
+#    seed_data += "=" * (4 - padding_needed)
 
 # Decode and decompress the seed
-decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
+#decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
 
 # Output the decoded data
-print(decoded_data)
-
-
+#print(decoded_data)
 
