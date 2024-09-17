@@ -223,7 +223,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
       OwlWeight[0] = 0
     OwlShuffle = random.choices([True, False], OwlWeight)[0]
     if OwlShuffle == True:
-        MysteryCounter += 1
+        MysteryCount += 1
         HardCounter += 1
 
     #Other Settings get Randomized here
