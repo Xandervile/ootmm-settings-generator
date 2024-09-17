@@ -8,7 +8,7 @@ MysteryCount = 0
 HardCounter = 0
 
 #HarderSettings get rolled first to allow limitations
-HARDMODELIMIT = 2
+HARDMODELIMIT = 3
 
 DefaultJunkList = ["MM Beneath The Graveyard Dampe Chest",
 "MM Deku Playground Reward All Days",
@@ -132,6 +132,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     SKeyShuffle = random.choices([["removed", "ownDungeon"], ["removed", "removed"], ["ownDungeon", "ownDungeon"], ["anywhere", "anywhere"]], SKeyShuffleWeight)[0]
     smallKeyShuffleMm = SKeyShuffle[0]
     smallKeyShuffleOot = SKeyShuffle[1]
+    if SKeyShuffle == ["anywhere", "anywhere"]:
+        GerudoKey = "anywhere"
+    else:
+        GerudoKey = "vanilla"
 
     BKeyShuffleWeight = [30, 60, 10]
     BKeyShuffle = random.choices(["removed", "ownDungeon", "anywhere"], BKeyShuffleWeight)[0]
@@ -273,6 +277,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     GrottoShuffle = random.choices(["none", "full"], [80, 20])[0]
     if GrottoShuffle == "full":
         MysteryCount += 1
+
+    GerudoCardShuffle = random.choices(["starting", True, False], [20, 20, 60])[0]
+    if GerudoCardShuffle == "starting":
+        GerudoCardShuffle = True
+        StartingItemList["OOT_GERUDO_CARD"] = 1
+        MysteryCount += 1
         
         
 
@@ -286,7 +296,7 @@ settings_data = {
 "mapCompassShuffle":"starting",
 "smallKeyShuffleOot":smallKeyShuffleOot,
 "smallKeyShuffleMm":smallKeyShuffleMm,
-"smallKeyShuffleHideout":"vanilla",
+"smallKeyShuffleHideout":GerudoKey,
 "bossKeyShuffleOot":bossKeyShuffleOot,
 "bossKeyShuffleMm":bossKeyShuffleMm,
 "silverRupeeShuffle":SilverRupeeShuffle,
@@ -315,7 +325,7 @@ settings_data = {
 "shuffleMerchantsOot":ScrubShuffle,
 "shuffleMerchantsMm":ScrubShuffle,
 "shuffleMasterSword":SwordShuffle,
-"shuffleGerudoCard":False,
+"shuffleGerudoCard":GerudoCardShuffle,
 "moonCrash":"cycle",
 "startingAge":"random",
 "swordlessAdult":True,
@@ -600,17 +610,17 @@ with open("settings_output.txt", "w") as file:
 
 
 #Decoding Part
-#seed_string = "v1.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"
-#seed_data = seed_string.split(".")[1]
+seed_string = "v1.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"
+seed_data = seed_string.split(".")[1]
 
 # Add padding if necessary
-#padding_needed = len(seed_data) % 4
-#if padding_needed:
-#    seed_data += "=" * (4 - padding_needed)
+padding_needed = len(seed_data) % 4
+if padding_needed:
+    seed_data += "=" * (4 - padding_needed)
 
 # Decode and decompress the seed
-#decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
+decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
 
 # Output the decoded data
-#print(decoded_data)
+print(decoded_data)
 
