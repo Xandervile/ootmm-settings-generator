@@ -221,7 +221,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     if OverworldShuffle == "full":
       OwlWeight[1] += OwlWeight[0]
       OwlWeight[0] = 0
-    OwlShuffle = random.choices([True, False], OwlWeight)
+    OwlShuffle = random.choices([True, False], OwlWeight)[0]
     if OwlShuffle == True:
         MysteryCounter += 1
         HardCounter += 1
