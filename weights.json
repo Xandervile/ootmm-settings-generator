@@ -11,6 +11,7 @@
 	  "SwordShuffle":[[true, false], [15, 85], "Also affects Child Sword Upgrades, Hard Setting"],
 	  "ShopShuffle":[["none", "full"], [70, 30]],
 	  "MerchantShuffle":[[true, false], [50, 50], "Affects all non-shop merchants and ALL Business scrubs, only happens alongside ShopShuffle"],
+	  "PriceShuffle":[["Affordable", "Vanilla", "Weighted Random", "Fully Random"], [20, 30, 50, 0]],
 	  "CowShuffle":[[true, false], [20, 80]],
 	  "CratesAndBarrelsShuffle":[[true, false], [10, 90]],
 	  "SnowballShuffle":[[true, false], [20, 80], "I don't think these are time dependent like MMR but to check, if so will make seperate weights for clock shuffle"],
