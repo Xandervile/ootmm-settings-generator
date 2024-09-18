@@ -11,12 +11,12 @@ with open("weights.json", "r") as read_file:
 
 settings = data["GameplaySettings"]
 
-MinMysterySettings = 5
+MinMysterySettings = settings["MinimumSettingsAmount"]
 MysteryCount = 0
 HardCounter = 0
 
 #HarderSettings get rolled first to allow limitations
-HARDMODELIMIT = 3
+HARDMODELIMIT = settings["HardModeLimit"]
 
 DefaultJunkList = ["MM Beneath The Graveyard Dampe Chest",
 "MM Deku Playground Reward All Days",
