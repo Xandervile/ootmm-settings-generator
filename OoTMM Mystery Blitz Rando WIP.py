@@ -358,7 +358,7 @@ settings_data = {
 "crossAge":True,
 "crossWarpOot":True,
 "crossWarpMm":"full",
-"crossGameFw":OverworldShuffle,
+"crossGameFw":OverworldShuffle == "full",
 "csmcSkulltula":True,
 "csmcCow":True,
 "keepItemsReset":True,
