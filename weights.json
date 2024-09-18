@@ -1,0 +1,37 @@
+{
+  "GameplaySettings": {
+	  "SongShuffle": [["SongLocations", "anywhere"], [75, 25], "if songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
+	  "GrassShuffle": [[true, false], [10, 90], "Hard Setting for now, could be changed?"],
+	  "PotShuffle":[[true, false], [20, 80], "Hard Setting"],
+	  "FreestandingShuffle":[[true, false], [20, 80]],
+	  "WonderSpotShuffle":[[true, false], [20, 80], "Hard Setting if also Freestanding"],
+	  "SwordShuffle":[[true, false], [15, 85], "Also affects Child Sword Upgrades, Hard Setting"],
+	  "ShopShuffle":[["none", "full"], [70, 30]],
+	  "MerchantShuffle":[[true, false], [50, 50], "Affects all non-shop merchants and ALL Business scrubs, only happens alongside ShopShuffle"],
+	  "CowShuffle":[[true, false], [20, 80]],
+	  "CratesAndBarrelsShuffle":[[true, false], [10, 90]],
+	  "SnowballShuffle":[[true, false], [20, 80], "I don't think these are time dependent like MMR but to check, if so will make seperate weights for clock shuffle"],
+	  "SkulltulaShuffle":[["none", "all"], [75, 25], "Happy to add 'specific cases' like OoT separate to MM"],
+	  "GerudoCardShuffle":[["starting", true, false], [20, 20, 60]],
+
+	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
+	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [20, 30, 50]],
+	  "StartingClock": [["Day 1", "Night 1", "Day 2", "Night 2", "Day 3", "Night 3"], [10, 10, 10, 10, 10, 10], "If not Night 3 clock, guaranteed hint added for Night 3"], 
+	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled"],
+	  
+	  "SilverRupeeShuffle": [["Untouched", "Own Dungeon", "anywhere"], [70, 25, 5], "Hard Setting if with SmallKeysanity or BossKeysanity"],
+	  "SmallKeyShuffle":[["MM Keysy, OoT Own Dungeon", "MM and OoT Keysy", "MM and OoT Own Dungeons", "MM and OoT Keysanity"], [50, 10, 30, 10]],
+	  "BossKeyShuffle":[["Keysy", "Own Dungeon", "Keysanity"], [30, 60, 10], "Hard Setting if with SmallKeysanity"],
+	  "BossSoulsWeight": [[true, false], [10, 90], [0, 100], "Weight 1: No BKeysanity, Weight 2: BKeysanity, Hard Setting"],
+	  "StrayFairyShuffle": [["removed", "Anywhere"], [80, 20], "Only Affects Freeflying fairies and CT Fairy"],
+	  "MQDungeons":[["vanilla", "mq", "random"], [70, 10, 20], "Unsure about this, may change it to vanilla or random only"],
+	  
+	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [80, 10, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
+	  "DungeonEntranceShuffle": [[true, false], [20, 80], "This also affects all minor dungeons and is cross game"],
+	  "BossEntranceShuffle":[["none", "full"], [80, 20], "Always cross game"],
+	  "GrottoShuffle":[["none", "full"], [80, 20], "Always cross game"],
+	  
+	  
+	  "Notes: ALL objects have Chest Appearance Matches Contents, this means cows, skulltulas, crates, snowballs, everything! Rules are the same as standard Blitz bar what is randomized here. Post any suggestions to the github":null
+  }
+}
