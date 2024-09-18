@@ -2,6 +2,14 @@ import zlib
 import base64
 import json
 import random
+import os
+
+generator_dir = os.path.dirname(os.path.abspath(__file__))
+
+with open("weights.json", "r") as read_file:
+    data = json.load(read_file)
+
+settings = data["GameplaySettings"]
 
 MinMysterySettings = 5
 MysteryCount = 0
@@ -94,7 +102,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     PlandoList = DefaultPlando.copy()
     HintList = DefaultHintList.copy()
 
-    SongShuffle = random.choices(["songLocations", "anywhere"], [75, 25])[0]
+    SongShuffle = random.choices(["songLocations", "anywhere"], settings["SongShuffle"][1])[0]
     if SongShuffle == "anywhere":
         HardCounter += 1
         MysteryCount += 1
@@ -114,21 +122,20 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
                             "extra": 1,
                             "item": "OOT_SONG_EPONA"})
 
-    GrassShuffleWeight = [10, 90]
-    GrassShuffle = random.choices([True, False], GrassShuffleWeight)[0]
+    GrassShuffle = random.choices([True, False], settings["GrassShuffle"][1])[0]
     if GrassShuffle == True:
         HardCounter += 1
         MysteryCount += 1
 
     PotShuffleWeight = [20, 80]
-    PotShuffle = random.choices([True, False], PotShuffleWeight)[0]
+    PotShuffle = random.choices([True, False], settings["PotShuffle"][1])[0]
     if PotShuffle == True:
         HardCounter += 1
         MysteryCount += 1
 
-    SilverRupeeShuffle = random.choices(["vanilla", "own Dungeon", "anywhere"], [70, 25, 5])[0]
+    SilverRupeeShuffle = random.choices(["vanilla", "own Dungeon", "anywhere"], settings["SilverRupeeShuffle"][1])[0]
 
-    SKeyShuffleWeight = [50, 10, 30, 10]
+    SKeyShuffleWeight = settings["SmallKeyShuffle"][1]
     SKeyShuffle = random.choices([["removed", "ownDungeon"], ["removed", "removed"], ["ownDungeon", "ownDungeon"], ["anywhere", "anywhere"]], SKeyShuffleWeight)[0]
     smallKeyShuffleMm = SKeyShuffle[0]
     smallKeyShuffleOot = SKeyShuffle[1]
@@ -137,7 +144,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     else:
         GerudoKey = "vanilla"
 
-    BKeyShuffleWeight = [30, 60, 10]
+    BKeyShuffleWeight = settings["BossKeyShuffle"][1]
     BKeyShuffle = random.choices(["removed", "ownDungeon", "anywhere"], BKeyShuffleWeight)[0]
     bossKeyShuffleMm = BKeyShuffle
     bossKeyShuffleOot = BKeyShuffle
@@ -148,15 +155,15 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
             HardCounter += 1
 
     ProgressiveClockType = "separate"
-    ClockShuffle = random.choices([True, False], [10, 90])[0]
+    ClockShuffle = random.choices([True, False], settings["ClockShuffle"][1])[0]
     if ClockShuffle == True:
         HardCounter += 1
         MysteryCount += 1
-        ProgressiveClockType = random.choices(["ascending", "descending", "separate"], [20, 30, 50])[0]
+        ProgressiveClockType = random.choices(["ascending", "descending", "separate"], settings["ProgressiveClockType"][1])[0]
         if ProgressiveClockType == "separate":
             StartingClock = \
             random.choices(["MM_CLOCK1", "MM_CLOCK2", "MM_CLOCK3", "MM_CLOCK4", "MM_CLOCK5", "MM_CLOCK6"],
-                           [10, 10, 10, 10, 10, 10])[0]
+                           settings["StartingClock"][1])[0]
             StartingItemList[StartingClock] = 1
             if StartingClock != "MM_CLOCK6":
                 HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
@@ -165,30 +172,23 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
                                             "extra": 1,
                                             "item": "MM_CLOCK6"})
 
-    BossSoulsWeight = [10, 90]
+    BossSoulsWeight = settings["BossSoulsWeight"][1]
     if BKeyShuffle == "anywhere":
-        BossSoulsWeight[1] += BossSoulsWeight[0]
-        BossSoulsWeight[0] = 0
+        BossSoulsWeight = settings["BossSoulsWeight"][2]
     SharedBossSoulShuffle = random.choices([True, False], BossSoulsWeight)[0]
     if SharedBossSoulShuffle == True:
         HardCounter += 1
         MysteryCount += 1
 
-    FreestandingShuffle = random.choices([True, False], [20, 80])[0]
-    WonderSpotShuffle = random.choices([True, False], [20, 80])[0]
+    FreestandingShuffle = random.choices([True, False], settings["FreestandingShuffle"][1])[0]
+    WonderSpotShuffle = random.choices([True, False], settings["WonderSpotShuffle"][1])[0]
 
     if FreestandingShuffle != False or WonderSpotShuffle != False:
         MysteryCount += 1
         if FreestandingShuffle != False and WonderSpotShuffle != False:
             HardCounter += 1
 
-    PotShuffle = random.choices([True, False], [15, 85])[0]
-    if PotShuffle == True:
-        MysteryCount += 1
-        HardCounter += 1
-        JunkList.append("MM Goron Race Reward")
-
-    SwordShuffle = random.choices([True, False], [15, 85])[0]
+    SwordShuffle = random.choices([True, False], settings["SwordShuffle"][1])[0]
     if SwordShuffle == True:
         MysteryCount += 1
         HardCounter += 1
@@ -203,7 +203,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
     RegionsShuffle = ["none", False]
     OverworldShuffle = "none"
     InteriorShuffle = ["none", False]
-    EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], [80, 10, 4, 4, 2])[0]
+    EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], settings["WorldEntranceRandomizer"][1])[0]
     if EntranceRandomizer == "Regions Only":
         RegionsShuffle = ["full", True]
         MysteryCount += 1
@@ -221,10 +221,9 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
         MysteryCount += 1
         HardCounter += 1
 
-    OwlWeight = [10, 90]
+    OwlWeight = settings["OwlShuffle"][1]
     if OverworldShuffle == "full":
-      OwlWeight[1] += OwlWeight[0]
-      OwlWeight[0] = 0
+      OwlWeight = settings["OwlShuffle"][2]
     OwlShuffle = random.choices([True, False], OwlWeight)[0]
     if OwlShuffle == True:
         MysteryCount += 1
@@ -232,53 +231,53 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
 
     #Other Settings get Randomized here
     TownFairy = "vanilla"
-    StrayFairyShuffle = random.choices(["removed","anywhere"], [80, 20])[0]
+    StrayFairyShuffle = random.choices(["removed","anywhere"], settings["StrayFairyShuffle"][1])[0]
     if StrayFairyShuffle != "removed":
         MysteryCount += 1
         TownFairy = "anywhere"
         
-    DungeonEntranceShuffleWeight = [20, 80]
+    DungeonEntranceShuffleWeight = settings["DungeonEntranceShuffle"][1]
     DungeonEntranceShuffle = random.choices([True, False], DungeonEntranceShuffleWeight)[0]
     erDungeons = "none"
     if DungeonEntranceShuffle == True:
         erDungeons = "full"
         MysteryCount += 1
 
-    BossEntranceShuffle = random.choices(["none","full"],[80, 20])[0]
+    BossEntranceShuffle = random.choices(["none","full"],settings["BossEntranceShuffle"][1])[0]
     if BossEntranceShuffle == "full":
         MysteryCount += 1
 
     ScrubShuffle = False
-    SharedShopShuffle = random.choices(["none", "full"],[70, 30])[0]
+    SharedShopShuffle = random.choices(["none", "full"],settings["ShopShuffle"][1])[0]
     if SharedShopShuffle != "none":
-        ScrubShuffle = random.choices([True, False], [50, 50])[0]
+        ScrubShuffle = random.choices([True, False], settings["MerchantShuffle"][1])[0]
         MysteryCount += 1
         
-    SharedCowShuffle = random.choices([True, False],[20, 80])[0]
+    SharedCowShuffle = random.choices([True, False],settings["CowShuffle"][1])[0]
     if SharedCowShuffle == True:
         MysteryCount += 1
 
-    SharedMQDungeons = random.choices(["vanilla", "mq", "random"],[70, 10, 20])[0]
+    SharedMQDungeons = random.choices(["vanilla", "mq", "random"],settings["MQDungeons"][1])[0]
     if SharedMQDungeons != "vanilla":
         MysteryCount += 1
 
-    SharedCratesAndBarrels = random.choices([True, False], [10, 90])[0]
+    SharedCratesAndBarrels = random.choices([True, False], settings["CratesAndBarrelsShuffle"][1])[0]
     if SharedCratesAndBarrels == True:
         MysteryCount += 1
 
-    SnowballShuffle = random.choices([True, False], [20, 80])[0]
+    SnowballShuffle = random.choices([True, False], settings["SnowballShuffle"][1])[0]
     if SnowballShuffle == True:
         MysteryCount += 1
 
-    SkulltulaShuffle = random.choices(["none", "all"], [75, 25])[0]
+    SkulltulaShuffle = random.choices(["none", "all"], settings["SkulltulaShuffle"][1])[0]
     if SkulltulaShuffle == "all":
         MysteryCount += 1
 
-    GrottoShuffle = random.choices(["none", "full"], [80, 20])[0]
+    GrottoShuffle = random.choices(["none", "full"], settings["GrottoShuffle"][1])[0]
     if GrottoShuffle == "full":
         MysteryCount += 1
 
-    GerudoCardShuffle = random.choices(["starting", True, False], [20, 20, 60])[0]
+    GerudoCardShuffle = random.choices(["starting", True, False], settings["GerudoCardShuffle"][1])[0]
     if GerudoCardShuffle == "starting":
         GerudoCardShuffle = True
         StartingItemList["OOT_GERUDO_CARD"] = 1
@@ -610,7 +609,7 @@ with open("settings_output.txt", "w") as file:
 
 
 #Decoding Part
-seed_string = "v1.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"
+#seed_string = "v1.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"
 seed_data = seed_string.split(".")[1]
 
 # Add padding if necessary
