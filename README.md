@@ -5,5 +5,4 @@ Added:
 - Script to Encode and Decode settings strings from the OoTMM online patcher so you can add settings yourself.
 
 To do:
-- Make non-blitz variants (most likely MM Only next)
-- Make weights use an external file system and an external base settings system like the MM Mystery Settings Generator as of writing.
+- Add Hard Settings Limit and Minimum Settings Desired to the weights file and be read by the program.
