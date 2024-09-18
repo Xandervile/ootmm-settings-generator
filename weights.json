@@ -1,5 +1,8 @@
 {
   "GameplaySettings": {
+	  "MinimumSettingsAmount":5,
+	  "HardModeLimit":2,
+	  
 	  "SongShuffle": [["SongLocations", "anywhere"], [75, 25], "if songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
 	  "GrassShuffle": [[true, false], [10, 90], "Hard Setting for now, could be changed?"],
 	  "PotShuffle":[[true, false], [20, 80], "Hard Setting"],
