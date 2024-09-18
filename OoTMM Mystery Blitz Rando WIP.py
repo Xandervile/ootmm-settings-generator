@@ -358,6 +358,7 @@ settings_data = {
 "crossAge":True,
 "crossWarpOot":True,
 "crossWarpMm":"full",
+"crossGameFw":OverworldShuffle,
 "csmcSkulltula":True,
 "csmcCow":True,
 "keepItemsReset":True,
@@ -613,4 +614,3 @@ with open("settings_output.txt", "w") as file:
     file.write("\n")
     for key, value in settings_data.items():
         file.write(f"{key}: {value}\n")
-
