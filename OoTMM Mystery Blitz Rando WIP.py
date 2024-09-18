@@ -282,7 +282,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
         GerudoCardShuffle = True
         StartingItemList["OOT_GERUDO_CARD"] = 1
         MysteryCount += 1
-        
+
+    PriceShuffle = random.choices(["affordable", "vanilla", "weighted", "random"], settings["PriceShuffle"][1])[0]
+    if PriceShuffle == "weighted" or PriceShuffle == "random":
+        MysteryCount += 1
         
 
 # Rest of the settings are not stored already so are randomised here. To add: 
@@ -325,6 +328,10 @@ settings_data = {
 "shuffleMerchantsMm":ScrubShuffle,
 "shuffleMasterSword":SwordShuffle,
 "shuffleGerudoCard":GerudoCardShuffle,
+"priceOotShops":PriceShuffle,
+"priceOotScrubs":PriceShuffle,
+"priceMmShops":PriceShuffle,
+"priceMmTingle":PriceShuffle,
 "moonCrash":"cycle",
 "startingAge":"random",
 "swordlessAdult":True,
@@ -606,20 +613,4 @@ with open("settings_output.txt", "w") as file:
     file.write("\n")
     for key, value in settings_data.items():
         file.write(f"{key}: {value}\n")
-
-
-#Decoding Part
-#seed_string = "v1.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"
-seed_data = seed_string.split(".")[1]
-
-# Add padding if necessary
-padding_needed = len(seed_data) % 4
-if padding_needed:
-    seed_data += "=" * (4 - padding_needed)
-
-# Decode and decompress the seed
-decoded_data = zlib.decompress(base64.urlsafe_b64decode(seed_data))
-
-# Output the decoded data
-print(decoded_data)
 
