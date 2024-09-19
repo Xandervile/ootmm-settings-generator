@@ -31,7 +31,7 @@
 	  "StrayFairyShuffle": [["removed", "Anywhere"], [80, 20], "Only Affects Freeflying fairies and CT Fairy"],
 	  "MQDungeons":[["vanilla", "mq", "random"], [70, 10, 20], "Unsure about this, may change it to vanilla or random only"],
 	  
-	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [80, 10, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
+	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [80, 10, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Mixed Settings not currently in but can also be added if interest, Hard Setting if not none or regions"],
 	  "DungeonEntranceShuffle": [[true, false], [20, 80], "This also affects all minor dungeons and is cross game"],
 	  "BossEntranceShuffle":[["none", "full"], [80, 20], "Always cross game"],
 	  "GrottoShuffle":[["none", "full"], [80, 20], "Always cross game"],
