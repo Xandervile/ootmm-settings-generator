@@ -2,7 +2,7 @@ A settings string generator for customised settings for offline use. Mainly for 
 
 Added:
 - Some weights and settings that I am messing with for Blitz Mystery.
-- Script to Encode and Decode settings strings from the OoTMM online patcher so you can add settings yourself.
+- Script to Encode and Decode settings strings from the OoTMM online patcher so you can add settings yourself. [REMOVED BECAUSE IT WAS MORE FOR DEBUGGING FOR ME]
 
 To do:
-- Add Hard Settings Limit and Minimum Settings Desired to the weights file and be read by the program.
+- Add Hard Settings Limit and Minimum Settings Desired to the weights file and be read by the program. [DONE IN PY FILE]
