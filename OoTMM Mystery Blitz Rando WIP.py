@@ -12,6 +12,7 @@ with open("weights.json", "r") as read_file:
 settings = data["GameplaySettings"]
 
 MinMysterySettings = settings["MinimumSettingsAmount"]
+MaxMysterySettings = settings["MaximumSettingsAmount"]
 MysteryCount = 0
 HardCounter = 0
 
@@ -93,7 +94,7 @@ DefaultPlando = {"OOT Zora River Bean Seller":"OOT_MAGIC_BEAN",
 "OOT Zelda\'s Song":"OOT_SONG_TP_LIGHT",
 "MM Initial Song of Healing":"SHARED_RECOVERY_HEART"}
 
-while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT:
+while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or MysteryCount > MaxMysterySettings:
     MysteryCount = 0
     HardCounter = 0
 
