@@ -48,7 +48,9 @@ DefaultStartingItemList= {"OOT_NUTS_10":2,
 "OOT_OCARINA":1,
 "MM_SWORD":1,
 "MM_SONG_SOARING":1,
-"MM_SONG_TIME":1}
+"MM_SONG_TIME":1,
+"MM_STICK":10,
+"MM_NUTS_10":2}
 
 DefaultHintList = [{"type":"foolish",
 "amount":8,
@@ -75,9 +77,6 @@ DefaultHintList = [{"type":"foolish",
 "amount":1,
 "extra":1,
 "item":"SHARED_ARROW_ICE"},
-{"type":"playthrough",
-"amount":1,
-"extra":1},
 {"type":"woth",
 "amount":9,
 "extra":1},
@@ -85,9 +84,9 @@ DefaultHintList = [{"type":"foolish",
 "amount":"max",
 "extra":1}]
 
-HintToInsertBefore = {"type": "playthrough",
-                      "amount": 1,
-                      "extra": 1}
+HintToInsertBefore = {"type":"woth",
+                    "amount":9,
+                    "extra":1}
 
 DefaultPlando = {"OOT Zora River Bean Seller":"OOT_MAGIC_BEAN",
 "OOT Zelda\'s Letter":"OOT_OCARINA",
@@ -270,9 +269,14 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if SnowballShuffle == True:
         MysteryCount += 1
 
-    SkulltulaShuffle = random.choices(["none", "all"], settings["SkulltulaShuffle"][1])[0]
-    if SkulltulaShuffle == "all":
+    OoTSkulltulaShuffle = random.choices(["none", "dungeons", "overworld", "all"], settings["OoTSkulltulaShuffle"][1])[0]
+    MMSkulltulaWeights = settings["MMSkulltulaShuffle"][1]
+    if DungeonEntranceShuffle == True:
+        MMSkulltulaWeights = settings["MMSkulltulaShuffle"][2]
+    MMSkulltulaShuffle = random.choices(["none", "all"], MMSkulltulaWeights)[0]
+    if OoTSkulltulaShuffle  != "none" or MMSkulltulaShuffle != "none":
         MysteryCount += 1
+        
 
     GrottoShuffle = random.choices(["none", "full"], settings["GrottoShuffle"][1])[0]
     if GrottoShuffle == "full":
@@ -293,8 +297,8 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
 settings_data = {
 "hintImportance":True,
 "songs":SongShuffle,
-"goldSkulltulaTokens":SkulltulaShuffle,
-"housesSkulltulaTokens":SkulltulaShuffle,
+"goldSkulltulaTokens":OoTSkulltulaShuffle,
+"housesSkulltulaTokens":MMSkulltulaShuffle,
 "tingleShuffle":"starting",
 "mapCompassShuffle":"starting",
 "smallKeyShuffleOot":smallKeyShuffleOot,
@@ -329,6 +333,7 @@ settings_data = {
 "shuffleMerchantsMm":ScrubShuffle,
 "shuffleMasterSword":SwordShuffle,
 "shuffleGerudoCard":GerudoCardShuffle,
+"shuffleMaskTrades":True,
 "priceOotShops":PriceShuffle,
 "priceOotScrubs":PriceShuffle,
 "priceMmShops":PriceShuffle,
@@ -362,9 +367,9 @@ settings_data = {
 "crossGameFw":OverworldShuffle == "full",
 "csmcSkulltula":True,
 "csmcCow":True,
-"keepItemsReset":True,
-"fastMasks":True,
+"keepItemsReset":settings["KeepItemsReset"],
 "shadowFastBoat":True,
+"fillWallets":SharedShopShuffle == "full" or PriceShuffle == "weighted" or PriceShuffle == "random",
 "progressiveGoronLullaby":"single",
 "progressiveClocks":ProgressiveClockType,
 "bottleContentShuffle":True,
@@ -586,6 +591,10 @@ settings_data = {
 "hints": HintList
 }
 
+if DungeonEntranceShuffle:
+    settings_data["openDungeonsOot"] ={"type":"specific","values":["dekuTreeAdult","wellAdult","fireChild"]}
+
+
 # Convert the settings into a JSON string (or similar format if required)
 settings_json = json.dumps(settings_data)
 
@@ -600,10 +609,7 @@ encoded_data = encoded_data.rstrip("=")
 
 # Format the final seed string (prepend 'v1.' to the encoded string)
 seed_string = f"v1.{encoded_data}"
-
-# Output the result
-print("Encoded Seed String:")
-print(seed_string)
+#print(seed_string)
 
 with open("seed_output.txt", "w") as file:
     file.write("Seed String:\n")
