@@ -28,7 +28,7 @@
 	  "SmallKeyShuffle":[["MM Keysy, OoT Own Dungeon", "MM and OoT Keysy", "MM and OoT Own Dungeons", "MM and OoT Keysanity"], [50, 10, 30, 10]],
 	  "BossKeyShuffle":[["Keysy", "Own Dungeon", "Keysanity"], [30, 60, 10], "Hard Setting if with SmallKeysanity"],
 	  "BossSoulsWeight": [[true, false], [10, 90], [0, 100], "Weight 1: No BKeysanity, Weight 2: BKeysanity, Hard Setting"],
-	  "StrayFairyShuffle": [["removed", "Anywhere"], [80, 20], "Only Affects Freeflying fairies and CT Fairy"],
+	  "StrayFairyShuffle": [["removed", "Anywhere"], [80, 20], "Only Affects Freeflying fairies and CT Fairy, player always starts with Chest Fairies to make MM Dungeons more valuable"],
 	  "MQDungeons":[["vanilla", "mq", "random"], [70, 10, 20], "Unsure about this, may change it to vanilla or random only"],
 	  
 	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [80, 10, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Mixed Settings not currently in but can also be added if interest, Hard Setting if not none or regions"],
