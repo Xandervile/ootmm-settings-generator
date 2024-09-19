@@ -6,3 +6,10 @@ Added:
 
 To do:
 - Add Hard Settings Limit and Minimum Settings Desired to the weights file and be read by the program. [DONE IN PY FILE]
+
+To use:
+- Download Python (for dev build) or exe (outdated) and associated weights file
+- Put both anywhere but in the same folder
+- Adjust weights to your liking (I tried to label them as best I could)
+- run python script.
+- Open Settings String txt and copy the string into the OoTMM settings string box
