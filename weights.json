@@ -1,6 +1,7 @@
 {
   "GameplaySettings": {
 	  "MinimumSettingsAmount":5,
+	  "MaximumSettingsAmount":99,
 	  "HardModeLimit":2,
 	  
 	  "SongShuffle": [["SongLocations", "anywhere"], [75, 25], "if songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
