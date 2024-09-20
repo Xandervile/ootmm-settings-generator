@@ -280,6 +280,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     MMSkulltulaShuffle = random.choices(["none", "cross", "all"], MMSkulltulaWeights)[0]
     if OoTSkulltulaShuffle  != "none" or MMSkulltulaShuffle != "none":
         MysteryCount += 1
+    if MMSkulltulaShuffle == "cross":
+        JunkList.remove("OOT Skulltula House 40 Tokens")
+        JunkList.remove("OOT Skulltula House 50 Tokens")
+
         
 
     GrottoShuffle = random.choices(["none", "full"], settings["GrottoShuffle"][1])[0]
