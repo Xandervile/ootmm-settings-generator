@@ -17,8 +17,8 @@
 	  "CowShuffle":[[true, false], [20, 80]],
 	  "CratesAndBarrelsShuffle":[[true, false], [10, 90]],
 	  "SnowballShuffle":[[true, false], [20, 80], "I don't think these are time dependent like MMR but to check, if so will make seperate weights for clock shuffle"],
-	  "OoTSkulltulaShuffle":[["none", "Dungeons Only", "Overworld Only", "all"], [40, 28, 28, 4]],
-	  "MMSkulltulaShuffle":[["none", "all"], [100, 0], [70, 30], "Weights 1: No Dungeon Entrance Rando, Weights 2: Dungeon Entrance Rando"],
+	  "OoTSkulltulaShuffle":[["none", "Dungeons Only", "Overworld Only", "all"], [40, 28, 28, 4], [40, 28, 28, 4], "Weights 1: No Dungeon Entrance Rando, Weights 2: Dungeon Entrance Rando"],
+	  "MMSkulltulaShuffle":[["none", "cross", "all"], [60, 40, 0], [30, 30, 40], "Weights 1: No Dungeon Entrance Rando, Weights 2: Dungeon Entrance Rando"],
 	  "GerudoCardShuffle":[["starting", true, false], [20, 20, 60]],
 
 	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
