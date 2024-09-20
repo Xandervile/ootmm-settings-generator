@@ -269,11 +269,15 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if SnowballShuffle == True:
         MysteryCount += 1
 
-    OoTSkulltulaShuffle = random.choices(["none", "dungeons", "overworld", "all"], settings["OoTSkulltulaShuffle"][1])[0]
+
+    OoTSkulltulaWeights = settings["OoTSkulltulaShuffle"][1]
+    if DungeonEntranceShuffle == True:
+        OoTSkulltulaWeights = settings["OoTSkulltulaShuffle"][2]
+    OoTSkulltulaShuffle = random.choices(["none", "dungeons", "overworld", "all"], OoTSkulltulaWeights)[0]
     MMSkulltulaWeights = settings["MMSkulltulaShuffle"][1]
     if DungeonEntranceShuffle == True:
         MMSkulltulaWeights = settings["MMSkulltulaShuffle"][2]
-    MMSkulltulaShuffle = random.choices(["none", "all"], MMSkulltulaWeights)[0]
+    MMSkulltulaShuffle = random.choices(["none", "cross", "all"], MMSkulltulaWeights)[0]
     if OoTSkulltulaShuffle  != "none" or MMSkulltulaShuffle != "none":
         MysteryCount += 1
         
