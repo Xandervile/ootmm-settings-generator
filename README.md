@@ -14,4 +14,3 @@ To use:
 - run python script.
 - Open Settings String txt and copy the string into the OoTMM settings string box
 
-This branch has more flexibility as you input your base settings string instead of assuming it is a blitz seed meaning you can have different win conditions!
