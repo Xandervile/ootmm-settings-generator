@@ -1,45 +1,53 @@
 {
+  "SettingsString": "v1.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",
+  
+  "DefaultString":"v1.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",
+
   "GameplaySettings": {
 	  "MinimumSettingsAmount":5,
 	  "MaximumSettingsAmount":99,
 	  "HardModeLimit":2,
-	  "KeepItemsReset":true,
+	  "TFGrassAllowed":[true, 1, "How much Grass per pack is shuffled in MM TF without OW ER for balance, if you want no TF Grass, set to false"],
 	  
-	  "SongShuffle": [["SongLocations", "anywhere"], [75, 25], "if songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
-	  "GrassShuffle": [[true, false], [10, 90], "Hard Setting for now, could be changed?"],
-	  "PotShuffle":[[true, false], [20, 80], "Hard Setting"],
-	  "FreestandingShuffle":[[true, false], [20, 80]],
-	  "WonderSpotShuffle":[[true, false], [20, 80], "Hard Setting if also Freestanding"],
-	  "SwordShuffle":[[true, false], [15, 85], "Also affects Child Sword Upgrades, Hard Setting"],
+	  "SongShuffle": [["SongLocations", "anywhere"], [80, 20], "if songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
+	  "GrassShuffle": [["none", "dungeons", "overworld", "all"], [80, 0, 0, 20], "Hard Setting if all, could be changed - turned it off here as it makes TF and HF too loaded"],
+	  "PotShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "Hard Setting if all"],
+	  "FreestandingShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "affects rupees and hearts"],
+	  "WonderSpotShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "Hard Setting if also Freestanding and both all"],
+	  "SwordShuffle":[[true, false], [30, 70], "Also affects Child Sword Upgrades, Hard Setting"],
 	  "ShopShuffle":[["none", "full"], [70, 30]],
 	  "MerchantShuffle":[[true, false], [50, 50], "Affects all non-shop merchants and ALL Business scrubs, only happens alongside ShopShuffle"],
+      "FairyFountainShuffle":[[true, false], [20, 80]],
 	  "PriceShuffle":[["Affordable", "Vanilla", "Weighted Random", "Fully Random"], [20, 30, 50, 0]],
 	  "CowShuffle":[[true, false], [20, 80]],
-	  "CratesAndBarrelsShuffle":[[true, false], [10, 90]],
-	  "SnowballShuffle":[[true, false], [20, 80], "I don't think these are time dependent like MMR but to check, if so will make seperate weights for clock shuffle"],
-	  "OoTSkulltulaShuffle":[["none", "Dungeons Only", "Overworld Only", "all"], [40, 28, 28, 4], [40, 28, 28, 4], "Weights 1: No Dungeon Entrance Rando, Weights 2: Dungeon Entrance Rando"],
-	  "MMSkulltulaShuffle":[["none", "cross", "all"], [60, 40, 0], [30, 30, 40], "Weights 1: No Dungeon Entrance Rando, Weights 2: Dungeon Entrance Rando"],
+	  "CratesAndBarrelsShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5]],
+	  "SnowballShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5]],
+	  "OoTSkulltulaShuffle":[["none", "Dungeons Only", "Overworld Only", "all"], [60, 18, 18, 4], [60, 18, 18, 4]],
+	  "MMSkulltulaShuffle":[["none", "cross", "all"], [50, 40, 10], [40, 20, 40], "Weights 1: No Dungeon Entrance Rando, Weights 2: Dungeon Entrance Rando"],
 	  "GerudoCardShuffle":[["starting", true, false], [20, 20, 60]],
 
 	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
-	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [20, 30, 50]],
+	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [0, 0, 100], "Need to balance weights for Ascending to work well"],
 	  "StartingClock": [["Day 1", "Night 1", "Day 2", "Night 2", "Day 3", "Night 3"], [10, 10, 10, 10, 10, 10], "If not Night 3 clock, guaranteed hint added for Night 3"], 
 	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled"],
+	  "OcarinaButtons":[[true, false], [20, 80], [5, 95], "Weight 1: No SongShuffle, Weight 2: Full SongShuffle, Hard Settings"],
 	  
-	  "SilverRupeeShuffle": [["Untouched", "Own Dungeon", "anywhere"], [70, 25, 5], "Hard Setting if with SmallKeysanity or BossKeysanity"],
+	  "SilverRupeeShuffle": [["Untouched", "Own Dungeon", "anywhere"], [70, 30, 0], "Hard Setting if with SmallKeysanity or BossKeysanity, not making it anywhere atm as I'd rather any dungeon when it exists"],
 	  "SmallKeyShuffle":[["MM Keysy, OoT Own Dungeon", "MM and OoT Keysy", "MM and OoT Own Dungeons", "MM and OoT Keysanity"], [50, 10, 30, 10]],
-	  "BossKeyShuffle":[["Keysy", "Own Dungeon", "Keysanity"], [30, 60, 10], "Hard Setting if with SmallKeysanity"],
+	  "BossKeyShuffle":[["Keysy", "Own Dungeon", "Keysanity"], [20, 70, 10], "Hard Setting if with SmallKeysanity"],
 	  "BossSoulsWeight": [[true, false], [10, 90], [0, 100], "Weight 1: No BKeysanity, Weight 2: BKeysanity, Hard Setting"],
 	  "StrayFairyShuffle": [["removed", "Anywhere"], [80, 20], "Only Affects Freeflying fairies and CT Fairy"],
-	  "MQDungeons":[["vanilla", "mq", "random"], [70, 10, 20], "Unsure about this, may change it to vanilla or random only"],
+	  "MQDungeonAmount":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], "How many MQ dungeons weighted, not counted for settings as it may only roll precompleted dungeons"],
+	  "GibdoSettings":[["vanilla", "remorseless", "open"], [0, 90, 10], [0, 60, 40], "Weight 1: No Dungeon ER, Weight 2: Dungeon ER"],
 	  
-	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [80, 10, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
+	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [70, 20, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
 	  "DungeonEntranceShuffle": [[true, false], [20, 80], "This also affects all minor dungeons and is cross game"],
 	  "BossEntranceShuffle":[["none", "full"], [80, 20], "Always cross game"],
 	  "GrottoShuffle":[["none", "full"], [80, 20], "Always cross game"],
+	  "SpawnShuffle":[["none", "child", "adult", "both"], [40, 10, 10, 40], "Doesn't add to counter"],
 	  
-	  
-	  "Notes": "ALL objects have Chest Appearance Matches Contents, this means cows, skulltulas, crates, snowballs, everything! Rules are the same as standard Blitz (base setting string below) bar what is randomized here. Post any suggestions to the github!",
-  	  "BaseSettings": "v1.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"
+	  "AgelessAmount":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [2048, 1024, 512, 256, 128, 64, 32, 16 , 8, 4 , 2, 1], "Amount of Ageless Settings that can be chosen equally at random, doesn't affect Mystery Count"],
+	  	  		  
+	  "Notes": "ALL objects have Chest Appearance Matches Contents, this means cows, skulltulas, crates, snowballs, everything! Rules are the same as standard Blitz (base setting string below) bar what is randomized here. Post any suggestions to the github!"
   }
 }
