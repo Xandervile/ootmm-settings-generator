@@ -322,8 +322,17 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     SharedCratesAndBarrels = random.choices(["none", "dungeons", "overworld", "all"], settings["CratesAndBarrelsShuffle"][1])[0]
     SettingsList["shuffleCratesOot"] = SharedCratesAndBarrels
     SettingsList["shuffleCratesMm"] = SharedCratesAndBarrels
-    SettingsList["shuffleBarrelsMm"] = SharedCratesAndBarrels
+    if SharedCratesAndBarrels == "dungeons" or SharedCratesAndBarrels == "all":
+        SettingsList["shuffleBarrelsMm"] = "all"
+    else:
+        SettingsList["shuffleBarrelsMm"] = "none"
     if SharedCratesAndBarrels != "none":
+        MysteryCount += 1
+
+    SharedHiveShuffle = random.choices([True, False], settings["HiveShuffle"][1])[0]
+    if SharedHiveShuffle == True:
+        SettingsList["shuffleHivesOot"] = True
+        SettingsList["shuffleHivesMm"] = True
         MysteryCount += 1
 
     SettingsList["shuffleSnowballsMm"] = random.choices(["none", "dungeons", "overworld", "all"], settings["SnowballShuffle"][1])[0]
@@ -348,7 +357,21 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if FairyFountainShuffle == True:
         SettingsList["fairyFountainFairyShuffleOot"] = True
         SettingsList["fairyFountainFairyShuffleMm"] = True
+        SettingsList["fairySpotShuffleOot"] = True
         MysteryCount += 1
+
+    FishingPondShuffle = random.choices([True, False], settings["FishingPondShuffle"][1])[0]
+    if FishingPondShuffle == True:
+        SettingsList["pondFishShuffle"] = True
+        JunkList.append("OOT Fishing Pond Adult Loach")
+        JunkList.append("OOT Fishing Pond Child Loach 1")
+        JunkList.append("OOT Fishing Pond Child Loach 2")
+        MysteryCount += 1
+
+    DivingGameShuffle = random.choices([True, False], settings["DivingGameShuffle"][1])[0]
+    if DivingGameShuffle == True:
+        SettingsList["divingGameRupeeShuffle"] = True
+        JunkList.append("OOT Zora Domain Diving Game Huge Rupee")
 
     GerudoCardShuffle = random.choices(["Starting", True, False], settings["GerudoCardShuffle"][1])[0]
     if GerudoCardShuffle != False:
@@ -362,6 +385,25 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if DungeonEntranceShuffle == True:
         WellWeight = settings["GibdoSettings"][2]
     SettingsList["beneathWell"] = random.choices(["vanilla", "remorseless", "open"], WellWeight)[0]
+
+    OpenDungeonsWeight = settings["OpenDungeons"][1]
+    if DungeonEntranceShuffle == True:
+        OpenDungeonsWeight = settings["OpenDungeons"][2]
+    OpenDungeonAmount = random.choices(settings["OpenDungeons"][0], OpenDungeonsWeight)[0]
+    if OpenDungeonAmount > 0:
+        if "openDungeonsOot" not in SettingsList:
+            SettingsList["openDungeonsOot"] = {"type": "specific","values": []}
+        SettingsList["openDungeonsMm"] = {"type": "specific","values": []}
+        OpenDungeonChoice = ["WF", "SH", "GB", "ST", "DC", "BotW", "JJ", "Shadow", "Water"]
+        MMDung = ["WF", "SH", "GB", "ST"]
+        OpenDungeons = random.sample(OpenDungeonChoice, OpenDungeonAmount)
+        for key in OpenDungeons:
+            if key in MMDung:
+                SettingsList["openDungeonsMm"]["values"].append(key)
+            else:
+                SettingsList["openDungeonsOot"]["values"].append(key)
+
+    SettingsList["dekuTree"] = random.choices(settings["DekuTree"][0], settings["DekuTree"][1])[0]    
 
     AgelessAmount = random.choices(settings["AgelessAmount"][0], settings["AgelessAmount"][1])[0]
     if AgelessAmount > 0:
@@ -432,8 +474,11 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
             print("Starting Clock:", StartingClock, file=spoiler_file)
     else:
         print("Clock Shuffle:", SettingsList["clocks"], file=spoiler_file)
-    print("Fountain Fairies Shuffle:", FairyFountainShuffle, file=spoiler_file)
+    print("Fountain and Spot Fairies Shuffle:", FairyFountainShuffle, file=spoiler_file)
+    print("Hive Shuffle:", SharedHiveShuffle, file=spoiler_file)
     print("Owl Statue Shuffle:", SettingsList["owlShuffle"], file=spoiler_file)
+    print("Fishing Pond Shuffle:", FishingPondShuffle, file=spoiler_file)
+    print("OoT Diving Rupee Shuffle:", DivingGameShuffle, file=spoiler_file)
     print("", file=spoiler_file)
     print("Dungeon Item Settings:", file=spoiler_file)
     print("OoT Small Keys:", SKeyShuffle[1].capitalize(), file=spoiler_file)
@@ -443,6 +488,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Boss Keys:", BKeyShuffle.capitalize(), file=spoiler_file)
     if BKeyShuffle != "anywhere":
         print("Boss Souls:", SharedBossSoulShuffle, file=spoiler_file)
+    print("Deku Tree:", SettingsList["dekuTree"], file=spoiler_file)
     print("Gibdo Well:", SettingsList["beneathWell"].capitalize(), file=spoiler_file)
     print("", file=spoiler_file)
     print("Entrance Settings:", file=spoiler_file)
@@ -465,6 +511,15 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     if SharedMQDungeons > 0:
         for key in MQDungeonChosen:
             if key != MQDungeonChosen[-1]:
+                spoiler_file.write(f"{key}, ")
+            else:
+                spoiler_file.write(f"{key}")
+        spoiler_file.write("\n")
+    print("", file=spoiler_file)
+    print("Open Dungeons:", OpenDungeonAmount, file=spoiler_file)
+    if OpenDungeonAmount > 0:
+        for key in OpenDungeons:
+            if key != OpenDungeons[-1]:
                 spoiler_file.write(f"{key}, ")
             else:
                 spoiler_file.write(f"{key}")
