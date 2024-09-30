@@ -58,6 +58,7 @@
 	  "WarpSongShuffle":[[true, false], [10, 90], "Rolls if OWls and Warp Songs are NOT mixed together"],
 	  "DungeonEntranceShuffle": [[true, false], [20, 80], "This also affects all minor dungeons and is cross game"],
 	  "GanonCastleShuffle":[[true, false], [10, 90], "This only happens if Dungeon ER is on, if on Rainbow Bridge is open AND Ganon BK requires Medallions and Stones instead"],
+	  "GanonTowerShuffle":[[true, false], [10, 90], "Only happens if Ganon's Castle is shuffled"],
 	  "ClockTowerShuffle":[[true, false], [10, 90], "This only happens if Dungeon ER is on"],
 	  "BossEntranceShuffle":[["none", "full"], [80, 20], "Always cross game"],
 	  "GrottoShuffle":[["none", "full"], [80, 20], "Always cross game, also Xander's favourite setting :3"],
