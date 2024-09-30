@@ -608,7 +608,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     if BKeyShuffle != "anywhere":
         print("Boss Souls:", SharedBossSoulShuffle, file=spoiler_file)
     print("Deku Tree:", SettingsList["dekuTree"], file=spoiler_file)
-    print("King Zora:", SettingsList["zoraKing"], file=spoiler_file)
+    print("King Zora:", SettingsList["zoraKing"].capitalize(), file=spoiler_file)
     print("Zora's Domain Adult Shortcut:", SettingsList["openZdShortcut"], file=spoiler_file)
     print("Gibdo Well:", SettingsList["beneathWell"].capitalize(), file=spoiler_file)
     print("", file=spoiler_file)
