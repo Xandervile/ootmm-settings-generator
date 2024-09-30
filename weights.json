@@ -32,7 +32,7 @@
 	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
 	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [0, 0, 100], "Need to balance weights for Ascending to work well"],
 	  "StartingClock": [["Day 1", "Night 1", "Day 2", "Night 2", "Day 3", "Night 3"], [10, 10, 10, 10, 10, 10], "If not Night 3 clock, guaranteed hint added for Night 3"], 
-	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled. Only rolled if SongShuffle isn't Mixed With Owls. Always start with Clock Town Owl and the Owl prehit"],
+	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled. Only rolled if SongShuffle isn't Mixed With Owls"],
 	  "OcarinaButtons":[[true, false], [20, 80], [5, 95], "Weight 1: No SongShuffle, Weight 2: Full SongShuffle, Hard Settings"],
 	  
 	  "SilverRupeeShuffle": [["Untouched", "Own Dungeon", "anywhere"], [70, 30, 0], "Hard Setting if with SmallKeysanity or BossKeysanity, not making it anywhere atm as I'd rather any dungeon when it exists"],
@@ -43,6 +43,7 @@
 	  "MQDungeonAmount":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], "How many MQ dungeons weighted, not counted for settings as it may only roll precompleted dungeons"],
 	  "GibdoSettings":[["vanilla", "remorseless", "open"], [0, 90, 10], [0, 60, 40], "Weight 1: No Dungeon ER, Weight 2: Dungeon ER"],
 	  "OpenDungeons":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1024, 256, 128, 64, 32, 16, 8, 4, 2, 1], [512, 256, 128, 64, 32, 16, 8, 4, 2, 1]],
+	  "GanonTrialAmount":[[0, 1, 2, 3, 4, 5, 6], [64, 32, 16, 8, 4, 2, 1], [128, 32, 16, 8, 4, 2, 1], "Amount of Trials for Ganon, Weight 1: No Castle Shuffle, Weight 2: Castle Shuffle, Hard Settings if more than 2 trials are on"],
 	  "DekuTree":[["Closed", "Vanilla", "Open"], [80, 0, 20]],
 	  
 	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [70, 20, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
