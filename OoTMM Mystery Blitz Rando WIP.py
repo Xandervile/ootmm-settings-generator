@@ -54,26 +54,40 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     PlandoList = DefaultPlando.copy()
     HintList = DefaultHintList.copy()
 
-    SettingsList["songs"] = random.choices(["songLocations", "anywhere"], settings["SongShuffle"][1])[0]
-    if SettingsList["songs"] == "anywhere":
-        HardCounter += 1
+    SongShuffle = random.choices(["Song Locations", "Mixed with Owls", "Anywhere"], settings["SongShuffle"][1])[0]
+    if SongShuffle == "Song Locations":
+        SettingsList["songs"] = "songLocations"
+    else:
+        SettingsList["songs"] = "anywhere"
         MysteryCount += 1
-        SettingsList["sharedSongTime"] = True
-        StartingItemList.pop("MM_SONG_TIME")
-        HintList = [hint for hint in HintList if hint.get("item") not in ["MM_MASK_CAPTAIN", "MM_POWDER_KEG", "SHARED_SHIELD_MIRROR"]]
-        HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
-        HintList.insert(HintIndex, {"type": "item",
-                            "amount": 1,
-                            "extra": 1,
-                            "item": "OOT_SONG_ZELDA"})
-        HintList.insert(HintIndex, {"type": "item",
-                            "amount": 1,
-                            "extra": 1,
-                            "item": "SHARED_SONG_TIME"})
-        HintList.insert(HintIndex, {"type": "item",
-                            "amount": 1,
-                            "extra": 1,
-                            "item": "OOT_SONG_EPONA"})
+        if SongShuffle == "Anywhere":
+            HardCounter += 1
+            SettingsList["sharedSongTime"] = True
+            StartingItemList.pop("MM_SONG_TIME")
+            HintList = [hint for hint in HintList if hint.get("item") not in ["MM_MASK_CAPTAIN", "MM_POWDER_KEG", "SHARED_SHIELD_MIRROR"]]
+            HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
+            HintList.insert(HintIndex, {"type": "item",
+                                "amount": 1,
+                                "extra": 1,
+                                "item": "OOT_SONG_ZELDA"})
+            HintList.insert(HintIndex, {"type": "item",
+                                "amount": 1,
+                                "extra": 1,
+                                "item": "SHARED_SONG_TIME"})
+            HintList.insert(HintIndex, {"type": "item",
+                                "amount": 1,
+                                "extra": 1,
+                                "item": "OOT_SONG_EPONA"})
+        elif SongShuffle == "Mixed with Owls":
+            SettingsList["owlShuffle"] = "anywhere"
+            PlandoList["MM Clock Town Owl Statue"] = "MM_OWL_CLOCK_TOWN"
+            SongAndOwlList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS", "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER", "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON", "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER", "MM_OWL_MILK_ROAD", "MM_OWL_SOUTHERN_SWAMP", "MM_OWL_WOODFALL", "MM_OWL_MOUNTAIN_VILLAGE", "MM_OWL_SNOWHEAD", "MM_OWL_GREAT_BAY", "MM_OWL_ZORA_CAPE", "MM_OWL_IKANA_CANYON", "MM_OWL_STONE_TOWER", "SHARED_RECOVERY_HEART", "SHARED_RECOVERY_HEART"]
+            SongAndOwlLocation = ["OOT Lon Lon Ranch Malon Song", "OOT Saria's Song", "OOT Graveyard Royal Tomb", "OOT Hyrule Field Song of Time", "OOT Windmill Song of Storms", "OOT Sacred Meadow Sheik Song", "OOT Death Mountain Crater Sheik Song", "OOT Ice Cavern Sheik Song", "OOT Kakariko Song Shadow", "OOT Desert Colossus Song Spirit", "OOT Temple of Time Sheik Song", "MM Clock Tower Roof Skull Kid", "MM Romani Ranch Epona Song", "MM Southern Swamp Song of Soaring", "MM Beneath The Graveyard Song of Storms", "MM Deku Palace Sonata of Awakening", "MM Goron Elder", "MM Ancient Castle of Ikana Song Emptiness", "MM Oath to Order", "MM Milk Road Owl Statue", "MM Southern Swamp Owl Statue", "MM Woodfall Owl Statue", "MM Mountain Village Owl Statue", "MM Snowhead Owl Statue", "MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue", "MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
+            for key in SongAndOwlLocation:
+                ChosenItem = random.choice(SongAndOwlList)
+                PlandoList[key] = ChosenItem
+                SongAndOwlList.remove(ChosenItem)
+
 
     EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], settings["WorldEntranceRandomizer"][1])[0]
     if EntranceRandomizer == "Regions Only":
@@ -104,7 +118,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         MysteryCount += 1
 
     OcarinaButtonWeight = settings["OcarinaButtons"][1]
-    if SettingsList["songs"] == "anywhere":
+    if SongShuffle == "anywhere":
         OcarinaButtonWeight = settings["OcarinaButtons"][2]
     OcarinaButtonShuffle = random.choices([True, False], OcarinaButtonWeight)[0]
     if OcarinaButtonShuffle == True:
@@ -141,7 +155,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         MysteryCount += 1
     if GrassShuffle == "overworld" or GrassShuffle == "all":
         TFGrassShuffle = settings["TFGrassAllowed"][0]
-        if EntranceRandomizer == "overworld" or EntranceRandomizer == "all":
+        if EntranceRandomizer == "Overworld" or EntranceRandomizer == "Full":
             GrassCount = 12
         elif TFGrassShuffle == True:
             GrassCount = settings["TFGrassAllowed"][1]
@@ -159,9 +173,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     PotShuffle = random.choices(["none", "dungeons", "overworld", "all"], settings["PotShuffle"][1])[0]
     SettingsList["shufflePotsOot"] = PotShuffle
     SettingsList["shufflePotsMm"] = PotShuffle
-    if PotShuffle == True:
-        HardCounter += 1
+    if PotShuffle != "none":
         MysteryCount += 1
+        if PotShuffle == "all":
+            HardCounter += 1
 
     SettingsList["silverRupeeShuffle"] = random.choices(["vanilla", "ownDungeon", "anywhere"], settings["SilverRupeeShuffle"][1])[0]
 
@@ -255,8 +270,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     OwlWeight = settings["OwlShuffle"][1]
     if "erOverworld" in SettingsList and SettingsList["erOverworld"] == "full":
         OwlWeight = settings["OwlShuffle"][2]
-    SettingsList["owlShuffle"] = random.choices([True, False], OwlWeight)[0]
-    if SettingsList["owlShuffle"] == True:
+    if SongShuffle == "Mixed with Owls":
+        OwlWeight = [0, 100]
+    OwlShuffle = random.choices(["anywhere", "none"], OwlWeight)[0]
+    if OwlShuffle == "anywhere":
+        SettingsList["owlShuffle"] = "anywhere"
+        PlandoList["MM Clock Town Owl Statue"] = "MM_OWL_CLOCK_TOWN"
         MysteryCount += 1
         HardCounter += 1
 
@@ -417,6 +436,7 @@ settings_data = SettingsList
 settings_data["junkLocations"] = JunkList
 settings_data["hints"] = HintList
 settings_data["startingItems"] = StartingItemList
+settings_data["plando"]["locations"] = PlandoList
 
 # Convert the settings into a JSON string (or similar format if required)
 settings_json = json.dumps(settings_data)
@@ -451,7 +471,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
     print("", file=spoiler_file)
     print("Main Settings:", file=spoiler_file)
-    print("Songsanity:", SettingsList["songs"].capitalize(), file=spoiler_file)
+    print("Songsanity:", SongShuffle, file=spoiler_file)
     print("Ocarina Buttons:", OcarinaButtonShuffle, file=spoiler_file)
     print("Sword Shuffle:", SwordShuffle, file=spoiler_file)
     print("Gerudo Card Shuffle:", GerudoCardShuffle, file=spoiler_file)
@@ -476,7 +496,8 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
         print("Clock Shuffle:", SettingsList["clocks"], file=spoiler_file)
     print("Fountain and Spot Fairies Shuffle:", FairyFountainShuffle, file=spoiler_file)
     print("Hive Shuffle:", SharedHiveShuffle, file=spoiler_file)
-    print("Owl Statue Shuffle:", SettingsList["owlShuffle"], file=spoiler_file)
+    if SongShuffle != "Mixed with Owls":
+        print("Owl Statue Shuffle:", OwlShuffle, file=spoiler_file)
     print("Fishing Pond Shuffle:", FishingPondShuffle, file=spoiler_file)
     print("OoT Diving Rupee Shuffle:", DivingGameShuffle, file=spoiler_file)
     print("", file=spoiler_file)
