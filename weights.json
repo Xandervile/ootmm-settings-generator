@@ -47,6 +47,8 @@
 	  
 	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [70, 20, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
 	  "DungeonEntranceShuffle": [[true, false], [20, 80], "This also affects all minor dungeons and is cross game"],
+	  "GanonCastleShuffle":[[true, false], [10, 90], "This only happens if Dungeon ER is on, if on Rainbow Bridge is open AND Ganon BK requires Medallions and Stones instead"],
+	  "ClockTowerShuffle":[[true, false], [10, 90], "This only happens if Dungeon ER is on"],
 	  "BossEntranceShuffle":[["none", "full"], [80, 20], "Always cross game"],
 	  "GrottoShuffle":[["none", "full"], [80, 20], "Always cross game"],
 	  "SpawnShuffle":[["none", "child", "adult", "both"], [40, 10, 10, 40], "Doesn't add to counter"],
