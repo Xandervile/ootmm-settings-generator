@@ -343,6 +343,14 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["priceMmTingle"] = PriceShuffle
         SettingsList["priceOotScrubs"] = PriceShuffle
         SettingsList["fillWallets"] = True
+        if PriceShuffle == "weighted" or PriceShuffle == "random":
+            MaxWalletSize = random.choices(["Giant", "Colossal", "Bottomless"], settings["MaxWalletSize"][1])[0]
+            if MaxWalletSize != "Giant":
+                SettingsList["rupeeScaling"] = True
+                SettingsList["colossalWallets"] = True
+                if MaxWalletSize == "Bottomless":
+                    SettingsList["bottomlessWallets"] = True
+
         MysteryCount += 1
         
     SharedCowShuffle = random.choices([True, False],settings["CowShuffle"][1])[0]
@@ -453,6 +461,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         if GanonCastleShuffle == True:
             GanonTrialAmount = random.choices(settings["GanonTrialAmount"][0], settings["GanonTrialAmount"][2])[0]
     if GanonTrialAmount > 0:
+        MysteryCount += 1
         SettingsList["ganonTrials"] = {"type": "specific", "values": []}
         TrialList = ["Light", "Forest", "Fire", "Water", "Shadow", "Spirit"]
         TrialChosen = random.sample(TrialList, GanonTrialAmount)
@@ -460,7 +469,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             SettingsList["ganonTrials"]["values"].append(key)
         if GanonTrialAmount > 2:
             HardCounter += 1
-        print(TrialChosen)
+
+    if SongShuffle != "Mix with Owls":
+        WarpSongShuffle = random.choices([True, False], settings["WarpSongShuffle"][1])[0]
+        if WarpSongShuffle == True:
+            SettingsList["erWarps"] = True
+            MysteryCount += 1
 
     AgelessAmount = random.choices(settings["AgelessAmount"][0], settings["AgelessAmount"][1])[0]
     if AgelessAmount > 0:
@@ -530,6 +544,8 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     if SharedShopShuffle == "full":
         print("Merchant Shuffle:", ScrubShuffle, file=spoiler_file)
         print("Price Shuffle:", PriceShuffle.capitalize(), file=spoiler_file)
+        if PriceShuffle == "weighted" or PriceShuffle == "random":
+            print("Maximum Wallet Size:", MaxWalletSize, file=spoiler_file)
     if SettingsList["clocks"] == True:
         print("Clock Shuffle:", SettingsList["progressiveClocks"].capitalize(), file=spoiler_file)
         if SettingsList["progressiveClocks"] == "separate":
@@ -556,6 +572,8 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("", file=spoiler_file)
     print("Entrance Settings:", file=spoiler_file)
     print("Spawn:", SettingsList["erSpawns"].capitalize(), file=spoiler_file)
+    if SongShuffle != "Mix with Owls":
+        print("Warp Songs:", WarpSongShuffle, file=spoiler_file)
     print("World Entrances:", EntranceRandomizer.capitalize(), file=spoiler_file)
     print("Grotto Entrances:", SettingsList["erGrottos"]=="full", file=spoiler_file)
     print("Dungeon Entrances:", DungeonEntranceShuffle, file=spoiler_file)
