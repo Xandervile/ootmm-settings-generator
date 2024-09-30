@@ -9,7 +9,7 @@
 	  "HardModeLimit":2,
 	  "TFGrassAllowed":[true, 1, "How much Grass per pack is shuffled in MM TF without OW ER for balance, if you want no TF Grass, set to false"],
 	  
-	  "SongShuffle": [["SongLocations", "anywhere"], [80, 20], "if songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
+	  "SongShuffle": [["Song Locations", "Mixed With Owls", "Anywhere"], [70, 20, 10], "Owls Statues and Songs can be shuffled amongst each other. If songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
 	  "GrassShuffle": [["none", "dungeons", "overworld", "all"], [80, 0, 0, 20], "Hard Setting if all, could be changed - turned it off here as it makes TF and HF too loaded"],
 	  "PotShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "Hard Setting if all"],
 	  "FreestandingShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "affects rupees and hearts"],
@@ -32,7 +32,7 @@
 	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
 	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [0, 0, 100], "Need to balance weights for Ascending to work well"],
 	  "StartingClock": [["Day 1", "Night 1", "Day 2", "Night 2", "Day 3", "Night 3"], [10, 10, 10, 10, 10, 10], "If not Night 3 clock, guaranteed hint added for Night 3"], 
-	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled"],
+	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled. Only rolled if SongShuffle isn't Mixed With Owls"],
 	  "OcarinaButtons":[[true, false], [20, 80], [5, 95], "Weight 1: No SongShuffle, Weight 2: Full SongShuffle, Hard Settings"],
 	  
 	  "SilverRupeeShuffle": [["Untouched", "Own Dungeon", "anywhere"], [70, 30, 0], "Hard Setting if with SmallKeysanity or BossKeysanity, not making it anywhere atm as I'd rather any dungeon when it exists"],
