@@ -43,6 +43,14 @@ HintToInsertBefore = {"type":"woth",
 
 DefaultPlando = base_settings["plando"]["locations"]
 
+DefaultBridgeCond = base_settings["specialConds"]["BRIDGE"]
+
+DefaultMoonCond = base_settings["specialConds"]["MOON"]
+
+DefaultGanonBKCond = base_settings["specialConds"]["GANON_BK"]
+
+DefaultMajoraCond = base_settings["specialConds"]["MAJORA"]
+
 while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or MysteryCount > MaxMysterySettings:
     MysteryCount = 0
     HardCounter = 0
@@ -53,6 +61,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     StartingItemList = DefaultStartingItemList.copy()
     PlandoList = DefaultPlando.copy()
     HintList = DefaultHintList.copy()
+    BridgeCond = DefaultBridgeCond.copy()
+    MoonCond = DefaultMoonCond.copy()
+    GanonBKCond = DefaultGanonBKCond.copy()
+    MajoraCond = DefaultMajoraCond.copy()
 
     SongShuffle = random.choices(["Song Locations", "Mixed with Owls", "Anywhere"], settings["SongShuffle"][1])[0]
     if SongShuffle == "Song Locations":
@@ -299,6 +311,18 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["erSecretShrine"] = True
         SettingsList["openDungeonsOot"] ={"type":"specific","values":["dekuTreeAdult","wellAdult","fireChild"]}
         MysteryCount += 1
+        GanonCastleShuffle = random.choices([True, False], settings["GanonCastleShuffle"][1])[0]
+        if GanonCastleShuffle == True:
+            SettingsList["erGanonTower"] = True
+            SettingsList["rainbowBridge"] = "open"
+            SettingsList["ganonBossKey"] = "custom"
+            GanonBKCond = DefaultBridgeCond
+            BridgeCond["count"] = 0
+            BridgeCond["stones"] = False
+            BridgeCond["medallions"] = False
+        ClockTowerShuffle = random.choices([True, False], settings["ClockTowerShuffle"][1])[0]
+        if ClockTowerShuffle == True:
+            SettingsList["erMoon"] = True
 
     SettingsList["erBoss"] = random.choices(["none","full"],settings["BossEntranceShuffle"][1])[0]
     if SettingsList["erBoss"] == "full":
@@ -334,9 +358,9 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         MQDungeonChosen = random.sample(DungeonList, SharedMQDungeons)
         for key in DungeonList:
             if key in MQDungeonChosen:
-                SettingsList["dungeon"][key]="mq"
+                SettingsList["dungeon"][key] = "mq"
             else:
-                SettingsList["dungeon"][key]="vanilla"
+                SettingsList["dungeon"][key] = "vanilla"
 
     SharedCratesAndBarrels = random.choices(["none", "dungeons", "overworld", "all"], settings["CratesAndBarrelsShuffle"][1])[0]
     SettingsList["shuffleCratesOot"] = SharedCratesAndBarrels
@@ -437,6 +461,10 @@ settings_data["junkLocations"] = JunkList
 settings_data["hints"] = HintList
 settings_data["startingItems"] = StartingItemList
 settings_data["plando"]["locations"] = PlandoList
+settings_data["specialConds"]["BRIDGE"] = BridgeCond
+settings_data["specialConds"]["MOON"] = MoonCond
+settings_data["specialConds"]["GANON_BK"] = GanonBKCond
+settings_data["specialConds"]["MAJORA"] = MajoraCond
 
 # Convert the settings into a JSON string (or similar format if required)
 settings_json = json.dumps(settings_data)
@@ -497,7 +525,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Fountain and Spot Fairies Shuffle:", FairyFountainShuffle, file=spoiler_file)
     print("Hive Shuffle:", SharedHiveShuffle, file=spoiler_file)
     if SongShuffle != "Mixed with Owls":
-        print("Owl Statue Shuffle:", OwlShuffle, file=spoiler_file)
+        print("Owl Statue Shuffle:", OwlShuffle.capitalize(), file=spoiler_file)
     print("Fishing Pond Shuffle:", FishingPondShuffle, file=spoiler_file)
     print("OoT Diving Rupee Shuffle:", DivingGameShuffle, file=spoiler_file)
     print("", file=spoiler_file)
@@ -517,6 +545,9 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("World Entrances:", EntranceRandomizer.capitalize(), file=spoiler_file)
     print("Grotto Entrances:", SettingsList["erGrottos"]=="full", file=spoiler_file)
     print("Dungeon Entrances:", DungeonEntranceShuffle, file=spoiler_file)
+    if DungeonEntranceShuffle == True:
+        print("Ganon's Castle Included:", GanonCastleShuffle, file=spoiler_file)
+        print("Clock Tower Included:", ClockTowerShuffle, file=spoiler_file)
     print("Boss Entrances:", SettingsList["erBoss"]=="full", file=spoiler_file)
     print("", file=spoiler_file)
     print("Ageless Items:", AgelessAmount, file=spoiler_file)
