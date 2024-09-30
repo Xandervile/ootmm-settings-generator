@@ -49,10 +49,14 @@
 	  "GibdoSettings":[["vanilla", "remorseless", "open"], [0, 90, 10], [0, 60, 40], "Weight 1: No Dungeon ER, Weight 2: Dungeon ER or Overworld ER"],
 	  "OpenDungeons":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1024, 256, 128, 64, 32, 16, 8, 4, 2, 1], [512, 256, 128, 64, 32, 16, 8, 4, 2, 1]],
 	  "GanonTrialAmount":[[0, 1, 2, 3, 4, 5, 6], [64, 32, 16, 8, 4, 2, 1], [128, 32, 16, 8, 4, 2, 1], "Amount of Trials for Ganon, Weight 1: No Castle Shuffle, Weight 2: Castle Shuffle, Hard Settings if more than 2 trials are on"],
+	  "TCGKeySettings":[["vanilla", "ownDungeon", "anywhere"], [60, 30, 10], "this is rolled if NOT full keysanity, else is 'anywhere"],
+	  "KeyRingAmount":[["0 - 12/13 depending on TCG"], [0, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], [0, 4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], "Weight 1: No TCG Key Shuffle, Weight 2: TCG Key Shuffle, only rolled if no Keysy settings for SKeys"],
 	  
 	  "DekuTree":[["Closed", "Vanilla", "Open"], [80, 0, 20]],
 	  "KingZora":[["vanilla", "adult", "open"], [70, 20, 10], [10, 30, 60], "Weight 1: No Overworld ER, Weight 2: Overworld ER"],
 	  "ZoraDomainAdultShortcut":[[true, false], [30, 70], [60, 40], "Weight 1: No Overworld ER, Weight 2: Overworld ER"],
+	  "DoorOfTime":[["Closed", "Open"], [20, 80], "Determines if you need SoT to open the Door of Time"],
+	  "TimeTravelSword":[[true, false], [60, 40], [40, 60], "Only rolls if Sword Shuffled, Weight 1: Door Of Time Open, Weight 2: Door Of Time Closed, this one I do not know how to balance weights for so WILL need changing"],
 	  
 	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [70, 20, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
 	  "WarpSongShuffle":[[true, false], [10, 90], "Rolls if Owls and Warp Songs are NOT mixed together"],
