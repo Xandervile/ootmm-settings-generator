@@ -446,7 +446,21 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             else:
                 SettingsList["openDungeonsOot"]["values"].append(key)
 
-    SettingsList["dekuTree"] = random.choices(settings["DekuTree"][0], settings["DekuTree"][1])[0]    
+    SettingsList["dekuTree"] = random.choices(settings["DekuTree"][0], settings["DekuTree"][1])[0]
+
+    GanonTrialAmount = random.choices(settings["GanonTrialAmount"][0], settings["GanonTrialAmount"][1])[0]
+    if DungeonEntranceShuffle == True:
+        if GanonCastleShuffle == True:
+            GanonTrialAmount = random.choices(settings["GanonTrialAmount"][0], settings["GanonTrialAmount"][2])[0]
+    if GanonTrialAmount > 0:
+        SettingsList["ganonTrials"] = {"type": "specific", "values": []}
+        TrialList = ["Light", "Forest", "Fire", "Water", "Shadow", "Spirit"]
+        TrialChosen = random.sample(TrialList, GanonTrialAmount)
+        for key in TrialChosen:
+            SettingsList["ganonTrials"]["values"].append(key)
+        if GanonTrialAmount > 2:
+            HardCounter += 1
+        print(TrialChosen)
 
     AgelessAmount = random.choices(settings["AgelessAmount"][0], settings["AgelessAmount"][1])[0]
     if AgelessAmount > 0:
@@ -575,5 +589,15 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
                 spoiler_file.write(f"{key}, ")
             else:
                 spoiler_file.write(f"{key}")
+        spoiler_file.write("\n")
+    print("", file=spoiler_file)
+    print("Ganon Trials:", GanonTrialAmount, file=spoiler_file)
+    if GanonTrialAmount > 0:
+        for key in TrialChosen:
+            if key != TrialChosen[-1]:
+                spoiler_file.write(f"{key}, ")
+            else:
+                spoiler_file.write(f"{key}")
+
 
 print("Settings generated successfully!")
