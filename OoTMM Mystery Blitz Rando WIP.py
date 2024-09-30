@@ -79,6 +79,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                     "extra": 1,
                                     "item": "OOT_CHICKEN"})
 
+    DoorOfTime = random.choices(["Closed", "Open"], settings["DoorOfTime"][1])[0]
+    if DoorOfTime == "Closed":
+        SettingsList["doorOfTime"] = "closed"
+        
     SongShuffle = random.choices(["Song Locations", "Mixed with Owls", "Anywhere"], settings["SongShuffle"][1])[0]
     if SongShuffle == "Song Locations":
         SettingsList["songs"] = "songLocations"
@@ -214,6 +218,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     SettingsList["smallKeyShuffleOot"] = SKeyShuffle[1]
     if SKeyShuffle == ["anywhere", "anywhere"]:
         SettingsList["smallKeyShuffleHideout"] = "anywhere"
+        SettingsList["smallKeyShuffleChestGame"] = "anywhere"
     else:
         SettingsList["smallKeyShuffleHideout"] = "vanilla"
 
@@ -231,6 +236,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             SettingsList["skeletonKeyMm"] = True
             SettingsList["sharedSkeletonKey"] = True
             SettingsList["magicalRupee"] = True
+
+    if SKeyShuffle!= ["anywhere", "anywhere"]:
+        TCGKeyShuffle = random.choices(["vanilla", "ownDungeon", "anywhere"], settings["TCGKeySettings"][1])[0]
+        SettingsList["smallKeyShuffleChestGame"] = TCGKeyShuffle
 
     SettingsList["clocks"] = random.choices([True, False], settings["ClockShuffle"][1])[0]
     if SettingsList["clocks"] == True:
@@ -283,7 +292,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if SwordShuffle == True:
         SettingsList["shuffleMasterSword"] = True
         SettingsList["extraChildSwordsOot"] = True
-        SettingsList["timeTravelSword"] = False
+        if DoorOfTime == "Closed":
+            SettingsList["timeTravelSword"] = random.choices([True, False], settings["TimeTravelSword"][2])[0]
+        else:
+            SettingsList["timeTravelSword"] = random.choices([True, False], settings["TimeTravelSword"][1])[0]
         SettingsList["sharedSwords"] = True
         MysteryCount += 1
         HardCounter += 1
@@ -500,6 +512,26 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         AgeAllowed = random.sample(AgelessItems, AgelessAmount)
         for key in AgeAllowed:
             SettingsList[key] = True
+            
+    if SKeyShuffle[0] != "removed" and SKeyShuffle[1] != "removed":     
+        if SettingsList["smallKeyShuffleChestGame"] != "vanilla":
+            KeyRingAmount = random.choices([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], settings["KeyRingAmount"][2])[0]
+        else:
+            KeyRingAmount = random.choices([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], settings["KeyRingAmount"][1])[0]
+        if KeyRingAmount > 0:
+            SettingsList["smallKeyRingOot"] = {"type": "specific", "values": []}
+            SettingsList["smallKeyRingMm"] = {"type": "specific", "values": []}
+            KeyRingPlaces = ["Forest","Fire","Water","Shadow","Spirit","BotW","GTG","Ganon","SH","ST"]
+            MMKeyRings = ["SH", "ST"]
+            if SettingsList["smallKeyShuffleChestGame"] != "vanilla":
+                KeyRingPlaces.append("TCG")
+            KeyRingsChosen = random.sample(KeyRingPlaces, KeyRingAmount)
+            for key in KeyRingsChosen:
+                if key in MMKeyRings:
+                    SettingsList["smallKeyRingMm"]["values"].append(key)
+                else:
+                    SettingsList["smallKeyRingOot"]["values"].append(key)
+                    
 
     ChildWallet = random.choices([True, False], settings["ChildWallet"][1])[0]
     if ChildWallet == True:
@@ -567,9 +599,12 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("", file=spoiler_file)
     print("Main Settings:", file=spoiler_file)
     print("Skip Child Zelda:", SkipChildZelda, file=spoiler_file)
+    print("Door Of Time:", DoorOfTime, file=spoiler_file)
     print("Songsanity:", SongShuffle, file=spoiler_file)
     print("Ocarina Buttons:", OcarinaButtonShuffle, file=spoiler_file)
     print("Sword Shuffle:", SwordShuffle, file=spoiler_file)
+    if SwordShuffle == True:
+        print("Master Sword needed for Time Travel:", SettingsList["timeTravelSword"], file=spoiler_file)
     print("Gerudo Card Shuffle:", GerudoCardShuffle, file=spoiler_file)
     print("OoT Skullsanity:", SettingsList["goldSkulltulaTokens"].capitalize(), file=spoiler_file)
     print("MM Skullsanity:", SettingsList["housesSkulltulaTokens"].capitalize(), file=spoiler_file)
@@ -603,6 +638,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("", file=spoiler_file)
     print("Dungeon Item Settings:", file=spoiler_file)
     print("OoT Small Keys:", SKeyShuffle[1].capitalize(), file=spoiler_file)
+    print("OoT Game Keys:", SettingsList["smallKeyShuffleChestGame"].capitalize(), file=spoiler_file)
     print("MM Small Keys:", SKeyShuffle[0].capitalize(), file=spoiler_file)
     print("OoT Silver Rupees:", SettingsList["silverRupeeShuffle"].capitalize(), file=spoiler_file)
     print("MM Stray Fairies:", SettingsList["strayFairyOtherShuffle"].capitalize(), file=spoiler_file)
@@ -654,6 +690,16 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
                 spoiler_file.write(f"{key}")
         spoiler_file.write("\n")
     print("", file=spoiler_file)
+    if SKeyShuffle[0] != "removed" and SKeyShuffle[1] != "removed":
+        print("Key Rings:", KeyRingAmount, file=spoiler_file)
+        if KeyRingAmount > 0:
+            for key in KeyRingsChosen:
+                if key != KeyRingsChosen[-1]:
+                    spoiler_file.write(f"{key}, ")
+                else:
+                    spoiler_file.write(f"{key}")
+            spoiler_file.write("\n")
+        print("", file=spoiler_file)
     print("Ganon Trials:", GanonTrialAmount, file=spoiler_file)
     if GanonTrialAmount > 0:
         for key in TrialChosen:
