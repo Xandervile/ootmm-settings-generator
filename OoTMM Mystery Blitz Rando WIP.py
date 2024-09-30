@@ -66,6 +66,19 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     GanonBKCond = DefaultGanonBKCond.copy()
     MajoraCond = DefaultMajoraCond.copy()
 
+    SkipChildZelda = random.choices([True, False], settings["SkipChildZelda"][1])[0]
+    if SkipChildZelda == False:
+        SettingsList["skipZelda"] = False
+        del PlandoList["OOT Zelda's Letter"]
+        del PlandoList["OOT Zelda's Song"]
+        StartingItemList["OOT_SONG_TP_LIGHT"] = 1
+        StartingItemList["OOT_OCARINA"] = 1
+        HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
+        HintList.insert(HintIndex, {"type": "item",
+                                    "amount": 1,
+                                    "extra": 1,
+                                    "item": "OOT_CHICKEN"})
+
     SongShuffle = random.choices(["Song Locations", "Mixed with Owls", "Anywhere"], settings["SongShuffle"][1])[0]
     if SongShuffle == "Song Locations":
         SettingsList["songs"] = "songLocations"
@@ -95,6 +108,9 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             PlandoList["MM Clock Town Owl Statue"] = "MM_OWL_CLOCK_TOWN"
             SongAndOwlList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS", "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER", "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON", "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER", "MM_OWL_MILK_ROAD", "MM_OWL_SOUTHERN_SWAMP", "MM_OWL_WOODFALL", "MM_OWL_MOUNTAIN_VILLAGE", "MM_OWL_SNOWHEAD", "MM_OWL_GREAT_BAY", "MM_OWL_ZORA_CAPE", "MM_OWL_IKANA_CANYON", "MM_OWL_STONE_TOWER", "SHARED_RECOVERY_HEART", "SHARED_RECOVERY_HEART"]
             SongAndOwlLocation = ["OOT Lon Lon Ranch Malon Song", "OOT Saria's Song", "OOT Graveyard Royal Tomb", "OOT Hyrule Field Song of Time", "OOT Windmill Song of Storms", "OOT Sacred Meadow Sheik Song", "OOT Death Mountain Crater Sheik Song", "OOT Ice Cavern Sheik Song", "OOT Kakariko Song Shadow", "OOT Desert Colossus Song Spirit", "OOT Temple of Time Sheik Song", "MM Clock Tower Roof Skull Kid", "MM Romani Ranch Epona Song", "MM Southern Swamp Song of Soaring", "MM Beneath The Graveyard Song of Storms", "MM Deku Palace Sonata of Awakening", "MM Goron Elder", "MM Ancient Castle of Ikana Song Emptiness", "MM Oath to Order", "MM Milk Road Owl Statue", "MM Southern Swamp Owl Statue", "MM Woodfall Owl Statue", "MM Mountain Village Owl Statue", "MM Snowhead Owl Statue", "MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue", "MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
+            if SkipChildZelda == False:
+                SongAndOwlList.append("SHARED_RECOVERY_HEART")
+                SongAndOwlLocation.append("OOT Zelda's Song")
             for key in SongAndOwlLocation:
                 ChosenItem = random.choice(SongAndOwlList)
                 PlandoList[key] = ChosenItem
@@ -433,7 +449,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     SettingsList["erSpawns"] = random.choices(["none", "child", "adult", "both"], settings["SpawnShuffle"][1])[0]
 
     WellWeight = settings["GibdoSettings"][1]
-    if DungeonEntranceShuffle == True:
+    if DungeonEntranceShuffle == True or EntranceRandomizer == "Overworld" or EntranceRandomizer == "Full":
         WellWeight = settings["GibdoSettings"][2]
     SettingsList["beneathWell"] = random.choices(["vanilla", "remorseless", "open"], WellWeight)[0]
 
@@ -483,7 +499,28 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         for key in AgeAllowed:
             SettingsList[key] = True
 
-# Builds the Setting List here: 
+    ChildWallet = random.choices([True, False], settings["ChildWallet"][1])[0]
+    if ChildWallet == True:
+        SettingsList["childWallet"] = True
+        if SharedShopShuffle == "full":
+            HardCounter += 1
+
+    PrePlantedBeans = random.choices([True, False], settings["PrePlantedBeans"][1])[0]
+    if PrePlantedBeans == True:
+        SettingsList["ootPreplantedBeans"] = True
+        del PlandoList["OOT Zora River Bean Seller"]
+
+    KingZoraWeights = settings["KingZora"][1]
+    if EntranceRandomizer == "Overworld" or EntranceRandomizer == "Full":
+        KingZoraWeights = settings["KingZora"][2]
+    SettingsList["zoraKing"] = random.choices(["vanilla", "adult", "open"], KingZoraWeights)[0]
+
+    ZoraDomainWeights = settings["ZoraDomainAdultShortcut"][1]
+    if EntranceRandomizer == "Overworld" or "EntranceRandomizer" == "Full":
+        ZoraDomainWeights = settings["ZoraDomainAdultShortcut"][2]
+    SettingsList["openZdShortcut"] = random.choices([True, False], ZoraDomainWeights)[0]
+
+# Builds the Setting List here:
 settings_data = SettingsList
 settings_data["junkLocations"] = JunkList
 settings_data["hints"] = HintList
@@ -527,6 +564,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
     print("", file=spoiler_file)
     print("Main Settings:", file=spoiler_file)
+    print("Skip Child Zelda:", SkipChildZelda, file=spoiler_file)
     print("Songsanity:", SongShuffle, file=spoiler_file)
     print("Ocarina Buttons:", OcarinaButtonShuffle, file=spoiler_file)
     print("Sword Shuffle:", SwordShuffle, file=spoiler_file)
@@ -540,6 +578,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Crate and Barrel Shuffle:", SharedCratesAndBarrels.capitalize(), file=spoiler_file)
     print("Snowball Shuffle:", SettingsList["shuffleSnowballsMm"].capitalize(), file = spoiler_file)
     print("Cow Shuffle:", SharedCowShuffle, file=spoiler_file)
+    print("Child Wallet Shuffle:", ChildWallet, file=spoiler_file)
     print("Shop Shuffle:", SharedShopShuffle.capitalize(), file=spoiler_file)
     if SharedShopShuffle == "full":
         print("Merchant Shuffle:", ScrubShuffle, file=spoiler_file)
@@ -558,6 +597,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
         print("Owl Statue Shuffle:", OwlShuffle.capitalize(), file=spoiler_file)
     print("Fishing Pond Shuffle:", FishingPondShuffle, file=spoiler_file)
     print("OoT Diving Rupee Shuffle:", DivingGameShuffle, file=spoiler_file)
+    print("OoT Pre-Planted Beans:", PrePlantedBeans, file=spoiler_file)
     print("", file=spoiler_file)
     print("Dungeon Item Settings:", file=spoiler_file)
     print("OoT Small Keys:", SKeyShuffle[1].capitalize(), file=spoiler_file)
@@ -568,6 +608,8 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     if BKeyShuffle != "anywhere":
         print("Boss Souls:", SharedBossSoulShuffle, file=spoiler_file)
     print("Deku Tree:", SettingsList["dekuTree"], file=spoiler_file)
+    print("King Zora:", SettingsList["zoraKing"], file=spoiler_file)
+    print("Zora's Domain Adult Shortcut:", SettingsList["openZdShortcut"], file=spoiler_file)
     print("Gibdo Well:", SettingsList["beneathWell"].capitalize(), file=spoiler_file)
     print("", file=spoiler_file)
     print("Entrance Settings:", file=spoiler_file)
