@@ -24,7 +24,7 @@
 	  "GerudoCardShuffle":[["starting", true, false], [20, 20, 60]],
 	  "FishingPondShuffle":[[true, false], [10, 90], "all Loach checks are junk"],
 	  "DivingGameShuffle":[[true, false], [10, 90], "Huge Rupee is junked"],
-	  "HiveShuffle":[[true, false], [10, 90]],
+	  "HiveShuffle":[[true, false], [10, 90], "Xanders least favourite settings :("],
 	  "PrePlantedBeans":[[true, false], [25, 75], "To keep an eye on, doesn't affect setting count, also adds Bean Seller to the pool"],
 	  "SkipChildZelda":[[true, false], [90, 10], "Start with Prelude and Ocarina still, but now Zelda can have a random song/item, need Chicken to get, Chicken guaranteed hint"],
 	  
@@ -55,10 +55,10 @@
 	  "ZoraDomainAdultShortcut":[[true, false], [30, 70], [60, 40], "Weight 1: No Overworld ER, Weight 2: Overworld ER"],
 	  
 	  "WorldEntranceRandomizer": [["None", "Regions Only", "Overworld Only", "Interiors Only", "Full"], [70, 20, 4, 4, 2], "Decoupled feels TOO chaotic for this setting but can be added, Hard Setting if not none or regions"],
-	  "WarpSongShuffle":[[true, false], [10, 90], "Rolls if OWls and Warp Songs are NOT mixed together"],
+	  "WarpSongShuffle":[[true, false], [10, 90], "Rolls if Owls and Warp Songs are NOT mixed together"],
 	  "DungeonEntranceShuffle": [[true, false], [20, 80], "This also affects all minor dungeons and is cross game"],
 	  "GanonCastleShuffle":[[true, false], [10, 90], "This only happens if Dungeon ER is on, if on Rainbow Bridge is open AND Ganon BK requires Medallions and Stones instead"],
-	  "GanonTowerShuffle":[[true, false], [10, 90], "Only happens if Ganon's Castle is shuffled"],
+	  "GanonTowerShuffle":[[true, false], [10, 90], "Only happens if Dungeon ER is on, if on Rainbow Bridge is Open and Ganon BK requires the Medallions and Stones instead"],
 	  "ClockTowerShuffle":[[true, false], [10, 90], "This only happens if Dungeon ER is on"],
 	  "BossEntranceShuffle":[["none", "full"], [80, 20], "Always cross game"],
 	  "GrottoShuffle":[["none", "full"], [80, 20], "Always cross game, also Xander's favourite setting :3"],
