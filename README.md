@@ -10,12 +10,12 @@ Current Settings Added:
 - MM Stray Fairies COULD be shuffled!
 - Fairy Fountains and those big fat fairies in OoT can also be shuffled!
 - COWS can be shuffled!
-- Fishing can be shuffled, as can Diving Game!
+- Fishing can be shuffled, as can Diving Game (Loach and Huge Rupees are guaranteed junk as no one likes a massive RNG fest)!
 - CLOCKS can be shuffled! AND you get a guaranteed Night 3 hint if they are separate!
 - Owl Statues can be shuffled!
 - Ocarina Buttons can be shuffled!
 - Small Keys can be shuffled! If there are no Keysy settings, they can even be Keyrings!
-- Boss Keys can be shuffled, or even Boss Souls!
+- Boss Keys can be shuffled, or even Boss Souls (one or the other)!
 - Some dungeons may be Master Quest, or Pre Opened!
 - Beneath the Well can be Remorseless, or even fully open! Even more likely to be opened if any entrance near it can be shuffled!
 - Door of Time COULD be closed!
