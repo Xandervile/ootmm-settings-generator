@@ -32,7 +32,7 @@
 	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
 	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [0, 0, 100], "Need to balance weights for Ascending to work well"],
 	  "StartingClock": [["Day 1", "Night 1", "Day 2", "Night 2", "Day 3", "Night 3"], [10, 10, 10, 10, 10, 10], "If not Night 3 clock, guaranteed hint added for Night 3"], 
-	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled. Only rolled if SongShuffle isn't Mixed With Owls"],
+	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled. Only rolled if SongShuffle isn't Mixed With Owls. Always start with Clock Town Owl and the Owl prehit"],
 	  "OcarinaButtons":[[true, false], [20, 80], [5, 95], "Weight 1: No SongShuffle, Weight 2: Full SongShuffle, Hard Settings"],
 	  
 	  "SilverRupeeShuffle": [["Untouched", "Own Dungeon", "anywhere"], [70, 30, 0], "Hard Setting if with SmallKeysanity or BossKeysanity, not making it anywhere atm as I'd rather any dungeon when it exists"],
