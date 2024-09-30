@@ -7,6 +7,9 @@ Current Settings Added:
 - All swords can be shuffled! (in this case, Master Sword may be needed to time travel!)
 - Skulltulas can be shuffled!
 - Entrances can be shuffled! (No Mixed or Decoupled though!)
+- MM Stray Fairies COULD be shuffled!
+- Fairy Fountains and those big fat fairies in OoT can also be shuffled!
+- COWS can be shuffled!
 - Fishing can be shuffled, as can Diving Game!
 - CLOCKS can be shuffled! AND you get a guaranteed Night 3 hint if they are separate!
 - Owl Statues can be shuffled!
@@ -19,6 +22,7 @@ Current Settings Added:
 - Items may not require ages!
 - Ganon's Trials may be on OR off, AND may lead to a dungeon (if Castle or Tower are shuffled, Rainbow Bridge is automatically on!)
 - Silver Rupees in OoT may be shuffled (default is Vanilla or Own Dungeon, but with tweaking, soon maybe anywhere or any dungeon?)
+- All containers have "appearance match contents" for easier clarity on settings!
 
 To use:
 - Download Python (for dev build) or exe (outdated) and associated weights file
