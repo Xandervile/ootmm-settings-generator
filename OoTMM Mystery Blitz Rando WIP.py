@@ -171,7 +171,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
 ##                    GrassAllowed = random.sample(range(1, 13), settings["TFGrassAllowed"][1])
 ##                    for j in range(1, 13):
 ##                        if j not in GrassAllowed:
-##                            JunkList.append(f"MM Termina Field Grass Pack {i:02} Bush {j:02}")
+##                            JunkList.append(f"MM Termina Field Grass Pack {i:02} Grass {j:02}")
 ##    if GrassShuffle == "all":
 ##        HardCounter += 1  #Looking into limiting
 
@@ -193,7 +193,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             GrassAllowed = random.sample(range(1, 13), GrassCount)
             for j in range(1, 13):
                 if j not in GrassAllowed:
-                    JunkList.append(f"MM Termina Field Grass Pack {i:02} Bush {j:02}")
+                    JunkList.append(f"MM Termina Field Grass Pack {i:02} Grass {j:02}")
     if GrassShuffle == "all":
         HardCounter += 1  #Looking into limiting
 
