@@ -328,15 +328,16 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["openDungeonsOot"] ={"type":"specific","values":["dekuTreeAdult","wellAdult","fireChild"]}
         MysteryCount += 1
         GanonCastleShuffle = random.choices([True, False], settings["GanonCastleShuffle"][1])[0]
-        if GanonCastleShuffle == True:
-            SettingsList["erGanonCastle"] = True
+        SettingsList["erGanonCastle"] = GanonCastleShuffle
+        GanonTowerShuffle = random.choices([True, False], settings["GanonTowerShuffle"][1])[0]
+        SettingsList["erGanonTower"] = GanonTowerShuffle
+        if GanonCastleShuffle == True or GanonTowerShuffle == True:
             SettingsList["rainbowBridge"] = "open"
             SettingsList["ganonBossKey"] = "custom"
             GanonBKCond = DefaultBridgeCond
             BridgeCond["count"] = 0
             BridgeCond["stones"] = False
             BridgeCond["medallions"] = False
-            SettingsList["erGanonTower"] = random.choices([True, False], settings["GanonTowerShuffle"][1])[0]
         ClockTowerShuffle = random.choices([True, False], settings["ClockTowerShuffle"][1])[0]
         if ClockTowerShuffle == True:
             SettingsList["erMoon"] = True
@@ -475,7 +476,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
 
     GanonTrialAmount = random.choices(settings["GanonTrialAmount"][0], settings["GanonTrialAmount"][1])[0]
     if DungeonEntranceShuffle == True:
-        if GanonCastleShuffle == True:
+        if SettingsList["erGanonTower"] == True:
             GanonTrialAmount = random.choices(settings["GanonTrialAmount"][0], settings["GanonTrialAmount"][2])[0]
     if GanonTrialAmount > 0:
         MysteryCount += 1
@@ -622,8 +623,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Dungeon Entrances:", DungeonEntranceShuffle, file=spoiler_file)
     if DungeonEntranceShuffle == True:
         print("Ganon's Castle Included:", GanonCastleShuffle, file=spoiler_file)
-        if GanonCastleShuffle == True:
-            print("Ganon's Tower Included:", SettingsList["erGanonTower"], file=spoiler_file)
+        print("Ganon's Tower Included:", GanonTowerShuffle, file=spoiler_file)
         print("Clock Tower Included:", ClockTowerShuffle, file=spoiler_file)
     print("Boss Entrances:", SettingsList["erBoss"]=="full", file=spoiler_file)
     print("", file=spoiler_file)
