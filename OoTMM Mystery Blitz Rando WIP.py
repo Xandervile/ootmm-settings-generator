@@ -443,6 +443,22 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         JunkList.remove("OOT Skulltula House 40 Tokens")
         JunkList.remove("OOT Skulltula House 50 Tokens")
 
+    SoulShuffle = random.choices(["None", "Enemy and Misc", "NPC", "Full"], settings["SoulShuffle"][1])[0]
+    if SoulShuffle != "None":
+        MysteryCount += 1
+        HardCounter += 1
+        if SoulShuffle == "Enemy and Misc" or SoulShuffle == "Full":
+            SettingsList["soulsEnemyOot"] = True
+            SettingsList["soulsEnemyMm"] = True
+            SettingsList["soulsMiscOot"] = True
+            SettingsList["soulsMiscMm"] = True
+            SettingsList["sharedSoulsEnemy"] = True
+            SettingsList["sharedSoulsMisc"] = True
+        if SoulShuffle == "NPC" or SoulShuffle == "Full":
+            SettingsList["soulsNpcOot"] = True
+            SettingsList["soulsNpcMm"] = True
+            SettingsList["sharedSoulsNpc"] = True
+
     FairyFountainShuffle = random.choices([True, False], settings["FairyFountainShuffle"][1])[0]
     if FairyFountainShuffle == True:
         SettingsList["fairyFountainFairyShuffleOot"] = True
@@ -606,11 +622,12 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Hard Settings Shuffled:", HardCounter, file=spoiler_file)
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
     print("", file=spoiler_file)
-    print("Main Settings:", file=spoiler_file)
     print("Goal:", WinCond, file=spoiler_file)
     if WinCond == "Triforce Hunt":
         print("Triforce Pieces Needed:", SettingsList["triforceGoal"], file=spoiler_file)
         print("Triforce Pieces Overall:", SettingsList["triforcePieces"], file=spoiler_file)
+    print("", file=spoiler_file)
+    print("Main Settings:", file=spoiler_file)
     print("Skip Child Zelda:", SkipChildZelda, file=spoiler_file)
     print("Door Of Time:", DoorOfTime, file=spoiler_file)
     print("Songsanity:", SongShuffle, file=spoiler_file)
@@ -643,6 +660,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
         print("Clock Shuffle:", SettingsList["clocks"], file=spoiler_file)
     print("Fountain and Spot Fairies Shuffle:", FairyFountainShuffle, file=spoiler_file)
     print("Hive Shuffle:", SharedHiveShuffle, file=spoiler_file)
+    print("Soul Shuffle:", SoulShuffle, file=spoiler_file)
     if SongShuffle != "Mixed with Owls":
         print("Owl Statue Shuffle:", OwlShuffle.capitalize(), file=spoiler_file)
     print("Fishing Pond Shuffle:", FishingPondShuffle, file=spoiler_file)
