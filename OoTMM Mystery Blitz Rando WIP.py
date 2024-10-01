@@ -75,6 +75,20 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     GanonBKCond = DefaultGanonBKCond.copy()
     MajoraCond = DefaultMajoraCond.copy()
 
+    if WinCond != "Ganon and Majora":
+        BridgeCond["count"] = 3
+        BridgeCond["medallions"] = True
+        BridgeCond["stones"] = True
+        BridgeCond["remains"] = True
+        MoonCond["count"] = 0
+        MoonCond["stones"] = False
+        MoonCond["remains"] = False
+        HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
+        HintList.insert(HintIndex, {"type": "item",
+                                    "amount": 1,
+                                    "extra": 1,
+                                    "item": "SHARED_ARROW_LIGHT"})
+
     SkipChildZelda = random.choices([True, False], settings["SkipChildZelda"][1])[0]
     if SkipChildZelda == False:
         SettingsList["skipZelda"] = False
@@ -355,10 +369,11 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         if GanonCastleShuffle == True or GanonTowerShuffle == True:
             SettingsList["rainbowBridge"] = "open"
             SettingsList["ganonBossKey"] = "custom"
-            GanonBKCond = DefaultBridgeCond
+            GanonBKCond = BridgeCond
             BridgeCond["count"] = 0
             BridgeCond["stones"] = False
             BridgeCond["medallions"] = False
+            BridgeCond["remains"] = False
         ClockTowerShuffle = random.choices([True, False], settings["ClockTowerShuffle"][1])[0]
         if ClockTowerShuffle == True:
             SettingsList["erMoon"] = True
@@ -443,17 +458,35 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         JunkList.remove("OOT Skulltula House 40 Tokens")
         JunkList.remove("OOT Skulltula House 50 Tokens")
 
-    SoulShuffle = random.choices(["None", "Enemy and Misc", "NPC", "Full"], settings["SoulShuffle"][1])[0]
+    SoulShuffle = random.choices(["None", "Enemy", "NPC", "Full"], settings["SoulShuffle"][1])[0]
     if SoulShuffle != "None":
         MysteryCount += 1
         HardCounter += 1
-        if SoulShuffle == "Enemy and Misc" or SoulShuffle == "Full":
+        if SoulShuffle == "Enemy" or SoulShuffle == "Full":
             SettingsList["soulsEnemyOot"] = True
             SettingsList["soulsEnemyMm"] = True
-            SettingsList["soulsMiscOot"] = True
-            SettingsList["soulsMiscMm"] = True
             SettingsList["sharedSoulsEnemy"] = True
-            SettingsList["sharedSoulsMisc"] = True
+            HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "SHARED_SOUL_MISC_GS"})
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "SHARED_SOUL_ENEMY_LIZALFOS_DINALFOS"})
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "SHARED_SOUL_ENEMY_KEESE"})
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "SHARED_SOUL_ENEMY_IRON_KNUCKLE"})
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "OOT_SOUL_ENEMY_STALFOS"})
         if SoulShuffle == "NPC" or SoulShuffle == "Full":
             SettingsList["soulsNpcOot"] = True
             SettingsList["soulsNpcMm"] = True
@@ -463,6 +496,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                         "amount": 1,
                                         "extra": 1,
                                         "item": "OOT_SOUL_NPC_ZELDA"})
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "MM_SOUL_NPC_MOON_CHILDREN"})
 
     FairyFountainShuffle = random.choices([True, False], settings["FairyFountainShuffle"][1])[0]
     if FairyFountainShuffle == True:
