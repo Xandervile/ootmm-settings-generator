@@ -31,3 +31,7 @@ To use:
 - run python script.
 - Open Settings String txt and copy the string into the OoTMM settings string box
 
+
+Future Plans:
+- Add Triforce Quest/Hunt options in for more random settings (these to have their own weights for settings?).
+- Potentially open the moon up for checks (need to think about how to balance this?)
