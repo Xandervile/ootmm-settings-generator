@@ -72,6 +72,15 @@
 	  "GrottoShuffle":[["none", "full"], [80, 20], "Always cross game, also Xander's favourite setting :3"],
 	  "SpawnShuffle":[["none", "child", "adult", "both"], [40, 10, 10, 40], "Doesn't add to counter"],
 	  
+	  "Mixed":{
+	  "Allow":[[true, false], [0, 100], "For the masochists, I have included Mixed Entrance Shuffle as a Mystery Setting too. By default this is off but I did check if it worked in the generator and it does"],
+	  "Regions":[[true, false], [0, 100]],
+	  "Overworld":[[true, false], [0, 100]],
+	  "Interior":[[true, false], [0, 100]],
+	  "Grottos":[[true, false], [0, 100]],
+	  "Dungeons":[[true, false], [0, 100]]
+	  },
+	  
 	  "AgelessAmount":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [2048, 1024, 512, 256, 128, 64, 32, 16 , 8, 4 , 2, 1], "Amount of Ageless Settings that can be chosen equally at random, doesn't affect Mystery Count"],
 	  	  		  
 	  "Notes": "ALL objects have Chest Appearance Matches Contents, this means cows, skulltulas, crates, snowballs, everything! Rules are the same as standard Blitz (base setting string below) bar what is randomized here. Post any suggestions to the github!"
