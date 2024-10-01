@@ -25,7 +25,7 @@ Current Settings Added:
 - All containers have "appearance match contents" for easier clarity on settings!
 
 To use:
-- Download Python (for dev build) or exe (outdated) and associated weights file
+- Download Python (for dev build) or exe (doesn't have Future Plan stuff that may be in the python) and associated weights file
 - Put both anywhere but in the same folder
 - Adjust weights to your liking (I tried to label them as best I could)
 - run python script.
