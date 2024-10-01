@@ -458,6 +458,11 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             SettingsList["soulsNpcOot"] = True
             SettingsList["soulsNpcMm"] = True
             SettingsList["sharedSoulsNpc"] = True
+            HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "OOT_SOUL_NPC_ZELDA"})
 
     FairyFountainShuffle = random.choices([True, False], settings["FairyFountainShuffle"][1])[0]
     if FairyFountainShuffle == True:
