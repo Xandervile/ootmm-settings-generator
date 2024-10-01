@@ -51,11 +51,20 @@ DefaultGanonBKCond = base_settings["specialConds"]["GANON_BK"]
 
 DefaultMajoraCond = base_settings["specialConds"]["MAJORA"]
 
+WinCond = random.choices(["Ganon and Majora", "Triforce Hunt", "Triforce Quest"], data["Goal"][1])[0]
+
 while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or MysteryCount > MaxMysterySettings:
     MysteryCount = 0
     HardCounter = 0
 
     SettingsList = base_settings.copy()
+
+    if WinCond == "Triforce Hunt":
+        SettingsList["goal"] = "triforce"
+        SettingsList["triforceGoal"] = random.choices(data["TriforcePieces"][0], data["TriforcePieces"][1])[0]
+        SettingsList["triforcePieces"] = int(1.5 * SettingsList["triforceGoal"])
+    elif WinCond == "Triforce Quest":
+        SettingsList["goal"] = "triforce3"
     
     JunkList = DefaultJunkList.copy()
     StartingItemList = DefaultStartingItemList.copy()
@@ -598,6 +607,10 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
     print("", file=spoiler_file)
     print("Main Settings:", file=spoiler_file)
+    print("Goal:", WinCond, file=spoiler_file)
+    if WinCond == "Triforce Hunt":
+        print("Triforce Pieces Needed:", SettingsList["triforceGoal"], file=spoiler_file)
+        print("Triforce Pieces Overall:", SettingsList["triforcePieces"], file=spoiler_file)
     print("Skip Child Zelda:", SkipChildZelda, file=spoiler_file)
     print("Door Of Time:", DoorOfTime, file=spoiler_file)
     print("Songsanity:", SongShuffle, file=spoiler_file)
