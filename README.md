@@ -35,3 +35,4 @@ To use:
 Future Plans:
 - Add Triforce Quest/Hunt options in for more random settings (these to have their own weights for settings?).
 - Potentially open the moon up for checks (need to think about how to balance this?)
+- Enemy and NPC souls to look at at some point - would be a pain to balance though.
