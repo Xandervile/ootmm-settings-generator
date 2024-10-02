@@ -34,5 +34,5 @@ To use:
 
 Future Plans:
 - Add Triforce Quest/Hunt options in for more random settings (these to have their own weights for settings?). [PYTHON UPDATED WITH THIS]
-- Potentially open the moon up for checks (need to think about how to balance this?)
+- Potentially open the moon up for checks (need to think about how to balance this?) - Added in Triforce Hunt and Triforce Quest. Thinking for standard Blitz now.
 - Enemy and NPC souls to look at at some point - would be a pain to balance though. [PYTHON UPDATED WITH THIS]
