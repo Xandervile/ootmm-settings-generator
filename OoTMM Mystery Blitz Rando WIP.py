@@ -605,8 +605,45 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                     SettingsList["smallKeyRingMm"]["values"].append(key)
                 else:
                     SettingsList["smallKeyRingOot"]["values"].append(key)
-                    
 
+    if SettingsList["silverRupeeShuffle"] != "vanilla":
+        if SharedMQDungeons > 0:
+            SilverList = ["Shadow_Scythe","Shadow_Pit","Shadow_Spikes","GTG_Slopes","GTG_Lava","GTG_Water","Ganon_Fire"]
+            if "DC" in MQDungeonChosen:
+                SilverList.append("DC")
+            if "BotW" not in MQDungeonChosen:
+                SilverList.append("BotW")
+            if "Spirit" in MQDungeonChosen:
+                SilverList.append("Spirit_Lobby")
+                SilverList.append("Spirit_Adult")
+            else:
+                SilverList.append("Spirit_Child")
+                SilverList.append("Spirit_Sun")
+                SilverList.append("Spirit_Boulders")
+            if "Shadow" in MQDungeonChosen:
+                SilverList.append("Shadow_Blades")
+            if "IC" not in MQDungeonChosen:
+                SilverList.append("IC_Scythe")
+                SilverList.append("IC_Block")
+            if "GC" in MQDungeonChosen:
+                SilverList.append("Ganon_Shadow")
+                SilverList.append("Ganon_Water")
+            else:
+                SilverList.append("Ganon_Spirit")
+                SilverList.append("Ganon_Light")
+                SilverList.append("Ganon_Forest")
+        else:
+            SilverList = ["BotW","Spirit_Child","Spirit_Sun","Spirit_Boulders","Shadow_Scythe","Shadow_Pit","Shadow_Spikes","IC_Scythe","IC_Block","GTG_Slopes","GTG_Lava","GTG_Water","Ganon_Light","Ganon_Forest","Ganon_Fire","Ganon_Spirit"]
+        SilverCount = len(SilverList)
+        SilverPouchAmount = SilverCount + 1
+        while SilverPouchAmount > SilverCount:
+            SilverPouchAmount = random.choices(list(range(0, 19)), settings["SilverPouchAmount"][1])[0]
+        if SilverPouchAmount > 0:
+            SettingsList["silverRupeePouches"] = {"type":"specific","values":[]}
+            SilverPouchesChosen = random.sample(SilverList, SilverPouchAmount)
+            for key in SilverPouchesChosen:
+                SettingsList["silverRupeePouches"]["values"].append(key)
+        
     ChildWallet = random.choices([True, False], settings["ChildWallet"][1])[0]
     if ChildWallet == True:
         SettingsList["childWallet"] = True
@@ -781,7 +818,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
         print("Clock Tower Included:", ClockTowerShuffle, file=spoiler_file)
     print("Boss Entrances:", SettingsList["erBoss"]=="full", file=spoiler_file)
     print("", file=spoiler_file)
-    if MixedPot > 1:
+    if MixedPot > 1 and settings["Mixed"]["Allow"][1][0] != 0:
         print("Mixed Entrances:", MixedEntrances, file=spoiler_file)
         if MixedEntrances == True:
             for key in MixedList:
@@ -823,6 +860,16 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
         if KeyRingAmount > 0:
             for key in KeyRingsChosen:
                 if key != KeyRingsChosen[-1]:
+                    spoiler_file.write(f"{key}, ")
+                else:
+                    spoiler_file.write(f"{key}")
+            spoiler_file.write("\n")
+        print("", file=spoiler_file)
+    if SettingsList["silverRupeeShuffle"] != "vanilla":
+        print("Silver Rupee Pouches:", SilverPouchAmount, file=spoiler_file)
+        if SilverPouchAmount > 0:
+            for key in SilverPouchesChosen:
+                if key != SilverPouchesChosen[-1]:
                     spoiler_file.write(f"{key}, ")
                 else:
                     spoiler_file.write(f"{key}")
