@@ -36,3 +36,7 @@ Future Plans:
 - Add Triforce Quest/Hunt options in for more random settings (these to have their own weights for settings?). [PYTHON UPDATED WITH THIS]
 - Potentially open the moon up for checks (need to think about how to balance this?) - Added in Triforce Hunt and Triforce Quest. Thinking for standard Blitz now.
 - Enemy and NPC souls to look at at some point - would be a pain to balance though. [PYTHON UPDATED WITH THIS]
+
+Issues:
+- If Silver Rupees are shuffled in own dungeons, SAVE in the dungeon before collecting any. Combo Rando has an issue where collecting the last silver rupee in the same room as the cutscene that triggers whilst being airborne softlocks, so this means you can preplan the rupees easier to not lead into that crash
+- Song and Owl Shuffle CAN create a seed that won't gen. This is due to the lack of logic I used to create such a setting. Just reroll settings if you get one that doesn't gen and errors.
