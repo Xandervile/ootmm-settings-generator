@@ -765,7 +765,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Grass Shuffle:", GrassShuffle.capitalize(), file=spoiler_file)
     print("Pot Shuffle:", PotShuffle.capitalize(), file=spoiler_file)
     print("Freestanding Rupees and Hearts Shuffle:", FreestandingShuffle.capitalize(), file=spoiler_file)
-    print("Wonder Spot Shuffle:", WonderSpotShuffle.capitalize(), file=spoiler_file)
+    print("Wonder Spot Shuffle: OoT", WonderSpotShuffle.capitalize(), "MM", WonderSpitShuffle != "none", file=spoiler_file)
     print("Crate and Barrel Shuffle:", SharedCratesAndBarrels.capitalize(), file=spoiler_file)
     print("Snowball Shuffle:", SettingsList["shuffleSnowballsMm"].capitalize(), file = spoiler_file)
     print("Cow Shuffle:", SharedCowShuffle, file=spoiler_file)
