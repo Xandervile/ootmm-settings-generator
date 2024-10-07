@@ -96,7 +96,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         del PlandoList["OOT Zelda's Letter"]
         del PlandoList["OOT Zelda's Song"]
         StartingItemList["OOT_SONG_TP_LIGHT"] = 1
-        StartingItemList["OOT_OCARINA"] = 1
+        StartingItemList["OOT_OCARINA"] = 2
         HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
         HintList.insert(HintIndex, {"type": "item",
                                     "amount": 1,
