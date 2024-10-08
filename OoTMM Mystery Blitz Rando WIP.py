@@ -477,10 +477,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             HintList.insert(HintIndex, {"type": "item",
                                         "amount": 1,
                                         "extra": 1,
-                                        "item": "SHARED_SOUL_MISC_GS"})
-            HintList.insert(HintIndex, {"type": "item",
-                                        "amount": 1,
-                                        "extra": 1,
                                         "item": "SHARED_SOUL_ENEMY_LIZALFOS_DINALFOS"})
             HintList.insert(HintIndex, {"type": "item",
                                         "amount": 1,
@@ -513,6 +509,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["fairyFountainFairyShuffleOot"] = True
         SettingsList["fairyFountainFairyShuffleMm"] = True
         SettingsList["fairySpotShuffleOot"] = True
+        MysteryCount += 1
+
+    ButterflyShuffle = random.choices([True, False], settings["ButterflyShuffle"][1])[0]
+    if ButterflyShuffle == True:
+        SettingsList["shuffleButterfliesOot"] = True
+        SettingsList["shuffleButterfliesMm"] = True
         MysteryCount += 1
 
     FishingPondShuffle = random.choices([True, False], settings["FishingPondShuffle"][1])[0]
@@ -765,7 +767,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Grass Shuffle:", GrassShuffle.capitalize(), file=spoiler_file)
     print("Pot Shuffle:", PotShuffle.capitalize(), file=spoiler_file)
     print("Freestanding Rupees and Hearts Shuffle:", FreestandingShuffle.capitalize(), file=spoiler_file)
-    print("Wonder Spot Shuffle: OoT", WonderSpotShuffle.capitalize(), "MM", WonderSpitShuffle != "none", file=spoiler_file)
+    print("Wonder Spot Shuffle: OoT", WonderSpotShuffle.capitalize(), "MM", WonderSpotShuffle != "none", file=spoiler_file)
     print("Crate and Barrel Shuffle:", SharedCratesAndBarrels.capitalize(), file=spoiler_file)
     print("Snowball Shuffle:", SettingsList["shuffleSnowballsMm"].capitalize(), file = spoiler_file)
     print("Cow Shuffle:", SharedCowShuffle, file=spoiler_file)
@@ -783,6 +785,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     else:
         print("Clock Shuffle:", SettingsList["clocks"], file=spoiler_file)
     print("Fountain and Spot Fairies Shuffle:", FairyFountainShuffle, file=spoiler_file)
+    print("Butterfly Shuffle:", ButterflyShuffle, file=spoiler_file)
     print("Hive Shuffle:", SharedHiveShuffle, file=spoiler_file)
     print("Soul Shuffle:", SoulShuffle, file=spoiler_file)
     if SongShuffle != "Mixed with Owls":
