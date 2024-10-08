@@ -82,6 +82,7 @@
 		"Grottos":[[true, false], [0, 100]],
 		"Dungeons":[[true, false], [0, 100]]
 	  },
+	  "DecoupledEntrances":[[true, false], [0, 100], "For the REAL masochists. God have mercy on those who touch this"],
 	  
 	  "AgelessAmount":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [2048, 1024, 512, 256, 128, 64, 32, 16 , 8, 4 , 2, 1], "Amount of Ageless Settings that can be chosen equally at random, doesn't affect Mystery Count"],
 	  	  		  
