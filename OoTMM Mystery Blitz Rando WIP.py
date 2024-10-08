@@ -56,7 +56,7 @@ WinCond = random.choices(["Ganon and Majora", "Triforce Hunt", "Triforce Quest"]
 while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or MysteryCount > MaxMysterySettings:
     MysteryCount = 0
     HardCounter = 0
-    MixedPot = 0
+    entranceTypeShuffled = 0
 
     SettingsList = base_settings.copy()
 
@@ -151,19 +151,19 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["erRegionsExtra"] = True
         SettingsList["erRegionsShortcuts"] = True
         MysteryCount += 1
-        MixedPot += 1
+        entranceTypeShuffled += 1
     elif EntranceRandomizer == "Overworld":
         SettingsList["erOverworld"] = "full"
         MysteryCount += 1
         HardCounter += 1
-        MixedPot += 1
+        entranceTypeShuffled += 1
     elif EntranceRandomizer == "Interiors":
         SettingsList["erIndoors"] = "full"
         SettingsList["erIndoorsMajor"] = True
         SettingsList["erIndoorsExtra"] = True
         MysteryCount += 1
         HardCounter += 1
-        MixedPot += 1
+        entranceTypeShuffled += 1
     elif EntranceRandomizer == "Full":
         SettingsList["erOverworld"] = "full"
         SettingsList["erIndoors"] = "full"
@@ -171,12 +171,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["erIndoorsExtra"] = True
         MysteryCount += 1
         HardCounter += 1
-        MixedPot += 2
+        entranceTypeShuffled += 2
 
     SettingsList["erGrottos"] = random.choices(["none", "full"], settings["GrottoShuffle"][1])[0]
     if SettingsList["erGrottos"] == "full":
         MysteryCount += 1
-        MixedPot += 1
+        entranceTypeShuffled += 1
 
     OcarinaButtonWeight = settings["OcarinaButtons"][1]
     if SongShuffle == "anywhere":
@@ -358,7 +358,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     DungeonEntranceShuffleWeight = settings["DungeonEntranceShuffle"][1]
     DungeonEntranceShuffle = random.choices([True, False], DungeonEntranceShuffleWeight)[0]
     if DungeonEntranceShuffle == True:
-        MixedPot += 1
+        entranceTypeShuffled += 1
         SettingsList["erDungeons"] = "full"
         SettingsList["erMajorDungeons"] = True
         SettingsList["erMinorDungeons"] = True
@@ -498,11 +498,13 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             HintList.insert(HintIndex, {"type": "item",
                                         "amount": 1,
                                         "extra": 1,
-                                        "item": "OOT_SOUL_NPC_ZELDA"})
-            HintList.insert(HintIndex, {"type": "item",
-                                        "amount": 1,
-                                        "extra": 1,
                                         "item": "MM_SOUL_NPC_MOON_CHILDREN"})
+            if WinCond == "Ganon and Majora":
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 1,
+                                            "item": "OOT_SOUL_NPC_ZELDA"})
+
 
     FairyFountainShuffle = random.choices([True, False], settings["FairyFountainShuffle"][1])[0]
     if FairyFountainShuffle == True:
@@ -668,7 +670,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     SettingsList["openZdShortcut"] = random.choices([True, False], ZoraDomainWeights)[0]
 
     #To add here: Mixed Pool Settings
-    if MixedPot > 1 and settings["Mixed"]["Allow"][1][0] != 0:
+    if entranceTypeShuffled > 1 and settings["Mixed"]["Allow"][1][0] != 0:
         MixedSettings = 0
         MixedEntrances = random.choices(settings["Mixed"]["Allow"][0], settings["Mixed"]["Allow"][1])[0]
         if MixedEntrances == True:
@@ -702,6 +704,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             if MixedSettings < 2:
                 SettingsList["erMixed"] = False
                 del MixedList
+
+    if entranceTypeShuffled > 0 and settings["DecoupledEntrances"][1][0] != 0:
+        SettingsList["erDecoupled"] = random.choices(settings["DecoupledEntrances"][0], settings["DecoupledEntrances"][1])[0]
+
 
                 
 
@@ -820,8 +826,10 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
         print("Ganon's Tower Included:", GanonTowerShuffle, file=spoiler_file)
         print("Clock Tower Included:", ClockTowerShuffle, file=spoiler_file)
     print("Boss Entrances:", SettingsList["erBoss"]=="full", file=spoiler_file)
+    if entranceTypeShuffled > 0 and settings["DecoupledEntrances"][1][0] != 0:
+        print("Decoupled Entrances:", SettingsList["erDecoupled"], file = spoiler_file)
     print("", file=spoiler_file)
-    if MixedPot > 1 and settings["Mixed"]["Allow"][1][0] != 0:
+    if entranceTypeShuffled > 1 and settings["Mixed"]["Allow"][1][0] != 0:
         print("Mixed Entrances:", MixedEntrances, file=spoiler_file)
         if MixedEntrances == True:
             for key in MixedList:
