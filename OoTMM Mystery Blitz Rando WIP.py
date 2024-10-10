@@ -107,7 +107,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if DoorOfTime == "Closed":
         SettingsList["doorOfTime"] = "closed"
         
-    SongShuffle = random.choices(["Song Locations", "Mixed with Owls", "Anywhere"], settings["SongShuffle"][1])[0]
+    SongShuffle = random.choices(["Song Locations", "Mixed with Owls", "Dungeon Rewards", "Anywhere"], settings["SongShuffle"][1])[0]
     if SongShuffle == "Song Locations":
         SettingsList["songs"] = "songLocations"
     else:
@@ -143,7 +143,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                 ChosenItem = random.choice(SongAndOwlList)
                 PlandoList[key] = ChosenItem
                 SongAndOwlList.remove(ChosenItem)
-
 
     EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], settings["WorldEntranceRandomizer"][1])[0]
     if EntranceRandomizer == "Regions Only":
@@ -430,6 +429,40 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                 SettingsList["dungeon"][key] = "mq"
             else:
                 SettingsList["dungeon"][key] = "vanilla"
+
+    if SongShuffle == "Dungeon Rewards":
+        SongList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS",
+                    "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER",
+                    "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON",
+                    "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER"]  # 17
+        DungeonItemList = ["OOT Deku Tree Boss Container", "OOT Dodongo Cavern Boss Container",
+                            "OOT Jabu-Jabu Boss Container", "OOT Forest Temple Boss Container",
+                            "OOT Fire Temple Boss Container", "OOT Water Temple Boss HC", "OOT Shadow Temple Boss HC",
+                            "OOT Spirit Temple Boss HC", "MM Woodfall Temple Boss Container",
+                            "MM Snowhead Temple Boss HC", "MM Great Bay Temple Boss HC",
+                            "MM Stone Tower Temple Inverted Boss HC",
+                            "MM Ancient Castle of Ikana Song Emptiness", "MM Clock Tower Roof Skull Kid Song of Time"]
+        if SharedMQDungeons > 0:
+            if "BotW" in MQDungeonChosen:
+                DungeonItemList.append("OOT MQ Bottom of the Well Lens Chest")
+            else:
+                DungeonItemList.append("OOT Bottom of the Well Lens Chest")
+            if "IC" in MQDungeonChosen:
+                DungeonItemList.append("OOT MQ Ice Cavern Sheik Song")
+            else:
+                DungeonItemList.append("OOT Ice Cavern Sheik Song")
+            if "GTG" in MQDungeonChosen:
+                DungeonItemList.append("OOT MQ Gerudo Training Grounds Ice Arrows Chest")
+            else:
+                DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
+        else:
+            DungeonItemList.append("OOT Bottom of the Well Lens Chest")
+            DungeonItemList.append("OOT Ice Cavern Sheik Song")
+            DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
+        for key in DungeonItemList:
+            ChosenItem = random.choice(SongList)
+            PlandoList[key] = ChosenItem
+            SongList.remove(ChosenItem)
 
     SharedCratesAndBarrels = random.choices(["none", "dungeons", "overworld", "all"], settings["CratesAndBarrelsShuffle"][1])[0]
     SettingsList["shuffleCratesOot"] = SharedCratesAndBarrels
