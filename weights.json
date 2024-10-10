@@ -12,7 +12,7 @@
 	  "HardModeLimit":2,
 	  "TFGrassAllowed":[true, 1, "How much Grass per pack is shuffled in MM TF without OW ER for balance, if you want no TF Grass, set to false"],
 	  
-	  "SongShuffle": [["Song Locations", "Mixed With Owls", "Dungeon Rewards", "Anywhere"], [0, 0, 10, 0], "Owls Statues and Songs can be shuffled amongst each other. Dungeon Rewards - every Boss Heart Container is a song, as well as Ice Cavern Song, Skull Kid Song, GTG Ice Arrow Chest, Bottom of the Well Lens Chest, not tested so may break! If songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
+	  "SongShuffle": [["Song Locations", "Mixed With Owls", "Dungeon Rewards", "Anywhere"], [65, 20, 10, 5], "Owls Statues and Songs can be shuffled amongst each other. Dungeon Rewards - every Boss Heart Container is a song, as well as Ice Cavern Song, Skull Kid Song, GTG Ice Arrow Chest, Bottom of the Well Lens Chest, not tested so may break! If songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
 	  "GrassShuffle": [["none", "dungeons", "overworld", "all"], [80, 0, 0, 20], "Hard Setting if all, could be changed"],
 	  "PotShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "Hard Setting if all"],
 	  "FreestandingShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "affects rupees and hearts"],
