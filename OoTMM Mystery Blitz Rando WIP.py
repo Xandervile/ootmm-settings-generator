@@ -446,7 +446,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             if "BotW" in MQDungeonChosen:
                 DungeonItemList.append("OOT MQ Bottom of the Well Lens Chest")
             else:
-                DungeonItemList.append("OOT Bottom of the Well Lens Chest")
+                DungeonItemList.append("OOT Bottom of the Well Lens")
             if "IC" in MQDungeonChosen:
                 DungeonItemList.append("OOT MQ Ice Cavern Sheik Song")
             else:
@@ -456,7 +456,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             else:
                 DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
         else:
-            DungeonItemList.append("OOT Bottom of the Well Lens Chest")
+            DungeonItemList.append("OOT Bottom of the Well Lens")
             DungeonItemList.append("OOT Ice Cavern Sheik Song")
             DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
         for key in DungeonItemList:
