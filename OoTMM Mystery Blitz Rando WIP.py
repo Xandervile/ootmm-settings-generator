@@ -41,6 +41,12 @@ HintToInsertBefore = {"type":"woth",
                     "amount":9,
                     "extra":1}
 
+if "logic" in base_settings:
+    if base_settings["logic"] == "none":
+        HintToInsertBefore = {"type":"sometimes",
+                            "amount":"max",
+                            "extra":1}
+
 DefaultPlando = base_settings["plando"]["locations"]
 
 DefaultBridgeCond = base_settings["specialConds"]["BRIDGE"]
