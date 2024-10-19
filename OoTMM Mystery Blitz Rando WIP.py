@@ -28,6 +28,10 @@ MaxMysterySettings = settings["MaximumSettingsAmount"]
 MysteryCount = -1
 HardCounter = 0
 
+EnemySouls = ["SHARED_SOUL_ENEMY_ARMOS", "SHARED_SOUL_ENEMY_BEAMOS", "SHARED_SOUL_ENEMY_BUBBLE", "SHARED_SOUL_ENEMY_DEKU_BABA", "SHARED_SOUL_ENEMY_DEKU_SCRUB", "SHARED_SOUL_ENEMY_DODONGO", "SHARED_SOUL_ENEMY_THIEVES", "SHARED_SOUL_ENEMY_FLOORMASTER", "SHARED_SOUL_ENEMY_FLYING_POT", "SHARED_SOUL_ENEMY_FREEZARD", "SHARED_SOUL_ENEMY_GUAY", "OOT_SOUL_ENEMY_ANUBIS", "OOT_SOUL_ENEMY_BABY_DODONGO", "OOT_SOUL_ENEMY_BIRI_BARI", "OOT_SOUL_ENEMY_DARK_LINK", "OOT_SOUL_ENEMY_DEAD_HAND", "OOT_SOUL_ENEMY_FLARE_DANCER", "OOT_SOUL_ENEMY_GOHMA_LARVA", "OOT_SOUL_ENEMY_PARASITE", "OOT_SOUL_ENEMY_MOBLIN", "OOT_SOUL_ENEMY_SHABOM", "OOT_SOUL_ENEMY_SKULL_KID", "OOT_SOUL_ENEMY_SPIKE", "OOT_SOUL_ENEMY_STALFOS", "OOT_SOUL_ENEMY_STINGER", "OOT_SOUL_ENEMY_TAILPASARN", "OOT_SOUL_ENEMY_TORCH_SLUG", "MM_SOUL_ENEMY_BAD_BAT", "MM_SOUL_ENEMY_BIO_BABA", "MM_SOUL_ENEMY_BOE", "MM_SOUL_ENEMY_CAPTAIN_KEETA", "MM_SOUL_ENEMY_CHUCHU", "MM_SOUL_ENEMY_DEEP_PYTHON", "MM_SOUL_ENEMY_DEXIHAND", "MM_SOUL_ENEMY_DRAGONFLY", "MM_SOUL_ENEMY_EENO", "MM_SOUL_ENEMY_EYEGORE", "MM_SOUL_ENEMY_GARO", "MM_SOUL_ENEMY_GEKKO", "MM_SOUL_ENEMY_GOMESS", "MM_SOUL_ENEMY_HIPLOOP", "MM_SOUL_ENEMY_NEJIRON", "MM_SOUL_ENEMY_REAL_BOMBCHU", "MM_SOUL_ENEMY_SKULLFISH", "MM_SOUL_ENEMY_SNAPPER", "MM_SOUL_ENEMY_TAKKURI", "MM_SOUL_ENEMY_WART", "MM_SOUL_ENEMY_WIZZROBE", "SHARED_SOUL_ENEMY_IRON_KNUCKLE", "SHARED_SOUL_ENEMY_KEESE", "SHARED_SOUL_ENEMY_LEEVER", "SHARED_SOUL_ENEMY_LIKE_LIKE", "SHARED_SOUL_ENEMY_LIZALFOS_DINALFOS", "SHARED_SOUL_ENEMY_OCTOROK", "SHARED_SOUL_ENEMY_PEAHAT", "SHARED_SOUL_ENEMY_REDEAD_GIBDO", "SHARED_SOUL_ENEMY_SHELL_BLADE", "SHARED_SOUL_ENEMY_SKULLTULA", "SHARED_SOUL_ENEMY_SKULLWALLTULA", "SHARED_SOUL_ENEMY_STALCHILD", "SHARED_SOUL_ENEMY_WALLMASTER", "SHARED_SOUL_ENEMY_WOLFOS"]
+
+NPCSouls = ["MM_SOUL_NPC_BLACKSMITHS", "OOT_SOUL_NPC_DARUNIA", "OOT_SOUL_NPC_HYLIAN_GUARD", "MM_SOUL_NPC_KAFEI", "MM_SOUL_NPC_KEATON", "OOT_SOUL_NPC_KING_ZORA", "OOT_SOUL_NPC_KOKIRI", "OOT_SOUL_NPC_KOKIRI_SHOPKEEPER", "MM_SOUL_NPC_KOUME_KOTAKE", "MM_SOUL_NPC_AROMA", "MM_SOUL_NPC_MAYOR_DOTOUR", "OOT_SOUL_NPC_MIDO", "MM_SOUL_NPC_MOON_CHILDREN", "MM_SOUL_NPC_PLAYGROUND_SCRUBS", "OOT_SOUL_NPC_POTION_SHOPKEEPER", "OOT_SOUL_NPC_SARIA", "OOT_SOUL_NPC_SHEIK", "MM_SOUL_NPC_BUTLER_DEKU", "MM_SOUL_NPC_DEKU_KING", "MM_SOUL_NPC_DEKU_PRINCESS", "MM_SOUL_NPC_GORON_ELDER", "MM_SOUL_NPC_ZORA_MUSICIANS", "MM_SOUL_NPC_TINGLE", "MM_SOUL_NPC_TOILET_HAND", "MM_SOUL_NPC_TOTO", "MM_SOUL_NPC_TOURIST_CENTER", "OOT_SOUL_NPC_ZELDA", "SHARED_SOUL_NPC_BIGGORON", "SHARED_SOUL_NPC_BOMBCHU_BOWLING_LADY", "SHARED_SOUL_NPC_CARPENTERS", "SHARED_SOUL_NPC_CITIZEN", "SHARED_SOUL_NPC_COMPOSER_BROS", "SHARED_SOUL_NPC_ANJU", "SHARED_SOUL_NPC_DAMPE", "SHARED_SOUL_NPC_FISHING_POND_OWNER", "SHARED_SOUL_NPC_GORON", "SHARED_SOUL_NPC_GURU_GURU", "SHARED_SOUL_NPC_HONEY_DARLING", "SHARED_SOUL_NPC_GORMAN", "SHARED_SOUL_NPC_MALON", "SHARED_SOUL_NPC_MEDIGORON", "SHARED_SOUL_NPC_POE_COLLECTOR", "SHARED_SOUL_NPC_ROOFTOP_MAN", "SHARED_SOUL_NPC_RUTO", "SHARED_SOUL_NPC_TALON", "SHARED_SOUL_NPC_ASTRONOMER", "SHARED_SOUL_NPC_BAZAAR_SHOPKEEPER", "SHARED_SOUL_NPC_BEAN_SALESMAN", "SHARED_SOUL_NPC_BANKER", "SHARED_SOUL_NPC_BOMBCHU_SHOPKEEPER", "SHARED_SOUL_NPC_CARPET_MAN", "SHARED_SOUL_NPC_CHEST_GAME_OWNER", "SHARED_SOUL_NPC_DOG_LADY", "SHARED_SOUL_NPC_GORON_CHILD", "SHARED_SOUL_NPC_GORON_SHOPKEEPER", "SHARED_SOUL_NPC_BOMBERS", "SHARED_SOUL_NPC_OLD_HAG", "SHARED_SOUL_NPC_THIEVES", "SHARED_SOUL_NPC_GROG", "SHARED_SOUL_NPC_SCIENTIST", "SHARED_SOUL_NPC_SHOOTING_GALLERY_OWNER", "SHARED_SOUL_NPC_ZORA_SHOPKEEPER", "SHARED_SOUL_NPC_ZORA"]
+
 #HarderSettings get rolled first to allow limitations
 HARDMODELIMIT = settings["HardModeLimit"]
 
@@ -529,6 +533,11 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                         "amount": 1,
                                         "extra": 1,
                                         "item": "OOT_SOUL_ENEMY_STALFOS"})
+            StartingEnemyPerc = random.choices(settings["StartingEnemySoulPercentage"][0], settings["StartingEnemySoulPercentage"][1])[0]
+            StartingEnemyAmount = round(StartingEnemyPerc * len(EnemySouls) / 100)
+            StartingEnemyChosen = random.sample(EnemySouls, StartingEnemyAmount)
+            for key in StartingEnemyChosen:
+                StartingItemList[key] = 1
         if SoulShuffle == "NPC" or SoulShuffle == "Full":
             SettingsList["soulsNpcOot"] = True
             SettingsList["soulsNpcMm"] = True
@@ -543,6 +552,11 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                             "amount": 1,
                                             "extra": 1,
                                             "item": "OOT_SOUL_NPC_ZELDA"})
+            StartingNPCPerc = random.choices(settings["StartingNPCSoulPercentage"][0], settings["StartingNPCSoulPercentage"][1])[0]
+            StartingNPCAmount = round(StartingNPCPerc * len(NPCSouls) / 100)
+            StartingNPCChosen = random.sample(NPCSouls, StartingNPCAmount)
+            for key in StartingNPCChosen:
+                StartingItemList[key] = 1
 
 
     FairyFountainShuffle = random.choices([True, False], settings["FairyFountainShuffle"][1])[0]
@@ -932,6 +946,25 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
                 spoiler_file.write(f"{key}, ")
             else:
                 spoiler_file.write(f"{key}")
+        spoiler_file.write("\n")
+    if SoulShuffle == "Enemy" or SoulShuffle == "Full":
+        print("Starting Enemy Souls:", StartingEnemyAmount, file=spoiler_file)
+        if StartingEnemyAmount > 0:
+            for key in StartingEnemyChosen:
+                if key != StartingEnemyChosen[-1]:
+                    spoiler_file.write(f"{key}, ")
+                else:
+                    spoiler_file.write(f"{key}")
+            spoiler_file.write("\n")
+    if SoulShuffle == "NPC" or SoulShuffle == "Full":
+        print("Starting NPC Souls:", StartingNPCAmount, file=spoiler_file)
+        if StartingNPCAmount > 0:
+            for key in StartingNPCChosen:
+                if key != StartingNPCChosen[-1]:
+                    spoiler_file.write(f"{key}, ")
+                else:
+                    spoiler_file.write(f"{key}")
+            spoiler_file.write("\n")
 
 
 print("Settings generated successfully!")
