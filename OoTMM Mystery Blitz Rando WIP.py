@@ -45,11 +45,9 @@ HintToInsertBefore = {"type":"woth",
                     "amount":9,
                     "extra":1}
 
-if "logic" in base_settings:
-    if base_settings["logic"] == "none":
-        HintToInsertBefore = {"type":"sometimes",
-                            "amount":"max",
-                            "extra":1}
+Logic = random.choices(data["LogicSettings"][0], data["LogicSettings"][1])[0]
+
+ItemPool = random.choices(data["ItemPool"][0], data["ItemPool"][1])[0]
 
 DefaultPlando = base_settings["plando"]["locations"]
 
@@ -69,6 +67,14 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     entranceTypeShuffled = 0
 
     SettingsList = base_settings.copy()
+
+    SettingsList["logic"] = Logic
+    if Logic == "none":
+        HintToInsertBefore = {"type":"sometimes",
+                            "amount":"max",
+                            "extra":1}
+    
+    SettingsList["itemPool"] = ItemPool
 
     if WinCond == "Triforce Hunt":
         SettingsList["goal"] = "triforce"
@@ -403,8 +409,8 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["shopShuffleOot"] = "full"
         SettingsList["shopShuffleMm"] = "full"
         ScrubShuffle = random.choices([True, False], settings["MerchantShuffle"][1])[0]
-        SettingsList["scrubsShuffleOot"] = ScrubShuffle
-        SettingsList["scrubsShuffleMm"] = ScrubShuffle
+        SettingsList["scrubShuffleOot"] = ScrubShuffle
+        SettingsList["scrubShuffleMm"] = ScrubShuffle
         SettingsList["shuffleMerchantsOot"] = ScrubShuffle
         SettingsList["shuffleMerchantsMm"] = ScrubShuffle
         PriceShuffle = random.choices(["affordable", "vanilla", "weighted", "random"], settings["PriceShuffle"][1])[0]
@@ -637,6 +643,9 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             SettingsList["erWarps"] = True
             MysteryCount += 1
 
+    MMAdultAllowed = random.choices(settings["AdultInMM"][0], settings["AdultInMM"][1])[0]
+    SettingsList["crossAge"] = MMAdultAllowed
+
     AgelessAmount = random.choices(settings["AgelessAmount"][0], settings["AgelessAmount"][1])[0]
     if AgelessAmount > 0:
         AgelessItems = ["agelessSwords", "agelessShields", "agelessTunics", "agelessBoots", "agelessSticks", "agelessBoomerang", "agelessHammer", "agelessHookshot", "agelessSlingshot", "agelessBow", "agelessStrength"]
@@ -806,6 +815,8 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("OoTMM Mystery Blitz Generator -- Spoiler Log", file=spoiler_file)
     print("Hard Settings Shuffled:", HardCounter, file=spoiler_file)
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
+    print("Logic Settings:", Logic, file=spoiler_file)
+    print("Item Pool Settings:", ItemPool, file=spoiler_file)
     print("", file=spoiler_file)
     print("Goal:", WinCond, file=spoiler_file)
     if WinCond == "Triforce Hunt":
