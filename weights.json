@@ -82,12 +82,12 @@
 	  "SpawnShuffle":[["none", "child", "adult", "both"], [40, 10, 10, 40], "Doesn't add to counter"],
 	  
 	  "Mixed":{
-		"Allow":[[true, false], [100, 0], "For the masochists, I have included Mixed Entrance Shuffle as a Mystery Setting too. By default this is off but I did check if it worked in the generator and it does"],
+		"Allow":[[true, false], [0, 100], "For the masochists, I have included Mixed Entrance Shuffle as a Mystery Setting too. By default this is off but I did check if it worked in the generator and it does"],
 		"Regions":[[true, false], [0, 100]],
 		"Overworld":[[true, false], [0, 100]],
 		"Interior":[[true, false], [0, 100]],
-		"Grottos":[[true, false], [100, 0]],
-		"Dungeons":[[true, false], [100, 0]]
+		"Grottos":[[true, false], [0, 100]],
+		"Dungeons":[[true, false], [0, 100]]
 	  },
 	  "DecoupledEntrances":[[true, false], [0, 100], "For the REAL masochists. God have mercy on those who touch this"],
 	  
