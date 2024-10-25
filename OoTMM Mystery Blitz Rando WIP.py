@@ -3,7 +3,6 @@ import base64
 import json
 import random
 import os
-
 generator_dir = os.path.dirname(os.path.abspath(__file__))
 
 with open("weights.json", "r") as read_file:
@@ -73,6 +72,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         HintToInsertBefore = {"type":"sometimes",
                             "amount":"max",
                             "extra":1}
+
+    SettingsList["mode"] = data["Mode"]
+    SettingsList["players"] = data["Players"]
+    SettingsList["distinctWorlds"] = data["DistinctWorlds"]
     
     SettingsList["itemPool"] = ItemPool
 
@@ -350,6 +353,8 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                     "item": "OOT_SWORD_MASTER"})
         StartingItemList.pop("MM_SWORD")
         StartingItemList.pop("SHARED_SHIELD_HYLIAN")
+    else:
+        SettingsList["swordlessAdult"] = False          #Temporary Fix until the thing actually works in the generator
 
     OwlWeight = settings["OwlShuffle"][1]
     if "erOverworld" in SettingsList and SettingsList["erOverworld"] == "full":
@@ -893,7 +898,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     if entranceTypeShuffled > 0 and settings["DecoupledEntrances"][1][0] != 0:
         print("Decoupled Entrances:", SettingsList["erDecoupled"], file = spoiler_file)
     print("", file=spoiler_file)
-    if entranceTypeShuffled > 1 and settings["Mixed"]["Allow"][1][0] != 0:
+    if entranceTypeShuffled > 1 and settings["Mixed"]["Allow"][1][0] != 0 and "MixedList" in globals():
         print("Mixed Entrances:", MixedEntrances, file=spoiler_file)
         if MixedEntrances == True:
             for key in MixedList:
