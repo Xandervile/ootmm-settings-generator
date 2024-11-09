@@ -207,47 +207,24 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         HardCounter += 1
         MysteryCount += 1
 
-##    GrassShuffle = random.choices(["none", "dungeons", "overworld", "all"], settings["GrassShuffle"][1])[0]
-##    SettingsList["shuffleGrassOot"] = GrassShuffle
-##    SettingsList["shuffleGrassMm"] = GrassShuffle
-##    if GrassShuffle != "none":
-##        MysteryCount += 1
-##    if GrassShuffle == "overworld" or GrassShuffle == "all":
-##        if EntranceRandomizer == "Overworld" or EntranceRandomizer == "Full":
-##            SettingsList["shuffleTFGrassMm"] = True
-##        else:
-##            SettingsList["shuffleTFGrassMm"] = settings["TFGrassAllowed"][0]
-##            if SettingsList["shuffleTFGrassMm"] == True:
-##                for i in range(1, 19):                      #Limits Termina Field Grass to only 1 potential patch good
-##                    GrassAllowed = random.sample(range(1, 13), settings["TFGrassAllowed"][1])
-##                    for j in range(1, 13):
-##                        if j not in GrassAllowed:
-##                            JunkList.append(f"MM Termina Field Grass Pack {i:02} Grass {j:02}")
-##    if GrassShuffle == "all":
-##        HardCounter += 1  #Looking into limiting
-
-
     GrassShuffle = random.choices(["none", "dungeons", "overworld", "all"], settings["GrassShuffle"][1])[0]
     SettingsList["shuffleGrassOot"] = GrassShuffle
     SettingsList["shuffleGrassMm"] = GrassShuffle
     if GrassShuffle != "none":
         MysteryCount += 1
     if GrassShuffle == "overworld" or GrassShuffle == "all":
-        TFGrassShuffle = settings["TFGrassAllowed"][0]
         if EntranceRandomizer == "Overworld" or EntranceRandomizer == "Full":
-            GrassCount = 12
-        elif TFGrassShuffle == True:
-            GrassCount = settings["TFGrassAllowed"][1]
+            SettingsList["shuffleTFGrassMm"] = True
         else:
-            GrassCount = 0
-        for i in range(1, 19):                      #Limits Termina Field Grass to only 1 potential patch good
-            GrassAllowed = random.sample(range(1, 13), GrassCount)
-            for j in range(1, 13):
-                if j not in GrassAllowed:
-                    JunkList.append(f"MM Termina Field Grass Pack {i:02} Grass {j:02}")
+            SettingsList["shuffleTFGrassMm"] = settings["TFGrassAllowed"][0]
+            if SettingsList["shuffleTFGrassMm"] == True:
+                for i in range(1, 19):                      #Limits Termina Field Grass to only 1 potential patch good
+                    GrassAllowed = random.sample(range(1, 13), settings["TFGrassAllowed"][1])
+                    for j in range(1, 13):
+                        if j not in GrassAllowed:
+                            JunkList.append(f"MM Termina Field Grass Pack {i:02} Grass {j:02}")
     if GrassShuffle == "all":
         HardCounter += 1  #Looking into limiting
-
 
     PotShuffle = random.choices(["none", "dungeons", "overworld", "all"], settings["PotShuffle"][1])[0]
     SettingsList["shufflePotsOot"] = PotShuffle
