@@ -444,7 +444,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                             "OOT Spirit Temple Boss HC", "MM Woodfall Temple Boss Container",
                             "MM Snowhead Temple Boss HC", "MM Great Bay Temple Boss HC",
                             "MM Stone Tower Temple Inverted Boss HC",
-                            "MM Ancient Castle of Ikana Song Emptiness", "MM Clock Tower Roof Skull Kid Song of Time"]
+                            "MM Ancient Castle of Ikana Song Emptiness", "MM Pirate Fortress Interior Hookshot"]
         if SharedMQDungeons > 0:
             if "BotW" in MQDungeonChosen:
                 DungeonItemList.append("OOT MQ Bottom of the Well Lens Chest")
