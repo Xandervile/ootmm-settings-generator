@@ -163,6 +163,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                 PlandoList[key] = ChosenItem
                 SongAndOwlList.remove(ChosenItem)
 
+    GameLink = False
     EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], settings["WorldEntranceRandomizer"][1])[0]
     if EntranceRandomizer == "Regions Only":
         SettingsList["erRegions"] = "full"
@@ -179,6 +180,8 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["erIndoors"] = "full"
         SettingsList["erIndoorsMajor"] = True
         SettingsList["erIndoorsExtra"] = True
+        GameLink = random.choices([True, False], settings["GameLinkEntrances"][1])[0]
+        SettingsList["erIndoorsGameLinks"] = GameLink
         MysteryCount += 1
         HardCounter += 1
         entranceTypeShuffled += 1
@@ -187,6 +190,8 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["erIndoors"] = "full"
         SettingsList["erIndoorsMajor"] = True
         SettingsList["erIndoorsExtra"] = True
+        GameLink = random.choices([True, False], settings["GameLinkEntrances"][1])[0]
+        SettingsList["erIndoorsGameLinks"] = GameLink
         MysteryCount += 1
         HardCounter += 1
         entranceTypeShuffled += 2
@@ -637,9 +642,9 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             
     if SKeyShuffle[0] != "removed" and SKeyShuffle[1] != "removed":     
         if SettingsList["smallKeyShuffleChestGame"] != "vanilla":
-            KeyRingAmount = random.choices([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], settings["KeyRingAmount"][2])[0]
+            KeyRingAmount = random.choices(range(14), settings["KeyRingAmount"][2])[0]
         else:
-            KeyRingAmount = random.choices([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], settings["KeyRingAmount"][1])[0]
+            KeyRingAmount = random.choices(range(13), settings["KeyRingAmount"][1])[0]
         if KeyRingAmount > 0:
             SettingsList["smallKeyRingOot"] = {"type": "specific", "values": []}
             SettingsList["smallKeyRingMm"] = {"type": "specific", "values": []}
@@ -864,7 +869,10 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Spawn:", SettingsList["erSpawns"].capitalize(), file=spoiler_file)
     if SongShuffle != "Mix with Owls":
         print("Warp Songs:", WarpSongShuffle, file=spoiler_file)
-    print("World Entrances:", EntranceRandomizer.capitalize(), file=spoiler_file)
+    if GameLink == False:
+        print("World Entrances:", EntranceRandomizer.capitalize(), file=spoiler_file)
+    else:
+        print("World Entrances:", EntranceRandomizer.capitalize() + " and Game Link", file=spoiler_file)
     print("Grotto Entrances:", SettingsList["erGrottos"]=="full", file=spoiler_file)
     print("Dungeon Entrances:", DungeonEntranceShuffle, file=spoiler_file)
     if DungeonEntranceShuffle == True:
@@ -941,7 +949,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
                 spoiler_file.write(f"{key}")
         spoiler_file.write("\n")
     if SoulShuffle == "Enemy" or SoulShuffle == "Full":
-        print("Starting Enemy Souls:", StartingEnemyAmount, file=spoiler_file)
+        print("Starting Enemy Souls:", f"{StartingEnemyPerc}%", file=spoiler_file)
         if StartingEnemyAmount > 0:
             for key in StartingEnemyChosen:
                 if key != StartingEnemyChosen[-1]:
@@ -950,7 +958,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
                     spoiler_file.write(f"{key}")
             spoiler_file.write("\n")
     if SoulShuffle == "NPC" or SoulShuffle == "Full":
-        print("Starting NPC Souls:", StartingNPCAmount, file=spoiler_file)
+        print("Starting NPC Souls:", f"{StartingNPCPerc}%", file=spoiler_file)
         if StartingNPCAmount > 0:
             for key in StartingNPCChosen:
                 if key != StartingNPCChosen[-1]:
