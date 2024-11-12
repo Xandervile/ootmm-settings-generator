@@ -424,14 +424,13 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
 
     SharedMQDungeons = random.choices(settings["MQDungeonAmount"][0],settings["MQDungeonAmount"][1])[0]
     if SharedMQDungeons > 0:
-        SettingsList["dungeon"] = {}
+        SettingsList["mqDungeons"] = {"type":"specific", "values":[]}
         DungeonList = ["DT", "DC", "JJ", "Forest", "Fire", "Water", "Spirit", "Shadow", "BotW", "IC", "GTG", "Ganon"]
         MQDungeonChosen = random.sample(DungeonList, SharedMQDungeons)
         for key in DungeonList:
             if key in MQDungeonChosen:
-                SettingsList["dungeon"][key] = "mq"
-            else:
-                SettingsList["dungeon"][key] = "vanilla"
+                SettingsList["mqDungeons"]["values"].append(key)
+        print(SettingsList["mqDungeons"])
 
     if SongShuffle == "Dungeon Rewards":
         SongList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS",
@@ -757,8 +756,9 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if entranceTypeShuffled > 0 and settings["DecoupledEntrances"][1][0] != 0:
         SettingsList["erDecoupled"] = random.choices(settings["DecoupledEntrances"][0], settings["DecoupledEntrances"][1])[0]
 
-
-                
+    WorldLayout = random.choices(settings["MMWorldLayout"][0], settings["MMWorldLayout"][1])[0]
+    if WorldLayout == "jp":
+        SettingsList["jpLayouts"] = {"type":"all", "values":[]}
 
 # Builds the Setting List here:
 settings_data = SettingsList
@@ -804,6 +804,8 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
     print("Logic Settings:", Logic, file=spoiler_file)
     print("Item Pool Settings:", ItemPool, file=spoiler_file)
+    if settings["MMWorldLayout"][1][1] > 0:
+        print("World Layout:", WorldLayout.upper(), file=spoiler_file)
     print("", file=spoiler_file)
     print("Goal:", WinCond, file=spoiler_file)
     if WinCond == "Triforce Hunt":
