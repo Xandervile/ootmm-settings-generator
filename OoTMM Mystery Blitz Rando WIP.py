@@ -756,7 +756,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if entranceTypeShuffled > 0 and settings["DecoupledEntrances"][1][0] != 0:
         SettingsList["erDecoupled"] = random.choices(settings["DecoupledEntrances"][0], settings["DecoupledEntrances"][1])[0]
 
-    WorldLayout = random.choices(settings["MMWorldLayout"][0], settings["MMWorldLayout"][1])[0]
+    WorldLayout = random.choices(settings["WorldLayout"][0], settings["WorldLayout"][1])[0]
     if WorldLayout == "jp":
         SettingsList["jpLayouts"] = {"type":"all", "values":[]}
 
