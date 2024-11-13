@@ -758,7 +758,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
 
     WorldLayout = random.choices(settings["WorldLayout"][0], settings["WorldLayout"][1])[0]
     if WorldLayout == "jp":
-        SettingsList["jpLayouts"] = {"type":"specific", "values":["Deku Palace"]}
+        SettingsList["jpLayouts"] = {"type":"specific", "values":["DekuPalace"]}
 
 # Builds the Setting List here:
 settings_data = SettingsList
