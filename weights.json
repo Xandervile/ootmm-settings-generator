@@ -18,9 +18,9 @@
 	  "HardModeLimit":2,
 	  "TFGrassAllowed":[false, 1, "How much Grass per pack is shuffled in MM TF without OW ER for balance, if you want no TF Grass, set to false"],
 	  "AdultInMM":[[true, false], [100, 0], "Chance of Adult in MM being a setting"],
-	  "WorldLayout":[["us", "jp"], [100, 0], "Chance of the world being Japanese layouts for some areas"],
+	  "MMWorldLayout":[["us", "jp"], [100, 0], "Chance of Deku Palace being the JPN version"],
 	  
-	  "SongShuffle": [["Song Locations", "Mixed With Owls", "Dungeon Rewards", "Anywhere"], [60, 25, 10, 5], "Owls Statues and Songs can be shuffled amongst each other. Dungeon Rewards - every Boss Heart Container is a song, as well as Ice Cavern Song, Skull Kid Song, GTG Ice Arrow Chest, Bottom of the Well Lens Chest, not tested so may break! If songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
+	  "SongShuffle": [["Song Locations", "Mixed With Owls", "Dungeon Rewards", "Anywhere"], [60, 20, 15, 5], "Owls Statues and Songs can be shuffled amongst each other. Dungeon Rewards - every Boss Heart Container is a song, as well as Ice Cavern Song, Skull Kid Song, GTG Ice Arrow Chest, Bottom of the Well Lens Chest, not tested so may break! If songs fully anywhere, hints change to reveal key songs, and Song of Time becomes shared and not starting in MM, Hard Setting"],
 	  "GrassShuffle": [["none", "dungeons", "overworld", "all"], [70, 12, 12, 6], "Hard Setting if all, could be changed"],
 	  "PotShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "Hard Setting if all"],
 	  "FreestandingShuffle":[["none", "dungeons", "overworld", "all"], [65, 15, 15, 5], "affects rupees and hearts"],
@@ -46,18 +46,24 @@
 	  "ChildWallet":[[true, false], [10, 90], "Hard Setting if also ShopShuffle, doesn't affect Mystery Counter when alone"],
 	  "MaxWalletSize":[["Giant", "Colossal", "Bottomless"], [40, 30, 30], "Only rolls if Price Shuffle is Weighted or Fully Random"],
 
-	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
-	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [0, 0, 100], "Need to balance weights for Ascending to work well"],
-	  "StartingClock": [["Day 1", "Night 1", "Day 2", "Night 2", "Day 3", "Night 3"], [10, 10, 10, 10, 10, 10], "If not Night 3 clock, guaranteed hint added for Night 3"], 
 	  "OwlShuffle":[[true, false], [10, 90], [0, 100], "Weight 1: No Overworld Entrances Shuffled, Weight 2: Overworld Entrances Shuffled. Only rolled if SongShuffle isn't Mixed With Owls"],
-	  "OcarinaButtons":[[true, false], [20, 80], [0, 100], "Weight 1: No SongShuffle, Weight 2: Full SongShuffle, Hard Settings"],
+	  
 	  "SoulShuffle":[["None", "Enemy", "NPC", "Full"], [80, 9, 9, 2], "Shared Souls on, Hard Setting for any SoulShuffle"],
+	  "StartingEnemySoulPercentage":[[0, 25, 50, 75, 100], [0, 20, 60, 20, 0], "Percentage of Enemy Souls you start with, can add your own percentages and weights too!"],
+	  "StartingNPCSoulPercentage":[[0, 25, 50, 75, 100], [0, 20, 60, 20, 0], "Percentage of NPC Souls you start with, can add your own percentages and weights too!"],
+	  
+	  "ClockShuffle":[[true, false], [10, 90], "Hard Setting"],
+	  "ProgressiveClockType":[["Ascending", "Descending", "Separate"], [10, 30, 60]],
+	  "StartingClockAmount": [[1, 2, 3, 4, 5], [10, 20, 40, 20, 10], "weights for starting clock amount. In Separate, Night 3 is hinted if not starting"], 
+	  
+	  "OcarinaButtons":[[true, false], [20, 80], [0, 100], "Weight 1: No SongShuffle, Weight 2: Full SongShuffle, Hard Settings. If Songs are on Owls, then Buttons will join them on songs and owls if True"],
+	  "StartingButtons":[[0, 1, 2, 3, 4], [5, 20, 30, 30, 15], "Number of buttons to start with if Ocarina Buttons are Shuffled"],
 	  
 	  "SilverRupeeShuffle": [["Untouched", "Own Dungeon", "anywhere"], [70, 30, 0], "Hard Setting if with SmallKeysanity or BossKeysanity, not making it anywhere atm as I'd rather any dungeon when it exists"],
 	  "SmallKeyShuffle":[["MM Keysy, OoT Own Dungeon", "MM and OoT Keysy", "MM and OoT Own Dungeons", "MM and OoT Keysanity"], [50, 10, 30, 10]],
 	  "BossKeyShuffle":[["Keysy", "Own Dungeon", "Keysanity"], [20, 70, 10], "Hard Setting if with SmallKeysanity"],
 	  "BossSoulsWeight": [[true, false], [10, 90], [0, 100], "Weight 1: No BKeysanity, Weight 2: BKeysanity, Hard Setting"],
-	  "StrayFairyShuffle": [["removed", "Anywhere"], [80, 20], "Only Affects Freeflying fairies and CT Fairy"],
+	  "StrayFairyShuffle": [["Removed", "Anywhere"], [80, 20], "Only Affects Freeflying fairies and CT Fairy"],
 	  "MQDungeonAmount":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], "How many MQ dungeons weighted, not counted for settings as it may only roll precompleted dungeons"],
 	  "GibdoSettings":[["vanilla", "remorseless", "open"], [0, 90, 10], [0, 60, 40], "Weight 1: No Dungeon ER, Weight 2: Dungeon ER or Overworld ER"],
 	  "OpenDungeons":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1024, 256, 128, 64, 32, 16, 8, 4, 2, 1], [512, 256, 128, 64, 32, 16, 8, 4, 2, 1]],
@@ -66,7 +72,7 @@
 	  "KeyRingAmount":[["0 - 12/13 depending on TCG"], [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], [8192, 4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], "Weight 1: No TCG Key Shuffle, Weight 2: TCG Key Shuffle, only rolled if no Keysy settings for SKeys, also deliberately ignored WF and GB as they only have 1 key altogether, doesn't affect MysteryCount"],
 	  "SilverPouchAmount":[["0 - 18, if the value is above the amount of Silver Pouches available due to MQ, it rerolls"], [262144, 131072, 65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1], "As stated, if it goes above the amount of Silvers in the seed, it rerolls so yay. Also doesn't affect MysteryCount, only rolled if Silvers are NOT vanilla"],
 	  
-	  "DekuTree":[["Closed", "Vanilla", "Open"], [80, 0, 20], "Doesn't affect MysteryCount"],
+	  "DekuTree":[["closed", "vanilla", "open"], [80, 0, 20], "Doesn't affect MysteryCount"],
 	  "KingZora":[["vanilla", "adult", "open"], [70, 20, 10], [10, 30, 60], "Weight 1: No Overworld ER, Weight 2: Overworld ER"],
 	  "ZoraDomainAdultShortcut":[[true, false], [30, 70], [60, 40], "Weight 1: No Overworld ER, Weight 2: Overworld ER"],
 	  "DoorOfTime":[["Closed", "Open"], [20, 80], "Determines if you need SoT to open the Door of Time, doesn't affect Mystery Count YET"],
@@ -94,9 +100,6 @@
 	  "DecoupledEntrances":[[true, false], [0, 100], "For the REAL masochists. God have mercy on those who touch this"],
 	  
 	  "AgelessAmount":[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [2048, 1024, 512, 256, 128, 64, 32, 16 , 8, 4 , 2, 1], "Amount of Ageless Settings that can be chosen equally at random, doesn't affect Mystery Count, Ageless Masks always on"],
-	  
-	  "StartingEnemySoulPercentage":[[0, 25, 50, 75, 100], [0, 20, 60, 20, 0], "Percentage of Enemy Souls you start with, can add your own percentages and weights too!"],
-	  "StartingNPCSoulPercentage":[[0, 25, 50, 75, 100], [0, 20, 60, 20, 0], "Percentage of NPC Souls you start with, can add your own percentages and weights too!"],
 	  	  		  
 	  "Notes": "ALL objects have Chest Appearance Matches Contents, this means cows, skulltulas, crates, snowballs, everything! Rules are the same as standard Blitz (base setting string is at 'DefaultString') bar what is randomized here. Post any suggestions to the github!"
   }
