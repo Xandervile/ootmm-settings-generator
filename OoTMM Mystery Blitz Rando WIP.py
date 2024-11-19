@@ -31,6 +31,8 @@ EnemySouls = ["SHARED_SOUL_ENEMY_ARMOS", "SHARED_SOUL_ENEMY_BEAMOS", "SHARED_SOU
 
 NPCSouls = ["MM_SOUL_NPC_BLACKSMITHS", "OOT_SOUL_NPC_DARUNIA", "OOT_SOUL_NPC_HYLIAN_GUARD", "MM_SOUL_NPC_KAFEI", "MM_SOUL_NPC_KEATON", "OOT_SOUL_NPC_KING_ZORA", "OOT_SOUL_NPC_KOKIRI", "OOT_SOUL_NPC_KOKIRI_SHOPKEEPER", "MM_SOUL_NPC_KOUME_KOTAKE", "MM_SOUL_NPC_AROMA", "MM_SOUL_NPC_MAYOR_DOTOUR", "OOT_SOUL_NPC_MIDO", "MM_SOUL_NPC_MOON_CHILDREN", "MM_SOUL_NPC_PLAYGROUND_SCRUBS", "OOT_SOUL_NPC_POTION_SHOPKEEPER", "OOT_SOUL_NPC_SARIA", "OOT_SOUL_NPC_SHEIK", "MM_SOUL_NPC_BUTLER_DEKU", "MM_SOUL_NPC_DEKU_KING", "MM_SOUL_NPC_DEKU_PRINCESS", "MM_SOUL_NPC_GORON_ELDER", "MM_SOUL_NPC_ZORA_MUSICIANS", "MM_SOUL_NPC_TINGLE", "MM_SOUL_NPC_TOILET_HAND", "MM_SOUL_NPC_TOTO", "MM_SOUL_NPC_TOURIST_CENTER", "OOT_SOUL_NPC_ZELDA", "SHARED_SOUL_NPC_BIGGORON", "SHARED_SOUL_NPC_BOMBCHU_BOWLING_LADY", "SHARED_SOUL_NPC_CARPENTERS", "SHARED_SOUL_NPC_CITIZEN", "SHARED_SOUL_NPC_COMPOSER_BROS", "SHARED_SOUL_NPC_ANJU", "SHARED_SOUL_NPC_DAMPE", "SHARED_SOUL_NPC_FISHING_POND_OWNER", "SHARED_SOUL_NPC_GORON", "SHARED_SOUL_NPC_GURU_GURU", "SHARED_SOUL_NPC_HONEY_DARLING", "SHARED_SOUL_NPC_GORMAN", "SHARED_SOUL_NPC_MALON", "SHARED_SOUL_NPC_MEDIGORON", "SHARED_SOUL_NPC_POE_COLLECTOR", "SHARED_SOUL_NPC_ROOFTOP_MAN", "SHARED_SOUL_NPC_RUTO", "SHARED_SOUL_NPC_TALON", "SHARED_SOUL_NPC_ASTRONOMER", "SHARED_SOUL_NPC_BAZAAR_SHOPKEEPER", "SHARED_SOUL_NPC_BEAN_SALESMAN", "SHARED_SOUL_NPC_BANKER", "SHARED_SOUL_NPC_BOMBCHU_SHOPKEEPER", "SHARED_SOUL_NPC_CARPET_MAN", "SHARED_SOUL_NPC_CHEST_GAME_OWNER", "SHARED_SOUL_NPC_DOG_LADY", "SHARED_SOUL_NPC_GORON_CHILD", "SHARED_SOUL_NPC_GORON_SHOPKEEPER", "SHARED_SOUL_NPC_BOMBERS", "SHARED_SOUL_NPC_OLD_HAG", "SHARED_SOUL_NPC_THIEVES", "SHARED_SOUL_NPC_GROG", "SHARED_SOUL_NPC_SCIENTIST", "SHARED_SOUL_NPC_SHOOTING_GALLERY_OWNER", "SHARED_SOUL_NPC_ZORA_SHOPKEEPER", "SHARED_SOUL_NPC_ZORA"]
 
+OcarinaButtons = ["SHARED_BUTTON_A", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_DOWN", "SHARED_BUTTON_C_UP"]
+
 #HarderSettings get rolled first to allow limitations
 HARDMODELIMIT = settings["HardModeLimit"]
 
@@ -73,9 +75,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                             "amount":"max",
                             "extra":1}
 
-    SettingsList["mode"] = data["Mode"]
-    SettingsList["players"] = data["Players"]
-    SettingsList["distinctWorlds"] = data["DistinctWorlds"]
+    SettingsList["mode"] = data["Mode"][0]
+    if SettingsList["mode"] == "multi":
+        SettingsList["players"] = data["Players"][0]
+        SettingsList["distinctWorlds"] = data["DistinctWorlds"][0]
     
     SettingsList["itemPool"] = ItemPool
 
@@ -152,16 +155,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                 "item": "OOT_SONG_EPONA"})
         elif SongShuffle == "Mixed with Owls":
             SettingsList["owlShuffle"] = "anywhere"
-            PlandoList["MM Clock Town Owl Statue"] = "MM_OWL_CLOCK_TOWN"
-            SongAndOwlList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS", "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER", "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON", "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER", "MM_OWL_MILK_ROAD", "MM_OWL_SOUTHERN_SWAMP", "MM_OWL_WOODFALL", "MM_OWL_MOUNTAIN_VILLAGE", "MM_OWL_SNOWHEAD", "MM_OWL_GREAT_BAY", "MM_OWL_ZORA_CAPE", "MM_OWL_IKANA_CANYON", "MM_OWL_STONE_TOWER", "SHARED_RECOVERY_HEART", "SHARED_RECOVERY_HEART"]
-            SongAndOwlLocation = ["OOT Lon Lon Ranch Malon Song", "OOT Saria's Song", "OOT Graveyard Royal Tomb Song", "OOT Hyrule Field Song of Time", "OOT Windmill Song of Storms", "OOT Sacred Meadow Sheik Song", "OOT Death Mountain Crater Sheik Song", "OOT Ice Cavern Sheik Song", "OOT Kakariko Song Shadow", "OOT Desert Colossus Song Spirit", "OOT Temple of Time Sheik Song", "MM Clock Tower Roof Skull Kid Song of Time", "MM Romani Ranch Epona Song", "MM Southern Swamp Song of Soaring", "MM Beneath The Graveyard Song of Storms", "MM Deku Palace Sonata of Awakening", "MM Goron Elder", "MM Ancient Castle of Ikana Song Emptiness", "MM Oath to Order", "MM Milk Road Owl Statue", "MM Southern Swamp Owl Statue", "MM Woodfall Owl Statue", "MM Mountain Village Owl Statue", "MM Snowhead Owl Statue", "MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue", "MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
-            if SkipChildZelda == False:
-                SongAndOwlList.append("SHARED_RECOVERY_HEART")
-                SongAndOwlLocation.append("OOT Zelda's Song")
-            for key in SongAndOwlLocation:
-                ChosenItem = random.choice(SongAndOwlList)
-                PlandoList[key] = ChosenItem
-                SongAndOwlList.remove(ChosenItem)
 
     GameLink = False
     EntranceRandomizer = random.choices(["none", "Regions Only", "Overworld", "Interiors", "Full"], settings["WorldEntranceRandomizer"][1])[0]
@@ -274,18 +267,22 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if SettingsList["clocks"] == True:
         HardCounter += 1
         MysteryCount += 1
+        StartingClockAmount = random.choices(settings["StartingClockAmount"][0], settings["StartingClockAmount"][1])[0]
         SettingsList["progressiveClocks"] = random.choices(["ascending", "descending", "separate"], settings["ProgressiveClockType"][1])[0]
         if SettingsList["progressiveClocks"] == "separate":
-            StartingClock = \
-            random.choices(["MM_CLOCK1", "MM_CLOCK2", "MM_CLOCK3", "MM_CLOCK4", "MM_CLOCK5", "MM_CLOCK6"],
-                           settings["StartingClock"][1])[0]
-            StartingItemList[StartingClock] = 1
-            if StartingClock != "MM_CLOCK6":
+            StartingClocks = \
+            random.sample(["MM_CLOCK1", "MM_CLOCK2", "MM_CLOCK3", "MM_CLOCK4", "MM_CLOCK5", "MM_CLOCK6"],
+                           StartingClockAmount)
+            for key in StartingClocks:
+                StartingItemList[key] = 1
+            if "MM_CLOCK6" not in StartingClocks:
                 HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
                 HintList.insert(HintIndex, {"type": "item",
                                             "amount": 1,
                                             "extra": 1,
                                             "item": "MM_CLOCK6"})
+        else:
+            StartingItemList["MM_CLOCK"] = StartingClockAmount
 
     BossSoulsWeight = settings["BossSoulsWeight"][1]
     if BKeyShuffle == "anywhere":
@@ -430,41 +427,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         for key in DungeonList:
             if key in MQDungeonChosen:
                 SettingsList["mqDungeons"]["values"].append(key)
-        print(SettingsList["mqDungeons"])
-
-    if SongShuffle == "Dungeon Rewards":
-        SongList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS",
-                    "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER",
-                    "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON",
-                    "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER"]  # 17
-        DungeonItemList = ["OOT Deku Tree Boss Container", "OOT Dodongo Cavern Boss Container",
-                            "OOT Jabu-Jabu Boss Container", "OOT Forest Temple Boss Container",
-                            "OOT Fire Temple Boss Container", "OOT Water Temple Boss HC", "OOT Shadow Temple Boss HC",
-                            "OOT Spirit Temple Boss HC", "MM Woodfall Temple Boss Container",
-                            "MM Snowhead Temple Boss HC", "MM Great Bay Temple Boss HC",
-                            "MM Stone Tower Temple Inverted Boss HC",
-                            "MM Ancient Castle of Ikana Song Emptiness", "MM Pirate Fortress Interior Hookshot"]
-        if SharedMQDungeons > 0:
-            if "BotW" in MQDungeonChosen:
-                DungeonItemList.append("OOT MQ Bottom of the Well Lens Chest")
-            else:
-                DungeonItemList.append("OOT Bottom of the Well Lens")
-            if "IC" in MQDungeonChosen:
-                DungeonItemList.append("OOT MQ Ice Cavern Sheik Song")
-            else:
-                DungeonItemList.append("OOT Ice Cavern Sheik Song")
-            if "GTG" in MQDungeonChosen:
-                DungeonItemList.append("OOT MQ Gerudo Training Grounds Ice Arrows Chest")
-            else:
-                DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
-        else:
-            DungeonItemList.append("OOT Bottom of the Well Lens")
-            DungeonItemList.append("OOT Ice Cavern Sheik Song")
-            DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
-        for key in DungeonItemList:
-            ChosenItem = random.choice(SongList)
-            PlandoList[key] = ChosenItem
-            SongList.remove(ChosenItem)
 
     SharedCratesAndBarrels = random.choices(["none", "dungeons", "overworld", "all"], settings["CratesAndBarrelsShuffle"][1])[0]
     SettingsList["shuffleCratesOot"] = SharedCratesAndBarrels
@@ -756,7 +718,161 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if entranceTypeShuffled > 0 and settings["DecoupledEntrances"][1][0] != 0:
         SettingsList["erDecoupled"] = random.choices(settings["DecoupledEntrances"][0], settings["DecoupledEntrances"][1])[0]
 
-    WorldLayout = random.choices(settings["WorldLayout"][0], settings["WorldLayout"][1])[0]
+    if SongShuffle == "Mixed with Owls":
+        PlandoList["MM Clock Town Owl Statue"] = "MM_OWL_CLOCK_TOWN"
+        SongAndOwlList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS", "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER", "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON", "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER", "MM_OWL_MILK_ROAD", "MM_OWL_SOUTHERN_SWAMP", "MM_OWL_WOODFALL", "MM_OWL_MOUNTAIN_VILLAGE", "MM_OWL_SNOWHEAD", "MM_OWL_GREAT_BAY", "MM_OWL_ZORA_CAPE", "MM_OWL_IKANA_CANYON", "MM_OWL_STONE_TOWER"]
+        SongAndOwlLocation = ["OOT Lon Lon Ranch Malon Song", "OOT Saria's Song", "OOT Graveyard Royal Tomb Song", "OOT Hyrule Field Song of Time", "OOT Windmill Song of Storms", "OOT Sacred Meadow Sheik Song", "OOT Death Mountain Crater Sheik Song", "OOT Ice Cavern Sheik Song", "OOT Kakariko Song Shadow", "OOT Desert Colossus Song Spirit", "OOT Temple of Time Sheik Song", "MM Clock Tower Roof Skull Kid Song of Time", "MM Romani Ranch Epona Song", "MM Southern Swamp Song of Soaring", "MM Beneath The Graveyard Song of Storms", "MM Deku Palace Sonata of Awakening", "MM Goron Elder", "MM Ancient Castle of Ikana Song Emptiness", "MM Oath to Order", "MM Milk Road Owl Statue", "MM Southern Swamp Owl Statue", "MM Woodfall Owl Statue", "MM Mountain Village Owl Statue", "MM Snowhead Owl Statue", "MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue", "MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
+        if SkipChildZelda == False:
+            SongAndOwlLocation.append("OOT Zelda's Song")
+            if OcarinaButtonShuffle == False:
+                SongAndOwlList.append("SHARED_RECOVERY_HEART")
+        if OcarinaButtonShuffle == True:
+            SongAndOwlList.append("SHARED_BUTTON_A")
+            SongAndOwlList.append("SHARED_BUTTON_C_RIGHT")
+            SongAndOwlList.append("SHARED_BUTTON_C_LEFT")
+            SongAndOwlList.append("SHARED_BUTTON_C_DOWN")
+            SongAndOwlList.append("SHARED_BUTTON_C_UP")
+            SongAndOwlLocation.append("MM Initial Song of Healing")
+            SongAndOwlLocation.append("MM Clock Town Owl Statue")
+            del PlandoList["MM Clock Town Owl Statue"]
+            del PlandoList["MM Initial Song of Healing"]
+            StartingItemList["MM_OWL_CLOCK_TOWN"] = 1
+            if SkipChildZelda == True:
+                RandomStart = random.choice(SongAndOwlList)
+                StartingItemList[RandomStart] = 1
+                SongAndOwlList.remove(RandomStart)
+        else:
+            SongAndOwlList.append("SHARED_RECOVERY_HEART")
+            SongAndOwlList.append("SHARED_RECOVERY_HEART")
+
+        OOT_EXCLUDE_ROYAL_TOMB = ["OOT_SONG_ZELDA", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_UP"]
+        OOT_ROYAL_TOMB_LOCATIONS = ["OOT Graveyard Royal Tomb Song"]
+
+        OOT_EXCLUDE_ADULT_SACRED_MEADOW = ["SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_RIGHT"]
+        OOT_ADULT_SACRED_MEADOW_LOCATIONS = ["OOT Sacred Meadow Sheik Song"]
+
+        OOT_EXCLUDE_ICE_CAVERN = ["OOT_SONG_ZELDA", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_UP"]
+        OOT_ICE_CAVERN_LOCATIONS = ["OOT Ice Cavern Sheik Song"]
+
+        MM_EXCLUDE_IKANA_GRAVE = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT"]
+        MM_IKANA_GRAVE_LOCATIONS = ["MM Beneath The Graveyard Song of Storms"]
+
+        MM_EXCLUDE_OCEAN = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT"]
+        MM_OCEAN_LOCATIONS = ["MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue"]
+
+        MM_EXCLUDE_CANYON = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT"]
+        MM_CANYON_LOCATIONS = ["MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
+
+        CheckList = SongAndOwlList.copy()
+
+        while len(CheckList) > 0:
+            for key in SongAndOwlLocation:
+                #Attempt to avoid straightforward generation conflicts
+                if key in OOT_ROYAL_TOMB_LOCATIONS and SettingsList["erGrottos"] == "none":
+                     ChosenItem = random.choice([item for item in CheckList if item not in OOT_EXCLUDE_ROYAL_TOMB])
+                elif key in OOT_ADULT_SACRED_MEADOW_LOCATIONS and EntranceRandomizer in ["none", "Regions Only", "Interiors"]:
+                    ChosenItem = random.choice([item for item in CheckList if item not in OOT_EXCLUDE_ADULT_SACRED_MEADOW])
+                elif key in OOT_ICE_CAVERN_LOCATIONS and (EntranceRandomizer in ["none", "Regions Only", "Interiors"] or DungeonEntranceShuffle == False or SettingsList["openZdShortcut"] == False):
+                    ChosenItem = random.choice([item for item in CheckList if item not in OOT_EXCLUDE_ICE_CAVERN])
+                elif key in MM_IKANA_GRAVE_LOCATIONS and SettingsList["erGrottos"] == "none":
+                    ChosenItem = random.choice([item for item in CheckList if item not in MM_EXCLUDE_IKANA_GRAVE])
+                elif key in MM_OCEAN_LOCATIONS and EntranceRandomizer in ["none", "interiors"]:
+                    ChosenItem = random.choice([item for item in CheckList if item not in MM_EXCLUDE_OCEAN])
+                elif key in MM_CANYON_LOCATIONS and EntranceRandomizer in ["none", "interiors"]:
+                    ChosenItem = random.choice([item for item in CheckList if item not in MM_EXCLUDE_CANYON])
+                else:
+                    ChosenItem = random.choice(CheckList)
+
+                PlandoList[key] = ChosenItem
+                CheckList.remove(ChosenItem)
+
+    elif OcarinaButtonShuffle == True:
+        StartingButtonCount = random.choices(settings["StartingButtons"][0], settings["StartingButtons"][1])[0]
+        ButtonsChosen = random.sample(OcarinaButtons, StartingButtonCount)
+
+        for key in ButtonsChosen:
+            StartingItemList[key] = 1
+            
+    ##Rejection Logic for Dungeon Rewards Song Shuffle to try to reduce generation issues (weren't many but eh)
+
+    if SongShuffle == "Dungeon Rewards":
+        SongList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS",
+                    "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER",
+                    "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON",
+                    "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER"]  # 17
+        DungeonItemList = ["OOT Deku Tree Boss Container", "OOT Dodongo Cavern Boss Container",
+                            "OOT Jabu-Jabu Boss Container", "OOT Forest Temple Boss Container",
+                            "OOT Fire Temple Boss Container", "OOT Water Temple Boss HC", "OOT Shadow Temple Boss HC",
+                            "OOT Spirit Temple Boss HC", "MM Woodfall Temple Boss Container",
+                            "MM Snowhead Temple Boss HC", "MM Great Bay Temple Boss HC",
+                            "MM Stone Tower Temple Inverted Boss HC",
+                            "MM Ancient Castle of Ikana Song Emptiness", "MM Pirate Fortress Interior Hookshot", "MM Secret Shrine HP Chest", "MM Beneath The Well Mirror Shield", "MM Stone Tower Temple Light Arrow"]
+        if SharedMQDungeons > 0:
+            if "BotW" in MQDungeonChosen:
+                DungeonItemList.append("OOT MQ Bottom of the Well Lens Chest")
+            else:
+                DungeonItemList.append("OOT Bottom of the Well Lens")
+            if "IC" in MQDungeonChosen:
+                DungeonItemList.append("OOT MQ Ice Cavern Sheik Song")
+            else:
+                DungeonItemList.append("OOT Ice Cavern Sheik Song")
+            if "GTG" in MQDungeonChosen:
+                DungeonItemList.append("OOT MQ Gerudo Training Grounds Ice Arrows Chest")
+            else:
+                DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
+        else:
+            DungeonItemList.append("OOT Bottom of the Well Lens")
+            DungeonItemList.append("OOT Ice Cavern Sheik Song")
+            DungeonItemList.append("OOT Gerudo Training Maze Chest 4")
+            
+        random.shuffle(DungeonItemList)
+
+        if SettingsList["erBoss"] == "none" and DungeonEntranceShuffle == False:
+            LULLABY_REQUIRED = ["OOT MQ Bottom of the Well Lens Chest", "OOT Bottom of the Well Lens", "OOT Water Temple Boss HC", "OOT Shadow Temple Boss HC",
+                            "OOT Spirit Temple Boss HC"]
+            SONATA_REQUIRED = ["MM Woodfall Temple Boss Container"]
+            GORON_REQUIRED = ["MM Snowhead Temple Boss HC"]
+            BOSSA_REQUIRED = ["MM Great Bay Temple Boss HC"]
+            ELEGY_REQUIRED = ["MM Stone Tower Temple Inverted Boss HC", "MM Stone Tower Temple Light Arrow"]
+
+            CheckList2 = SongList.copy()
+            CheckList3 = DungeonItemList.copy()
+
+            while len(CheckList2) > 0:
+                CheckList2 = SongList.copy()
+                CheckList3 = DungeonItemList.copy()
+                for key in DungeonItemList:
+                    if len(CheckList2) > 0:
+                        if key in LULLABY_REQUIRED:
+                            ChosenItem = random.choice([item for item in CheckList2 if item != "OOT_SONG_ZELDA"])
+                        elif key in SONATA_REQUIRED:
+                            ChosenItem = random.choice([item for item in CheckList2 if item != "MM_SONG_AWAKENING"])
+                        elif key in GORON_REQUIRED:
+                            ChosenItem = random.choice([item for item in CheckList2 if item != "MM_SONG_GORON"])
+                        elif key in BOSSA_REQUIRED:
+                            ChosenItem = random.choice([item for item in CheckList2 if item != "MM_SONG_ZORA"])
+                        elif key in ELEGY_REQUIRED:
+                            ChosenItem = random.choice([item for item in CheckList2 if item != "SHARED_SONG_EMPTINESS"])
+                        else:
+                            ChosenItem = random.choice(CheckList2)
+                        PlandoList[key] = ChosenItem
+                        CheckList2.remove(ChosenItem)
+                        CheckList3.remove(key)
+
+            for key in CheckList3:
+                JunkList.append(key)
+
+        else:           ##Until plandoing/generation for precompleted and entrances are done in web generator, cannot make concrete logic so screw it
+            for key in DungeonItemList:
+                if len(SongList) > 0:
+                    ChosenItem = random.choice(SongList)
+                    PlandoList[key] = ChosenItem
+                    SongList.remove(ChosenItem)
+                else:
+                    JunkList.append(key)
+
+    
+    WorldLayout = random.choices(settings["MMWorldLayout"][0], settings["MMWorldLayout"][1])[0]
     if WorldLayout == "jp":
         SettingsList["jpLayouts"] = {"type":"specific", "values":["DekuPalace"]}
 
@@ -816,7 +932,13 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Skip Child Zelda:", SkipChildZelda, file=spoiler_file)
     print("Door Of Time:", DoorOfTime, file=spoiler_file)
     print("Songsanity:", SongShuffle, file=spoiler_file)
-    print("Ocarina Buttons:", OcarinaButtonShuffle, file=spoiler_file)
+    if SongShuffle == "Mixed with Owls" and OcarinaButtonShuffle == True:
+        print("Ocarina Buttons: Mixed with Songs and Owls", file=spoiler_file)
+    else:
+        if OcarinaButtonShuffle == True:
+            print("Ocarina Buttons:", OcarinaButtonShuffle, "start with", StartingButtonCount, file=spoiler_file)
+        else:
+            print("Ocarina Buttons: False", file=spoiler_file)
     print("Sword Shuffle:", SwordShuffle, file=spoiler_file)
     if SwordShuffle == True:
         print("Master Sword needed for Time Travel:", SettingsList["timeTravelSword"], file=spoiler_file)
@@ -840,9 +962,11 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     if SettingsList["clocks"] == True:
         print("Clock Shuffle:", SettingsList["progressiveClocks"].capitalize(), file=spoiler_file)
         if SettingsList["progressiveClocks"] == "separate":
-            print("Starting Clock:", StartingClock, file=spoiler_file)
+            print("Starting Clocks:", StartingClocks, file=spoiler_file)
+        else:
+            print("Clock Shuffle:", SettingsList["clocks"], "starting with", StartingClockAmount, file=spoiler_file)
     else:
-        print("Clock Shuffle:", SettingsList["clocks"], file=spoiler_file)
+        print("Clock Shuffle: False", file=spoiler_file)
     print("Fountain and Spot Fairies Shuffle:", FairyFountainShuffle, file=spoiler_file)
     print("Butterfly Shuffle:", ButterflyShuffle, file=spoiler_file)
     print("Hive Shuffle:", SharedHiveShuffle, file=spoiler_file)
@@ -862,7 +986,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Boss Keys:", BKeyShuffle.capitalize(), file=spoiler_file)
     if BKeyShuffle != "anywhere":
         print("Boss Souls:", SharedBossSoulShuffle, file=spoiler_file)
-    print("Deku Tree:", SettingsList["dekuTree"], file=spoiler_file)
+    print("Deku Tree:", SettingsList["dekuTree"].capitalize(), file=spoiler_file)
     print("King Zora:", SettingsList["zoraKing"].capitalize(), file=spoiler_file)
     print("Zora's Domain Adult Shortcut:", SettingsList["openZdShortcut"], file=spoiler_file)
     print("Gibdo Well:", SettingsList["beneathWell"].capitalize(), file=spoiler_file)
