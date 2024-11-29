@@ -99,13 +99,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     MajoraCond = DefaultMajoraCond.copy()
 
     if WinCond != "Ganon and Majora":
-        BridgeCond["count"] = 3
-        BridgeCond["medallions"] = True
-        BridgeCond["stones"] = True
-        BridgeCond["remains"] = True
-        MoonCond["count"] = 0
-        MoonCond["stones"] = False
-        MoonCond["remains"] = False
         HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
         HintList.insert(HintIndex, {"type": "item",
                                     "amount": 1,
@@ -115,8 +108,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     SkipChildZelda = random.choices([True, False], settings["SkipChildZelda"][1])[0]
     if SkipChildZelda == False:
         SettingsList["skipZelda"] = False
-        del PlandoList["OOT Zelda's Letter"]
-        del PlandoList["OOT Zelda's Song"]
+        if "OOT Zelda's Letter" in PlandoList:
+            del PlandoList["OOT Zelda's Letter"]
+        if "OOT Zelda's Song" in PlandoList:
+            del PlandoList["OOT Zelda's Song"]
         StartingItemList["OOT_SONG_TP_LIGHT"] = 1
         StartingItemList["OOT_OCARINA"] = 2
         HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
@@ -330,9 +325,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                     "amount": 1,
                                     "extra": 1,
                                     "item": "OOT_SWORD_MASTER"})
-        StartingItemList.pop("MM_SWORD")
-        StartingItemList.pop("SHARED_SHIELD_HYLIAN")
+        if "MM_SWORD" in StartingItemList:
+            StartingItemList.pop("MM_SWORD")
+        if "SHARED_SHIELD_HYLIAN" in StartingItemList:
+            StartingItemList.pop("SHARED_SHIELD_HYLIAN")
     else:
+        SettingsList["shuffleMasterSword"] = False
         SettingsList["swordlessAdult"] = False          #Temporary Fix until the thing actually works in the generator
 
     OwlWeight = settings["OwlShuffle"][1]
@@ -375,7 +373,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         if GanonCastleShuffle == True or GanonTowerShuffle == True:
             SettingsList["rainbowBridge"] = "open"
             SettingsList["ganonBossKey"] = "custom"
-            GanonBKCond = BridgeCond
+            GanonBKCond = DefaultBridgeCond
             BridgeCond["count"] = 0
             BridgeCond["stones"] = False
             BridgeCond["medallions"] = False
