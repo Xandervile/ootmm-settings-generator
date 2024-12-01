@@ -43,7 +43,7 @@ DefaultStartingItemList = base_settings["startingItems"]
 DefaultHintList = base_settings["hints"]
 
 HintToInsertBefore = {"type":"woth",
-                    "amount":9,
+                    "amount":10,
                     "extra":1}
 
 Logic = random.choices(data["LogicSettings"][0], data["LogicSettings"][1])[0]
