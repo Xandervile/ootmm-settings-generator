@@ -3,7 +3,10 @@ import base64
 import json
 import random
 import os
+import datetime
 generator_dir = os.path.dirname(os.path.abspath(__file__))
+
+current_datetime = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 with open("weights.json", "r") as read_file:
     data = json.load(read_file)
@@ -901,18 +904,18 @@ encoded_data = encoded_data.rstrip("=")
 seed_string = f"v1.{encoded_data}"
 #print(seed_string)
 
-with open("seed_output.txt", "w") as file:
+with open(f'seed_output_{current_datetime}.txt', "w") as file:
     file.write("Seed String:\n")
     file.write("\n")
     file.write(seed_string)
 
-with open("settings_output.txt", "w") as file:
+with open(f'settings_output_{current_datetime}.txt', "w") as file:
     file.write("Settings List:\n")
     file.write("\n")
     for key, value in settings_data.items():
         file.write(f"{key}: {value}\n")
 
-with open("settings_spoiler.txt", "w") as spoiler_file:
+with open(f'settings_spoiler_{current_datetime}.txt', "w") as spoiler_file:
     print("OoTMM Mystery Blitz Generator -- Spoiler Log", file=spoiler_file)
     print("Hard Settings Shuffled:", HardCounter, file=spoiler_file)
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
