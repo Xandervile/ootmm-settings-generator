@@ -10,6 +10,7 @@
   
   "Mode": ["single", "Options are 'single', 'coop', 'multi'"],
   "Players": [2, "Number of players if mode is multiworld"],
+  "Teams": [2, "Number of teams in the multiplayer game"],
   "DistinctWorlds": [true, "If worlds are unique in Multiworld"],
 
   "GameplaySettings": {
