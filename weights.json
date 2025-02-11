@@ -38,6 +38,7 @@
 	  "FishingPondShuffle":[[true, false], [10, 90], "all Loach checks are junk"],
 	  "DivingGameShuffle":[[true, false], [10, 90], "Huge Rupee is junked"],
 	  "HiveShuffle":[[true, false], [10, 90], "Xanders least favourite settings :("],
+	  "RedBoulderShuffle":[[true, false], [20, 80], "More useful in OoT than MM I imagine"],
 	  "PrePlantedBeans":[[true, false], [25, 75], "To keep an eye on, doesn't affect setting count, also adds Bean Seller to the pool"],
 	  "SkipChildZelda":[[true, false], [90, 10], "Start with Prelude and Ocarina still, but now Zelda can have a random song/item, need Chicken to get, Chicken guaranteed hint, doesn't affect MysteryCount YET"],
 	  
