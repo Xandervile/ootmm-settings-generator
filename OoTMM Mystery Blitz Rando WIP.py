@@ -544,6 +544,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         if GerudoCardShuffle == "Starting":
             StartingItemList["OOT_GERUDO_CARD"] = 1
 
+    RedBoulderShuffle = random.choices([True, False], settings["RedBoulderShuffle"][1])[0]
+    if RedBoulderShuffle == True:
+        SettingsList["shuffleRedBouldersOot"] = True
+        SettingsList["shuffleRedBouldersMm"] = True
+        MysteryCount += 1
+
     SettingsList["erSpawns"] = random.choices(["none", "child", "adult", "both"], settings["SpawnShuffle"][1])[0]
 
     WellWeight = settings["GibdoSettings"][1]
@@ -950,6 +956,7 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Wonder Spot Shuffle: OoT", WonderSpotShuffle.capitalize(), "MM", WonderSpotShuffle != "none", file=spoiler_file)
     print("Crate and Barrel Shuffle:", SharedCratesAndBarrels.capitalize(), file=spoiler_file)
     print("Snowball Shuffle:", SettingsList["shuffleSnowballsMm"].capitalize(), file = spoiler_file)
+    print("Red Boulder Shuffle:", RedBoulderShuffle, file=spoiler_file)
     print("Cow Shuffle:", SharedCowShuffle, file=spoiler_file)
     print("Child Wallet Shuffle:", ChildWallet, file=spoiler_file)
     print("Shop Shuffle:", SharedShopShuffle.capitalize(), file=spoiler_file)
