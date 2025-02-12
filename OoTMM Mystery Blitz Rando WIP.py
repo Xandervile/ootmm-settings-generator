@@ -550,6 +550,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["shuffleRedBouldersMm"] = True
         MysteryCount += 1
 
+    IcicleShuffle = random.choices([True, False], settings["IcileShuffle"][1])[0]
+    if IcicleShuffle == True:
+        SettingsList["shuffleIciclesOot"] = True
+        SettingsList["shuffleIciclesMm"] = True
+        MysteryCount += 1
+    
     SettingsList["erSpawns"] = random.choices(["none", "child", "adult", "both"], settings["SpawnShuffle"][1])[0]
 
     WellWeight = settings["GibdoSettings"][1]
