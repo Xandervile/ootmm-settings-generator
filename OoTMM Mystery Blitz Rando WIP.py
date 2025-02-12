@@ -550,7 +550,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         SettingsList["shuffleRedBouldersMm"] = True
         MysteryCount += 1
 
-    IcicleShuffle = random.choices([True, False], settings["IcileShuffle"][1])[0]
+    IcicleShuffle = random.choices([True, False], settings["IcicleShuffle"][1])[0]
     if IcicleShuffle == True:
         SettingsList["shuffleIciclesOot"] = True
         SettingsList["shuffleIciclesMm"] = True
