@@ -950,7 +950,7 @@ with open("settings_output.txt", "w") as file:
         file.write(f"{key}: {value}\n")
 
 with open("settings_spoiler.txt", "w") as spoiler_file:
-    print("OoTMM Mystery Blitz Generator -- Spoiler Log", file=spoiler_file)
+    print("OoTMM Random Settings Generator -- Spoiler Log", file=spoiler_file)
     print("Hard Settings Shuffled:", HardCounter, file=spoiler_file)
     print("Major Settings Shuffled:", MysteryCount, file=spoiler_file)
     print("Logic Settings:", Logic, file=spoiler_file)
