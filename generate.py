@@ -2,10 +2,34 @@ import zlib
 import base64
 import json
 import random
+import argparse
 import os
+import sys
 generator_dir = os.path.dirname(os.path.abspath(__file__))
 
-with open("weights.json", "r") as read_file:
+###############
+## Arguments ##
+###############
+parser = argparse.ArgumentParser(
+    prog="OoTMM Settings Generator",
+    description="Randomly generates OoTMM settings strings so that settings themselves can be randomised.")
+
+# Position-based argument: 0th argument.
+parser.add_argument(
+    "configfile",
+    nargs="?",
+    default="Config - OoTMM Mystery Blitz Rando WIP.json",
+    help="location of config file to use (default: Config - OoTMM Mystery Blitz Rando WIP.json)")
+    
+args = parser.parse_args()
+
+####################################
+
+if not os.path.exists(args.configfile):
+    print(f"Error: Config File ({args.configfile}) not found.", file=sys.stderr)
+    sys.exit(1)
+
+with open(args.configfile, "r") as read_file:
     data = json.load(read_file)
 
 basestring = data["SettingsString"]
