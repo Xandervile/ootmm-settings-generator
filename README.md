@@ -41,3 +41,7 @@ Future Plans:
 Issues:
 - If Silver Rupees are shuffled in own dungeons, SAVE in the dungeon before collecting any. Combo Rando has an issue where collecting the last silver rupee in the same room as the cutscene that triggers whilst being airborne softlocks, so this means you can preplan the rupees easier to not lead into that crash
 - Song and Owl Shuffle CAN create a seed that won't gen, as does Songs on Dungeon Rewards. This is due to the lack of logic I used to create such a setting. Just reroll settings if you get one that doesn't gen and errors - currently experimenting with basic logic to reduce (but doesn't eliminate) this. Can only be truly eliminated if/when Dungeon Entrance Plando is added.
+
+Credits:
+- eedefeed for contributing the CLI interface and making generalisations!
+- Revven for playtesting at every possible moment
