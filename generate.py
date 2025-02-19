@@ -844,6 +844,10 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         PlandoList["MM Clock Town Owl Statue"] = "MM_OWL_CLOCK_TOWN"
         SongAndOwlList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS", "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER", "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON", "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER", "MM_OWL_MILK_ROAD", "MM_OWL_SOUTHERN_SWAMP", "MM_OWL_WOODFALL", "MM_OWL_MOUNTAIN_VILLAGE", "MM_OWL_SNOWHEAD", "MM_OWL_GREAT_BAY", "MM_OWL_ZORA_CAPE", "MM_OWL_IKANA_CANYON", "MM_OWL_STONE_TOWER"]
         SongAndOwlLocation = ["OOT Lon Lon Ranch Malon Song", "OOT Saria's Song", "OOT Graveyard Royal Tomb Song", "OOT Hyrule Field Song of Time", "OOT Windmill Song of Storms", "OOT Sacred Meadow Sheik Song", "OOT Death Mountain Crater Sheik Song", "OOT Ice Cavern Sheik Song", "OOT Kakariko Song Shadow", "OOT Desert Colossus Song Spirit", "OOT Temple of Time Sheik Song", "MM Clock Tower Roof Skull Kid Song of Time", "MM Romani Ranch Epona Song", "MM Southern Swamp Song of Soaring", "MM Beneath The Graveyard Song of Storms", "MM Deku Palace Sonata of Awakening", "MM Goron Elder", "MM Ancient Castle of Ikana Song Emptiness", "MM Oath to Order", "MM Milk Road Owl Statue", "MM Southern Swamp Owl Statue", "MM Woodfall Owl Statue", "MM Mountain Village Owl Statue", "MM Snowhead Owl Statue", "MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue", "MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
+        if SharedMQDungeons > 0:
+            if "IC" in MQDungeonChosen:
+                SongAndOwlLocation.append("OOT MQ Ice Cavern Sheik Song")
+                SongAndOwlLocation.remove("OOT Ice Cavern Sheik Song")
         if data["SharedItems"][0] == False:
             SongAndOwlList.remove("SHARED_SONG_STORMS")
             SongAndOwlList.remove("SHARED_SONG_EMPTINESS")
