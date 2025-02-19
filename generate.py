@@ -53,9 +53,51 @@ HardCounter = 0
 
 EnemySouls = ["SHARED_SOUL_ENEMY_ARMOS", "SHARED_SOUL_ENEMY_BEAMOS", "SHARED_SOUL_ENEMY_BUBBLE", "SHARED_SOUL_ENEMY_DEKU_BABA", "SHARED_SOUL_ENEMY_DEKU_SCRUB", "SHARED_SOUL_ENEMY_DODONGO", "SHARED_SOUL_ENEMY_THIEVES", "SHARED_SOUL_ENEMY_FLOORMASTER", "SHARED_SOUL_ENEMY_FLYING_POT", "SHARED_SOUL_ENEMY_FREEZARD", "SHARED_SOUL_ENEMY_GUAY", "OOT_SOUL_ENEMY_ANUBIS", "OOT_SOUL_ENEMY_BABY_DODONGO", "OOT_SOUL_ENEMY_BIRI_BARI", "OOT_SOUL_ENEMY_DARK_LINK", "OOT_SOUL_ENEMY_DEAD_HAND", "OOT_SOUL_ENEMY_FLARE_DANCER", "OOT_SOUL_ENEMY_GOHMA_LARVA", "OOT_SOUL_ENEMY_PARASITE", "OOT_SOUL_ENEMY_MOBLIN", "OOT_SOUL_ENEMY_SHABOM", "OOT_SOUL_ENEMY_SKULL_KID", "OOT_SOUL_ENEMY_SPIKE", "OOT_SOUL_ENEMY_STALFOS", "OOT_SOUL_ENEMY_STINGER", "OOT_SOUL_ENEMY_TAILPASARN", "OOT_SOUL_ENEMY_TORCH_SLUG", "MM_SOUL_ENEMY_BAD_BAT", "MM_SOUL_ENEMY_BIO_BABA", "MM_SOUL_ENEMY_BOE", "MM_SOUL_ENEMY_CAPTAIN_KEETA", "MM_SOUL_ENEMY_CHUCHU", "MM_SOUL_ENEMY_DEEP_PYTHON", "MM_SOUL_ENEMY_DEXIHAND", "MM_SOUL_ENEMY_DRAGONFLY", "MM_SOUL_ENEMY_EENO", "MM_SOUL_ENEMY_EYEGORE", "MM_SOUL_ENEMY_GARO", "MM_SOUL_ENEMY_GEKKO", "MM_SOUL_ENEMY_GOMESS", "MM_SOUL_ENEMY_HIPLOOP", "MM_SOUL_ENEMY_NEJIRON", "MM_SOUL_ENEMY_REAL_BOMBCHU", "MM_SOUL_ENEMY_SKULLFISH", "MM_SOUL_ENEMY_SNAPPER", "MM_SOUL_ENEMY_TAKKURI", "MM_SOUL_ENEMY_WART", "MM_SOUL_ENEMY_WIZZROBE", "SHARED_SOUL_ENEMY_IRON_KNUCKLE", "SHARED_SOUL_ENEMY_KEESE", "SHARED_SOUL_ENEMY_LEEVER", "SHARED_SOUL_ENEMY_LIKE_LIKE", "SHARED_SOUL_ENEMY_LIZALFOS_DINALFOS", "SHARED_SOUL_ENEMY_OCTOROK", "SHARED_SOUL_ENEMY_PEAHAT", "SHARED_SOUL_ENEMY_REDEAD_GIBDO", "SHARED_SOUL_ENEMY_SHELL_BLADE", "SHARED_SOUL_ENEMY_SKULLTULA", "SHARED_SOUL_ENEMY_SKULLWALLTULA", "SHARED_SOUL_ENEMY_STALCHILD", "SHARED_SOUL_ENEMY_WALLMASTER", "SHARED_SOUL_ENEMY_WOLFOS"]
 
+if data["SharedItems"][0] == False:
+    UnsharedEnemySouls = []
+    for soul in EnemySouls:
+        if soul.startswith("SHARED"):
+            UnsharedEnemySouls.append(soul.replace("SHARED", "OOT"))
+            UnsharedEnemySouls.append(soul.replace("SHARED", "MM"))
+        else:
+            UnsharedEnemySouls.append(soul)
+    EnemySouls = UnsharedEnemySouls
+
+
 NPCSouls = ["MM_SOUL_NPC_BLACKSMITHS", "OOT_SOUL_NPC_DARUNIA", "OOT_SOUL_NPC_HYLIAN_GUARD", "MM_SOUL_NPC_KAFEI", "MM_SOUL_NPC_KEATON", "OOT_SOUL_NPC_KING_ZORA", "OOT_SOUL_NPC_KOKIRI", "OOT_SOUL_NPC_KOKIRI_SHOPKEEPER", "MM_SOUL_NPC_KOUME_KOTAKE", "MM_SOUL_NPC_AROMA", "MM_SOUL_NPC_MAYOR_DOTOUR", "OOT_SOUL_NPC_MIDO", "MM_SOUL_NPC_MOON_CHILDREN", "MM_SOUL_NPC_PLAYGROUND_SCRUBS", "OOT_SOUL_NPC_POTION_SHOPKEEPER", "OOT_SOUL_NPC_SARIA", "OOT_SOUL_NPC_SHEIK", "MM_SOUL_NPC_BUTLER_DEKU", "MM_SOUL_NPC_DEKU_KING", "MM_SOUL_NPC_DEKU_PRINCESS", "MM_SOUL_NPC_GORON_ELDER", "MM_SOUL_NPC_ZORA_MUSICIANS", "MM_SOUL_NPC_TINGLE", "MM_SOUL_NPC_TOILET_HAND", "MM_SOUL_NPC_TOTO", "MM_SOUL_NPC_TOURIST_CENTER", "OOT_SOUL_NPC_ZELDA", "SHARED_SOUL_NPC_BIGGORON", "SHARED_SOUL_NPC_BOMBCHU_BOWLING_LADY", "SHARED_SOUL_NPC_CARPENTERS", "SHARED_SOUL_NPC_CITIZEN", "SHARED_SOUL_NPC_COMPOSER_BROS", "SHARED_SOUL_NPC_ANJU", "SHARED_SOUL_NPC_DAMPE", "SHARED_SOUL_NPC_FISHING_POND_OWNER", "SHARED_SOUL_NPC_GORON", "SHARED_SOUL_NPC_GURU_GURU", "SHARED_SOUL_NPC_HONEY_DARLING", "SHARED_SOUL_NPC_GORMAN", "SHARED_SOUL_NPC_MALON", "SHARED_SOUL_NPC_MEDIGORON", "SHARED_SOUL_NPC_POE_COLLECTOR", "SHARED_SOUL_NPC_ROOFTOP_MAN", "SHARED_SOUL_NPC_RUTO", "SHARED_SOUL_NPC_TALON", "SHARED_SOUL_NPC_ASTRONOMER", "SHARED_SOUL_NPC_BAZAAR_SHOPKEEPER", "SHARED_SOUL_NPC_BEAN_SALESMAN", "SHARED_SOUL_NPC_BANKER", "SHARED_SOUL_NPC_BOMBCHU_SHOPKEEPER", "SHARED_SOUL_NPC_CARPET_MAN", "SHARED_SOUL_NPC_CHEST_GAME_OWNER", "SHARED_SOUL_NPC_DOG_LADY", "SHARED_SOUL_NPC_GORON_CHILD", "SHARED_SOUL_NPC_GORON_SHOPKEEPER", "SHARED_SOUL_NPC_BOMBERS", "SHARED_SOUL_NPC_OLD_HAG", "SHARED_SOUL_NPC_THIEVES", "SHARED_SOUL_NPC_GROG", "SHARED_SOUL_NPC_SCIENTIST", "SHARED_SOUL_NPC_SHOOTING_GALLERY_OWNER", "SHARED_SOUL_NPC_ZORA_SHOPKEEPER", "SHARED_SOUL_NPC_ZORA"]
+if data["SharedItems"][0] == False:
+    UnsharedNPCSouls = []
+    for soul in NPCSouls:
+        if soul.startswith("SHARED"):
+            UnsharedNPCSouls.append(soul.replace("SHARED", "OOT"))
+            UnsharedNPCSouls.append(soul.replace("SHARED", "MM"))
+        else:
+            UnsharedNPCSouls.append(soul)
+    NPCSouls = UnsharedNPCSouls
 
 OcarinaButtons = ["SHARED_BUTTON_A", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_DOWN", "SHARED_BUTTON_C_UP"]
+if data["SharedItems"][0] == False:
+    UnsharedButtons = []
+    for button in OcarinaButtons:
+        if button.startswith("SHARED"):
+            UnsharedButtons.append(button.replace("SHARED", "OOT"))
+            UnsharedButtons.append(button.replace("SHARED", "MM"))
+        else:
+            UnsharedButtons.append(button)
+    OcarinaButtons = UnsharedButtons
+
+shared_item_starting = {
+    "SHARED_NUTS_10": ["OOT_NUTS_10", "MM_NUTS_10"],
+    "SHARED_SHIELD_HYLIAN": ["OOT_SHIELD_HYLIAN", "MM_SHIELD_HERO"],
+    "SHARED_STICK": ["MM_STICK", "OOT_STICK"]
+}
+
+shared_item_hints = {
+    "SHARED_ARROW_ICE": ["MM_ARROW_ICE"],
+    "SHARED_SHIELD_MIRROR": ["MM_SHIELD_MIRROR"],
+    "SHARED_SONG_TIME": ["MM_SONG_TIME"],
+    "SHARED_ARROW_LIGHT": ["MM_ARROW_LIGHT"]
+}
 
 #HarderSettings get rolled first to allow limitations
 HARDMODELIMIT = settings["HardModeLimit"]
@@ -124,10 +166,20 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
 
     if WinCond != "Ganon and Majora":
         HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
-        HintList.insert(HintIndex, {"type": "item",
-                                    "amount": 1,
-                                    "extra": 1,
-                                    "item": "SHARED_ARROW_LIGHT"})
+        if data["SharedItems"][0] == True:
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 1,
+                                        "item": "SHARED_ARROW_LIGHT"})
+        else:
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 0,
+                                        "item": "OOT_ARROW_LIGHT"})
+            HintList.insert(HintIndex, {"type": "item",
+                                        "amount": 1,
+                                        "extra": 0,
+                                        "item": "MM_ARROW_LIGHT"})
 
     SkipChildZelda = random.choices([True, False], settings["SkipChildZelda"][1])[0]
     if SkipChildZelda == False:
@@ -158,7 +210,11 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             HardCounter += 1
             SettingsList["sharedSongTime"] = True
             StartingItemList.pop("MM_SONG_TIME")
-            HintList = [hint for hint in HintList if hint.get("item") not in ["MM_MASK_CAPTAIN", "MM_POWDER_KEG", "SHARED_SHIELD_MIRROR"]]
+            if data["SharedItems"][0] == True:
+                HintList = [hint for hint in HintList if hint.get("item") not in ["MM_MASK_CAPTAIN", "MM_POWDER_KEG", "SHARED_SHIELD_MIRROR"]]
+            else:
+                HintList = [hint for hint in HintList if
+                            hint.get("item") not in ["MM_MASK_CAPTAIN", "MM_POWDER_KEG", "MM_SHIELD_MIRROR"]]
             HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
             HintList.insert(HintIndex, {"type": "item",
                                 "amount": 1,
@@ -167,7 +223,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             HintList.insert(HintIndex, {"type": "item",
                                 "amount": 1,
                                 "extra": 1,
-                                "item": "SHARED_SONG_TIME"})
+                                "item": "MM_SONG_TIME"})
             HintList.insert(HintIndex, {"type": "item",
                                 "amount": 1,
                                 "extra": 1,
@@ -351,8 +407,13 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                                     "item": "OOT_SWORD_MASTER"})
         if "MM_SWORD" in StartingItemList:
             StartingItemList.pop("MM_SWORD")
-        if "SHARED_SHIELD_HYLIAN" in StartingItemList:
-            StartingItemList.pop("SHARED_SHIELD_HYLIAN")
+        if data["SharedItems"][0] == True:
+            if "SHARED_SHIELD_HYLIAN" in StartingItemList:
+                StartingItemList.pop("SHARED_SHIELD_HYLIAN")
+        else:
+            if "MM_SHIELD_HERO" and "OOT_SHIELD_HYLIAN" in StartingItemList:
+                StartingItemList.pop("MM_SHIELD_HERO")
+                StartingItemList.pop("OOT_SHIELD_HYLIAN")
     else:
         SettingsList["shuffleMasterSword"] = False
         SettingsList["swordlessAdult"] = False          #Temporary Fix until the thing actually works in the generator
@@ -494,18 +555,44 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             SettingsList["soulsEnemyMm"] = True
             SettingsList["sharedSoulsEnemy"] = True
             HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
-            HintList.insert(HintIndex, {"type": "item",
-                                        "amount": 1,
-                                        "extra": 1,
-                                        "item": "SHARED_SOUL_ENEMY_LIZALFOS_DINALFOS"})
-            HintList.insert(HintIndex, {"type": "item",
-                                        "amount": 1,
-                                        "extra": 1,
-                                        "item": "SHARED_SOUL_ENEMY_KEESE"})
-            HintList.insert(HintIndex, {"type": "item",
-                                        "amount": 1,
-                                        "extra": 1,
-                                        "item": "SHARED_SOUL_ENEMY_IRON_KNUCKLE"})
+            if data["SharedItems"][0] == True:
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 1,
+                                            "item": "SHARED_SOUL_ENEMY_LIZALFOS_DINALFOS"})
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 1,
+                                            "item": "SHARED_SOUL_ENEMY_KEESE"})
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 1,
+                                            "item": "SHARED_SOUL_ENEMY_IRON_KNUCKLE"})
+            else:
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 0,
+                                            "item": "OOT_SOUL_ENEMY_LIZALFOS_DINALFOS"})
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 0,
+                                            "item": "OOT_SOUL_ENEMY_KEESE"})
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 0,
+                                            "item": "OOT_SOUL_ENEMY_IRON_KNUCKLE"})
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 0,
+                                            "item": "MM_SOUL_ENEMY_LIZALFOS_DINALFOS"})
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 0,
+                                            "item": "MM_SOUL_ENEMY_KEESE"})
+                HintList.insert(HintIndex, {"type": "item",
+                                            "amount": 1,
+                                            "extra": 0,
+                                            "item": "MM_SOUL_ENEMY_IRON_KNUCKLE"})
             HintList.insert(HintIndex, {"type": "item",
                                         "amount": 1,
                                         "extra": 1,
@@ -757,51 +844,63 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         PlandoList["MM Clock Town Owl Statue"] = "MM_OWL_CLOCK_TOWN"
         SongAndOwlList = ["OOT_SONG_EPONA", "OOT_SONG_SARIA", "OOT_SONG_TIME", "OOT_SONG_SUN", "SHARED_SONG_STORMS", "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER", "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON", "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER", "MM_OWL_MILK_ROAD", "MM_OWL_SOUTHERN_SWAMP", "MM_OWL_WOODFALL", "MM_OWL_MOUNTAIN_VILLAGE", "MM_OWL_SNOWHEAD", "MM_OWL_GREAT_BAY", "MM_OWL_ZORA_CAPE", "MM_OWL_IKANA_CANYON", "MM_OWL_STONE_TOWER"]
         SongAndOwlLocation = ["OOT Lon Lon Ranch Malon Song", "OOT Saria's Song", "OOT Graveyard Royal Tomb Song", "OOT Hyrule Field Song of Time", "OOT Windmill Song of Storms", "OOT Sacred Meadow Sheik Song", "OOT Death Mountain Crater Sheik Song", "OOT Ice Cavern Sheik Song", "OOT Kakariko Song Shadow", "OOT Desert Colossus Song Spirit", "OOT Temple of Time Sheik Song", "MM Clock Tower Roof Skull Kid Song of Time", "MM Romani Ranch Epona Song", "MM Southern Swamp Song of Soaring", "MM Beneath The Graveyard Song of Storms", "MM Deku Palace Sonata of Awakening", "MM Goron Elder", "MM Ancient Castle of Ikana Song Emptiness", "MM Oath to Order", "MM Milk Road Owl Statue", "MM Southern Swamp Owl Statue", "MM Woodfall Owl Statue", "MM Mountain Village Owl Statue", "MM Snowhead Owl Statue", "MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue", "MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
+        if data["SharedItems"][0] == False:
+            SongAndOwlList.remove("SHARED_SONG_STORMS")
+            SongAndOwlList.remove("SHARED_SONG_EMPTINESS")
+            SongAndOwlList.append("OOT_SONG_EMPTINESS")
+            SongAndOwlList.append("MM_SONG_EMPTINESS")
+            SongAndOwlList.append("OOT_SONG_STORMS")
+            SongAndOwlList.append("MM_SONG_STORMS")
         if SkipChildZelda == False:
             SongAndOwlLocation.append("OOT Zelda's Song")
-            if OcarinaButtonShuffle == False:
-                SongAndOwlList.append("SHARED_RECOVERY_HEART")
         if OcarinaButtonShuffle == True:
-            SongAndOwlList.append("SHARED_BUTTON_A")
-            SongAndOwlList.append("SHARED_BUTTON_C_RIGHT")
-            SongAndOwlList.append("SHARED_BUTTON_C_LEFT")
-            SongAndOwlList.append("SHARED_BUTTON_C_DOWN")
-            SongAndOwlList.append("SHARED_BUTTON_C_UP")
+            if data["SharedItems"][0] == True:
+                SongAndOwlList.append("SHARED_BUTTON_A")
+                SongAndOwlList.append("SHARED_BUTTON_C_RIGHT")
+                SongAndOwlList.append("SHARED_BUTTON_C_LEFT")
+                SongAndOwlList.append("SHARED_BUTTON_C_DOWN")
+                SongAndOwlList.append("SHARED_BUTTON_C_UP")
+            else:
+                SongAndOwlList.append("OOT_BUTTON_A")
+                SongAndOwlList.append("OOT_BUTTON_C_RIGHT")
+                SongAndOwlList.append("OOT_BUTTON_C_LEFT")
+                SongAndOwlList.append("OOT_BUTTON_C_DOWN")
+                SongAndOwlList.append("OOT_BUTTON_C_UP")
+                SongAndOwlList.append("MM_BUTTON_A")
+                SongAndOwlList.append("MM_BUTTON_C_RIGHT")
+                SongAndOwlList.append("MM_BUTTON_C_LEFT")
+                SongAndOwlList.append("MM_BUTTON_C_DOWN")
+                SongAndOwlList.append("MM_BUTTON_C_UP")
             SongAndOwlLocation.append("MM Initial Song of Healing")
             SongAndOwlLocation.append("MM Clock Town Owl Statue")
             del PlandoList["MM Clock Town Owl Statue"]
-            del PlandoList["MM Initial Song of Healing"]
+            JunkList.remove("MM Initial Song of Healing")
             StartingItemList["MM_OWL_CLOCK_TOWN"] = 1
-            if SkipChildZelda == True:
-                RandomStart = random.choice(SongAndOwlList)
-                StartingItemList[RandomStart] = 1
-                SongAndOwlList.remove(RandomStart)
-        else:
-            SongAndOwlList.append("SHARED_RECOVERY_HEART")
-            SongAndOwlList.append("SHARED_RECOVERY_HEART")
 
-        OOT_EXCLUDE_ROYAL_TOMB = ["OOT_SONG_ZELDA", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_UP"]
+        OOT_EXCLUDE_ROYAL_TOMB = ["OOT_SONG_ZELDA", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_UP", "OOT_BUTTON_C_RIGHT", "OOT_BUTTON_C_LEFT", "OOT_BUTTON_C_UP"]
         OOT_ROYAL_TOMB_LOCATIONS = ["OOT Graveyard Royal Tomb Song"]
 
-        OOT_EXCLUDE_ADULT_SACRED_MEADOW = ["SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_RIGHT"]
+        OOT_EXCLUDE_ADULT_SACRED_MEADOW = ["SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_RIGHT", "OOT_BUTTON_C_LEFT", "OOT_BUTTON_C_RIGHT"]
         OOT_ADULT_SACRED_MEADOW_LOCATIONS = ["OOT Sacred Meadow Sheik Song"]
 
-        OOT_EXCLUDE_ICE_CAVERN = ["OOT_SONG_ZELDA", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_UP"]
+        OOT_EXCLUDE_ICE_CAVERN = ["OOT_SONG_ZELDA", "SHARED_BUTTON_C_RIGHT", "SHARED_BUTTON_C_LEFT", "SHARED_BUTTON_C_UP", "OOT_BUTTON_C_RIGHT", "OOT_BUTTON_C_LEFT", "OOT_BUTTON_C_UP"]
         OOT_ICE_CAVERN_LOCATIONS = ["OOT Ice Cavern Sheik Song"]
 
-        MM_EXCLUDE_IKANA_GRAVE = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT"]
+        MM_EXCLUDE_IKANA_GRAVE = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT", "MM_BUTTON_C_UP", "MM_BUTTON_C_LEFT"]
         MM_IKANA_GRAVE_LOCATIONS = ["MM Beneath The Graveyard Song of Storms"]
 
-        MM_EXCLUDE_OCEAN = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT"]
+        MM_EXCLUDE_OCEAN = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT", "MM_BUTTON_C_UP", "MM_BUTTON_C_LEFT"]
         MM_OCEAN_LOCATIONS = ["MM Great Bay Coast Owl Statue", "MM Zora Cape Owl Statue"]
 
-        MM_EXCLUDE_CANYON = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT"]
+        MM_EXCLUDE_CANYON = ["SHARED_BUTTON_C_UP", "SHARED_BUTTON_C_LEFT", "MM_BUTTON_C_UP", "MM_BUTTON_C_LEFT"]
         MM_CANYON_LOCATIONS = ["MM Ikana Canyon Owl Statue", "MM Stone Tower Owl Statue"]
 
         CheckList = SongAndOwlList.copy()
+        CheckLocation = SongAndOwlLocation.copy()
+        random.shuffle(CheckLocation)
 
         while len(CheckList) > 0:
-            for key in SongAndOwlLocation:
+            for key in CheckLocation:
                 #Attempt to avoid straightforward generation conflicts
                 if key in OOT_ROYAL_TOMB_LOCATIONS and SettingsList["erGrottos"] == "none":
                      ChosenItem = random.choice([item for item in CheckList if item not in OOT_EXCLUDE_ROYAL_TOMB])
@@ -820,10 +919,24 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
 
                 PlandoList[key] = ChosenItem
                 CheckList.remove(ChosenItem)
+                CheckLocation.remove(key)
+                if len(CheckList) == 0:
+                    break
+            if len(CheckLocation) == 0:
+                break
+        if len(CheckLocation) != 0:
+            for key in CheckLocation:
+                JunkList.append(key)
+        else:
+            for key in CheckList:
+                StartingItemList[key] = 1
 
     elif OcarinaButtonShuffle == True:
         StartingButtonCount = random.choices(settings["StartingButtons"][0], settings["StartingButtons"][1])[0]
-        ButtonsChosen = random.sample(OcarinaButtons, StartingButtonCount)
+        if data["SharedItems"][0] == True:
+            ButtonsChosen = random.sample(OcarinaButtons, StartingButtonCount)
+        else:
+            ButtonsChosen = random.sample(OcarinaButtons, 2*StartingButtonCount)
 
         for key in ButtonsChosen:
             StartingItemList[key] = 1
@@ -835,6 +948,12 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                     "OOT_SONG_ZELDA", "OOT_SONG_TP_FOREST", "OOT_SONG_TP_FIRE", "OOT_SONG_TP_WATER",
                     "OOT_SONG_TP_SHADOW", "OOT_SONG_TP_SPIRIT", "MM_SONG_HEALING", "MM_SONG_AWAKENING", "MM_SONG_GORON",
                     "MM_SONG_ZORA", "SHARED_SONG_EMPTINESS", "MM_SONG_ORDER"]  # 17
+        if data["SharedItems"][0] == False:
+            SongList.remove("SHARED_SONG_EMPTINESS")
+            SongList.append("MM_SONG_EMPTINESS")
+            SongList.remove("SHARED_SONG_STORMS")
+            SongList.append("OOT_SONG_STORMS")
+            SongList.append("MM_SONG_STORMS")
         DungeonItemList = ["OOT Deku Tree Boss Container", "OOT Dodongo Cavern Boss Container",
                             "OOT Jabu-Jabu Boss Container", "OOT Forest Temple Boss Container",
                             "OOT Fire Temple Boss Container", "OOT Water Temple Boss HC", "OOT Shadow Temple Boss HC",
@@ -887,7 +1006,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
                         elif key in BOSSA_REQUIRED:
                             ChosenItem = random.choice([item for item in CheckList2 if item != "MM_SONG_ZORA"])
                         elif key in ELEGY_REQUIRED:
-                            ChosenItem = random.choice([item for item in CheckList2 if item != "SHARED_SONG_EMPTINESS"])
+                            ChosenItem = random.choice([item for item in CheckList2 if (item != "SHARED_SONG_EMPTINESS" and item != "MM_SONG_EMPTINESS")])
                         else:
                             ChosenItem = random.choice(CheckList2)
                         PlandoList[key] = ChosenItem
@@ -910,6 +1029,60 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     WorldLayout = random.choices(settings["MMWorldLayout"][0], settings["MMWorldLayout"][1])[0]
     if WorldLayout == "jp":
         SettingsList["jpLayouts"] = {"type":"specific", "values":["DekuPalace"]}
+
+
+if data["SharedItems"][0] == False:
+    def update_shared_items(obj):
+        if isinstance(obj, dict):
+            return {k: (False if "shared" in k.lower() else update_shared_items(v)) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [update_shared_items(item) for item in obj]
+        else:
+            return obj
+
+    SettingsList = update_shared_items(SettingsList)
+
+    updatedStarting = {}
+    for key, value in StartingItemList.items():
+        if key.startswith("SHARED_"):
+            if key in shared_item_starting:
+                for new_key in shared_item_starting[key]:
+                    updatedStarting[new_key] = value
+        else:
+            updatedStarting[key] = value
+
+    StartingItemList = updatedStarting
+
+    updatedPlando = {}
+    for key, value in PlandoList.items():
+        if key.startswith("SHARED_"):
+            if key in shared_item_starting:
+                for new_key in shared_item_starting[key]:
+                    updatedPlando[new_key] = value
+        else:
+            updatedPlando[key] = value
+
+    PlandoList = updatedPlando
+
+    updatedHints = []
+
+    for hint in HintList:  # Loop over list elements (each is a dictionary)
+        item_name = hint.get("item")  # Extract the item name
+
+        if item_name:
+            if item_name.startswith("SHARED_") and item_name in shared_item_hints:
+                for new_item in shared_item_hints[item_name]:
+                    new_hint = hint.copy()
+                    new_hint["item"] = new_item
+                    updatedHints.append(new_hint)
+            else:
+                updatedHints.append(hint)  # Keep the original hint if not shared
+        else:
+            updatedHints.append(hint)  # Keep the original hint if not shared
+
+    HintList = updatedHints
+
+
 
 # Builds the Setting List here:
 settings_data = SettingsList
