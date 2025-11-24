@@ -34,15 +34,18 @@ with open(args.configfile, "r") as read_file:
 
 basestring = data["SettingsString"]
 
-base_data = basestring.split(".")[1]
+base64_data = basestring[3:]
+padding = '=' * (-len(base64_data) % 4)
+base64_data += padding
+compressed_data = base64.urlsafe_b64decode(base64_data)
 
-padding_needed = len(base_data) % 4
-if padding_needed:
-    base_data += "=" * (4 - padding_needed)
+# Decompress raw deflate (no zlib headers)
+decompressed_bytes = zlib.decompress(compressed_data, -zlib.MAX_WBITS)
+decompressed_str = decompressed_bytes.decode('utf-8')
 
-decoded_data = zlib.decompress(base64.urlsafe_b64decode(base_data))
 
-base_settings = json.loads(decoded_data)
+# Parse JSON
+base_settings = json.loads(decompressed_str)
 
 settings = data["GameplaySettings"]
 
@@ -1308,4 +1311,5 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
 
 
 print("Settings generated successfully!")
+
 
