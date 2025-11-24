@@ -33,8 +33,9 @@ with open(args.configfile, "r") as read_file:
     data = json.load(read_file)
 
 basestring = data["SettingsString"]
-
+    
 base64_data = basestring[3:]
+# Base64 url-safe decode (with padding fix if needed)
 padding = '=' * (-len(base64_data) % 4)
 base64_data += padding
 compressed_data = base64.urlsafe_b64decode(base64_data)
@@ -112,7 +113,7 @@ DefaultStartingItemList = base_settings["startingItems"]
 DefaultHintList = base_settings["hints"]
 
 HintToInsertBefore = {"type":"woth",
-                    "amount":10,
+                    "amount":9,
                     "extra":1}
 
 Logic = random.choices(data["LogicSettings"][0], data["LogicSettings"][1])[0]
@@ -226,7 +227,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             HintList.insert(HintIndex, {"type": "item",
                                 "amount": 1,
                                 "extra": 1,
-                                "item": "MM_SONG_TIME"})
+                                "item": "SHARED_SONG_TIME"})
             HintList.insert(HintIndex, {"type": "item",
                                 "amount": 1,
                                 "extra": 1,
@@ -402,7 +403,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             SettingsList["timeTravelSword"] = random.choices([True, False], settings["TimeTravelSword"][1])[0]
         SettingsList["sharedSwords"] = True
         MysteryCount += 1
-        HardCounter += 1
         HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
         HintList.insert(HintIndex, {"type": "item",
                                     "amount": 1,
@@ -658,16 +658,47 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
         if GerudoCardShuffle == "Starting":
             StartingItemList["OOT_GERUDO_CARD"] = 1
 
-    RedBoulderShuffle = random.choices([True, False], settings["RedBoulderShuffle"][1])[0]
+    RedBoulderShuffle = random.choices([True, False], settings["RockShuffle"][1])[0]
     if RedBoulderShuffle == True:
         SettingsList["shuffleRedBouldersOot"] = True
         SettingsList["shuffleRedBouldersMm"] = True
+        SettingsList["shuffleRocksOot"] = True
+        SettingsList["shuffleRocksMm"] = "all"
+        MysteryCount += 1
+
+    TreeShuffle = random.choices([True, False], settings["TreeAndBushShuffle"][1])[0]
+    if TreeShuffle == True:
+        SettingsList["shuffleTreesOot"] = True
+        SettingsList["shuffleTreesMm"] = "all"
+        SettingsList["shuffleBushOot"] = True
+        SettingsList["shuffleBushMm"] = "all"
         MysteryCount += 1
 
     IcicleShuffle = random.choices([True, False], settings["IcicleShuffle"][1])[0]
     if IcicleShuffle == True:
         SettingsList["shuffleIciclesOot"] = True
         SettingsList["shuffleIciclesMm"] = True
+        MysteryCount += 1
+    
+    SettingsList["dungeonRewardShuffle"] = random.choices(["dungeonBlueWarps", "dungeonsLimited", "anywhere"], settings["DungeonRewardShuffle"][1])[0]
+    if SettingsList["dungeonRewardShuffle"] != "dungeonBlueWarps":
+        MysteryCount += 1
+        
+    SharedMiscSouls = random.choices([True, False], settings["MiscSoulShuffle"][1])[0]
+    if SharedMiscSouls == True:
+        SettingsList["soulsMiscOot"] = True
+        SettingsList["soulsMiscMm"] = True
+        SettingsList["sharedSoulsMisc"] = True
+        MysteryCount += 1
+        
+    SettingsList["eggShuffle"] = random.choices([True, False], settings["EggShuffle"][1])[0]
+    
+    SettingsList["shuffleRedIceOot"] = random.choices([True, False], settings["RedIceShuffle"][1])[0]
+    
+    SoilShuffle = random.choices([True, False], settings["SoilShuffle"][1])[0]
+    if SoilShuffle == True:
+        SettingsList["shuffleSoilOot"] = True
+        SettingsList["shuffleSoilMm"] = "all"
         MysteryCount += 1
     
     SettingsList["erSpawns"] = random.choices(["none", "child", "adult", "both"], settings["SpawnShuffle"][1])[0]
@@ -1166,7 +1197,8 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
     print("Wonder Spot Shuffle: OoT", WonderSpotShuffle.capitalize(), "MM", WonderSpotShuffle != "none", file=spoiler_file)
     print("Crate and Barrel Shuffle:", SharedCratesAndBarrels.capitalize(), file=spoiler_file)
     print("Snowball Shuffle:", SettingsList["shuffleSnowballsMm"].capitalize(), file = spoiler_file)
-    print("Red Boulder Shuffle:", RedBoulderShuffle, file=spoiler_file)
+    print("Rock Shuffle:", RedBoulderShuffle, file=spoiler_file)
+    print("Tree Shuffle:", TreeShuffle, file=spoiler_file)
     print("Cow Shuffle:", SharedCowShuffle, file=spoiler_file)
     print("Child Wallet Shuffle:", ChildWallet, file=spoiler_file)
     print("Shop Shuffle:", SharedShopShuffle.capitalize(), file=spoiler_file)
@@ -1311,5 +1343,3 @@ with open("settings_spoiler.txt", "w") as spoiler_file:
 
 
 print("Settings generated successfully!")
-
-
