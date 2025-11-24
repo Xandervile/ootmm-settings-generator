@@ -48,8 +48,6 @@ decompressed_str = decompressed_bytes.decode('utf-8')
 # Parse JSON
 base_settings = json.loads(decompressed_str)
 
-print(base_settings)
-
 settings = data["GameplaySettings"]
 
 MinMysterySettings = settings["MinimumSettingsAmount"]
@@ -229,7 +227,7 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             HintList.insert(HintIndex, {"type": "item",
                                 "amount": 1,
                                 "extra": 1,
-                                "item": "MM_SONG_TIME"})
+                                "item": "SHARED_SONG_TIME"})
             HintList.insert(HintIndex, {"type": "item",
                                 "amount": 1,
                                 "extra": 1,
@@ -405,7 +403,6 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
             SettingsList["timeTravelSword"] = random.choices([True, False], settings["TimeTravelSword"][1])[0]
         SettingsList["sharedSwords"] = True
         MysteryCount += 1
-        HardCounter += 1
         HintIndex = next((i for i, hint in enumerate(HintList) if hint == HintToInsertBefore), None)
         HintList.insert(HintIndex, {"type": "item",
                                     "amount": 1,
@@ -681,6 +678,27 @@ while MysteryCount < MinMysterySettings or HardCounter > HARDMODELIMIT or Myster
     if IcicleShuffle == True:
         SettingsList["shuffleIciclesOot"] = True
         SettingsList["shuffleIciclesMm"] = True
+        MysteryCount += 1
+    
+    SettingsList["dungeonRewardShuffle"] = random.choices(["dungeonBlueWarps", "dungeonsLimited", "anywhere"], settings["DungeonRewardShuffle"][1])[0]
+    if SettingsList["dungeonRewardShuffle"] != "dungeonBlueWarps":
+        MysteryCount += 1
+        
+    SharedMiscSouls = random.choices([True, False], settings["MiscSoulShuffle"][1])[0]
+    if SharedMiscSouls == True:
+        SettingsList["soulsMiscOot"] = True
+        SettingsList["soulsMiscMm"] = True
+        SettingsList["sharedSoulsMisc"] = True
+        MysteryCount += 1
+        
+    SettingsList["eggShuffle"] = random.choices([True, False], settings["EggShuffle"][1])[0]
+    
+    SettingsList["shuffleRedIceOot"] = random.choices([True, False], settings["RedIceShuffle"][1])[0]
+    
+    SoilShuffle = random.choices([True, False], settings["SoilShuffle"][1])[0]
+    if SoilShuffle == True:
+        SettingsList["shuffleSoilOot"] = True
+        SettingsList["shuffleSoilMm"] = "all"
         MysteryCount += 1
     
     SettingsList["erSpawns"] = random.choices(["none", "child", "adult", "both"], settings["SpawnShuffle"][1])[0]
